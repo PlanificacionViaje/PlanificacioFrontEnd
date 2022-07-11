@@ -1,4 +1,5 @@
 <script setup>
+import LoginComponent from "./components/LoginComponent.vue";
 </script>
 
 <template>
@@ -7,10 +8,20 @@
      
     </div>
   </header>
-
+  <main>
+    <LoginComponent />
+  </main>
   
 </template>
 
 <style>
-
+* {
+  box-sizing: border-box;
+}
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family:'Inter', sans-serif;
+}
 </style>
