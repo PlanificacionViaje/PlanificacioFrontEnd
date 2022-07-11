@@ -24,4 +24,8 @@ html, body, #app {
   margin: 0;
   font-family:'Inter', sans-serif;
 }
+
+#app {
+  background: url("/public/bg.jpg");
+}
 </style>
