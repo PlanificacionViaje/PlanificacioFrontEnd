@@ -26,6 +26,8 @@ html, body, #app {
 }
 
 #app {
-  background: url("/public/bg.jpg");
+  background: url("bg2.jpg");
+      background-repeat: no-repeat;
+    background-size: cover;
 }
 </style>
