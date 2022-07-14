@@ -59,8 +59,7 @@
 .mainUserInfo, .recentTripCards{
     display: flex;
     justify-content: space-around;
-    padding: 1rem;
-    align-items: center;
+    gap: 1rem;    
 }
 .userInfo{
     margin-top:3rem;
@@ -102,8 +101,6 @@
 
 .recentTripsLetters{    
     display: block;
-    align-items: center;
-    text-align: center;
 }
 .trip{
     width: 263.58px;   
@@ -131,6 +128,7 @@
 @media (max-width: 915px){
     .mainUserInfo{
         display: block;
+        align-items: center;
     }
     .userInfo{
         margin-top:0rem;
@@ -140,23 +138,22 @@
     }
     .userInfo > h4{
         margin-block-start: 0;
-        margin-block-end: 1em;
+        margin-block-end: 0.5em;
     }
     .recentTripsLetters{
-        margin-block-end: 0;
+        margin-block-end: 1rem
     }
-    .recentTripCards{
-        padding-top: 0;
+    .trip{
+        margin-left:auto;
+        margin-right:auto;
     }
 }
 
-@media (max-width: 615px){
+@media (max-width: 700px){
     .recentTripCards{
         display: flex;
-        flex-direction: column;
-        margin: 0, auto;
-    }
-    
+        flex-direction: column;        
+    }    
 }
 
 </style>
