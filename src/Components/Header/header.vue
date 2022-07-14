@@ -1,19 +1,26 @@
-<script setup>
-</script>
-
 <template>
   <div class="header">
     <div class="Title">
         <img class="logo" src="../../../public/Icons/logotipo-freeway.png" alt="Logotipo Free Way">
         <h1>Free Way</h1>
     </div>
-    <img class="perfil" src="../../../public/Icons/perfil.svg" alt="">
+    <img v-show="isOnline" class="perfil" src="../../../public/Icons/perfil.svg" alt="">
+    <div v-show="!isOnline" class="btns">
+        <p>Log In</p>
+        <p>Register</p>
+    </div>
   </div>
 </template>
 
 <script>
     export default {
-        name:"Header"
+        name:"Header",
+
+        data() {
+        return {
+            isOnline: false
+        }
+    }
     }
 </script>
 
@@ -22,14 +29,26 @@ h1 {
     display: inline;
     color: white;
     text-shadow: -2.5px 1px 1px black;
-    font-family: 'Inter', sans-serif;
 }
 
+p {
+    color: white;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border: 1px solid white;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.header{
+    font-family: 'Inter', sans-serif;
+}
 .header {
     background-color: #6883BA;
     display: flex;
     justify-content: space-between;
-    padding: 1rem;
 }
 
 .logo{
@@ -41,4 +60,11 @@ h1 {
     width: 48px;
     height: auto;
 }
+
+.btns{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 </style>

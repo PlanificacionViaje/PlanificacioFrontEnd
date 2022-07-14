@@ -11,3 +11,4 @@ import Profile from './Components/Profile.vue';
 <style>
 
 </style>
+
