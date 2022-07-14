@@ -109,6 +109,7 @@
     margin: 20px;
     padding: 1rem;
     min-height: 302px;
+    contain: content;
 }
 .yellowTrip{
     background-color: #FDE74C;
