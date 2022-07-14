@@ -60,6 +60,7 @@
     display: flex;
     justify-content: space-around;
     padding: 1rem;
+    align-items: center;
 }
 .userInfo{
     margin-top:3rem;
@@ -105,12 +106,12 @@
     text-align: center;
 }
 .trip{
-    width: 263.58px;
+    width: 263.58px;   
     border-radius: 31px;
     filter: drop-shadow(5px 7px 2px #000000);
     margin: 20px;
     padding: 1rem;
-    height: 302px;
+    min-height: 302px;
 }
 .yellowTrip{
     background-color: #FDE74C;
@@ -127,5 +128,35 @@
     font-size: 16px;
 }
 
+@media (max-width: 915px){
+    .mainUserInfo{
+        display: block;
+    }
+    .userInfo{
+        margin-top:0rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;      
+    }
+    .userInfo > h4{
+        margin-block-start: 0;
+        margin-block-end: 1em;
+    }
+    .recentTripsLetters{
+        margin-block-end: 0;
+    }
+    .recentTripCards{
+        padding-top: 0;
+    }
+}
+
+@media (max-width: 615px){
+    .recentTripCards{
+        display: flex;
+        flex-direction: column;
+        margin: 0, auto;
+    }
+    
+}
 
 </style>
