@@ -45,8 +45,11 @@ export default {
     editNote(data) {
       const target = this.notes.find(note => note.id == data.id);
 
-      target.question = data.newData.question;
-      target.answer = data.newData.answer;
+      target.Nombre = data.newData.Nombre;
+      target.Fechainicio = data.newData.Fechainicio;
+      target.Fechafin = data.newData.Fechafin;
+      target.Presupuesto = data.newData.Presupuesto;
+      target.Descripcion = data.newData.Descripcion;
 
       this.updateLocalStorage();
     },

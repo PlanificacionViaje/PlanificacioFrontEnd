@@ -9,37 +9,37 @@
         </a>
         <!-- end of close btn -->
         <div v-show="showAlertMsg" class="alert">
-            You can't add blank fields
+            No puedes dejar la tarjeta vacia
         </div>
         <form id="question-form" @submit.prevent="addNewNote">
             <!-- single input -->
             <h5 class="text">Nombre</h5>
             <div class="">
-                <textarea class="inputsubmit" v-model="noteNombre"></textarea>
+                <input type="text" class="inputsubmit" v-model="noteNombre" maxlength="45">
             </div>
             <!-- end of single input -->
             <!-- single input -->
             <h5 class="text">Fechainicio</h5>
             <div class="">
-                <textarea class="inputsubmit" v-model="noteFechainicio"></textarea>
+                <input type="date" class="inputsubmit" v-model="noteFechainicio">
             </div>
             <!-- end of single input -->
              <!-- single input -->
             <h5 class="text">Fechafin</h5>
             <div class="">
-                <textarea class="inputsubmit" v-model="noteFechafin"></textarea>
+                <input type="date" class="inputsubmit" v-model="noteFechafin">
             </div>
             <!-- end of single input -->
              <!-- single input -->
             <h5 class="text">Presupuesto</h5>
             <div class="">
-                <textarea class="inputsubmit" v-model="notePresupuesto"></textarea>
+                <input type="number" class="inputsubmit" v-model="notePresupuesto">
             </div>
             <!-- end of single input -->
              <!-- single input -->
             <h5 class="text">Descripción</h5>
             <div class="">
-                <textarea class="inputsubmit" v-model="noteDescripcion"></textarea>
+                <input type="text" class="inputsubmit" v-model="noteDescripcion" maxlength="500">
             </div>
             <!-- end of single input -->
             <!-- end of single input -->
