@@ -1,0 +1,124 @@
+:root {
+  /*--mainWhite: #f5f5f5;
+  --mainDark: #333333;
+  --mainOrange: #ff8552;
+  --mainGreen: #297373;*/
+  --bgBody: #C2DBFF;
+  --textColorWhite:#FFFFFF;
+  --textColorBlack:#000000;
+  --boxColorWhite:#FFFFFF;
+
+}
+
+body {
+  background: var(--bgBody);
+  color: var(--mainDark);
+  font-family: 'Inter';
+  font-style: normal;
+}
+
+#show-btn {
+  width: 167px;
+  height: 55px;
+  background-color:var(--boxColorWhite);
+  color: var(--textColorBlack);
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  box-shadow: 4px 3px 0px rgba(0, 0, 0, 0.89);
+
+}
+#show-btn:hover {
+ background-color:#2B50AA;
+ color: white;
+ box-shadow: 0px 0px 0px transparent;
+}
+
+/*.show-btn {
+  border-color: var(--mainOrange);
+  color: var(--mainOrange);
+  background: transparent;
+}*/
+
+/*.show-btn:hover {
+  background: var(--mainOrange);
+  color: var(--mainDark);
+}*/
+
+.material-symbols-outlined {
+
+font-size: 12px;
+
+}
+
+.question-card {
+  display: none;
+  position: relative;
+  background: transparent;
+  border-color: var(--mainOrange);
+}
+
+.feedback {
+  display: none;
+}
+
+textarea {
+  border-radius: 0.25rem;
+  border-color: var(--mainOrange);
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 2%;
+  font-size: 2rem;
+  color: var(--mainOrange);
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: var(--mainGreen);
+}
+
+.submitBtn {
+  border: 0.2rem solid var(--mainGreen);
+  color: var(--mainGreen);
+  background: transparent;
+}
+
+.submitBtn:hover {
+  background: var(--mainGreen);
+  color: var(--mainWhite);
+}
+
+.cancelBtn {
+  border: 0.2rem solid var(--mainOrange);
+  color: var(--mainOrange);
+  background: transparent;
+}
+
+.cancelBtn:hover {
+  background: var(--mainOrange);
+  color: var(--mainWhite);
+}
+
+.edit-flashcard {
+  font-family: inherit;
+  font-size: 24px;
+  margin: 20px;
+}
+
+.delete-flashcard { 
+  font-family: inherit;
+  font-size: 24px;
+}
+
+#questions-list{
+  display: grid;
+  column-gap: 50px;
+  grid-template-columns: auto auto auto auto;
+  padding: 10px;
+  gap: 20px;
+}
