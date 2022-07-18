@@ -1,11 +1,35 @@
+
 <script>
+import * as crud from "../../axios/axiosFunctions";
 export default {
   data() {
-    return {};
+    return {
+      email: "",
+      password: "",
+    };
   },
   methods: {
     swapLoginRegister() {
       this.$emit("swapLoginRegister");
+    },
+    checkUser() {
+      let userList = "";
+      console.log("funcionaaaaaaaaaaaaaaa");
+      crud
+        .getAllUsuarios()
+        .then((response) => (userList = response))
+        .catch((error) => crud.handleError(error));
+      // console.log(userList);
+      for (let i = 0; i < userList.length; i++) {
+        if (
+          userList[i][correo] == this.email &&
+          userList[i][contrasena] == this.password
+        ) {
+          console.log("Existe el usuario");
+        } else {
+          console.log("no existe :(");
+        }
+      }
     },
   },
 };
@@ -14,14 +38,21 @@ export default {
 <template>
   <div id="login-component">
     <h1 class="title">Login</h1>
-    <form class="form" action="" @submit.prevent>
+    <form class="form" action="" @submit.prevent="checkUser">
       <label class="form-field-container" for="correo">
         <p>Correo</p>
-        <input class="form-input" type="email" name="correo" id="correo" />
+        <input
+          :v-model="{ email }"
+          class="form-input"
+          type="email"
+          name="correo"
+          id="correo"
+        />
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
         <input
+          :v-model="{ password }"
           class="form-input"
           type="password"
           name="contrasena"
