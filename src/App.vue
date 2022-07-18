@@ -1,4 +1,7 @@
 <script setup>
+import Header from "./Components/Header.vue";
+import Profile from "./Components/Profile.vue";
+import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
 </script>
 
@@ -7,8 +10,8 @@ export default {
   data() {
     return {
       loginActive: true,
-      displayLoginRegisterModal: false
-    }
+      displayLoginRegisterModal: false,
+    };
   },
   methods: {
     swapLoginRegister() {
@@ -17,24 +20,32 @@ export default {
     closeLoginRegisterModal() {
       this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
       this.loginActive = true;
-    }
-  }
-
-}
+    },
+  },
+};
 </script>
 
 <template>
   <header>
-    <div class="">
-
-    </div>
+    <div class=""></div>
   </header>
   <main>
-    <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
-    <button id="loginregister" @click="displayLoginRegisterModal = !displayLoginRegisterModal">asdfasdf</button>
+    <Header />
+    <Profile />
+    <AxiosPlayground />
+    <LoginAndRegisterModal
+      :loginActive="loginActive"
+      :displayLoginRegisterModal="displayLoginRegisterModal"
+      @swapLoginRegister="swapLoginRegister"
+      @closeLoginRegisterModal="closeLoginRegisterModal"
+    />
+    <button
+      id="loginregister"
+      @click="displayLoginRegisterModal = !displayLoginRegisterModal"
+    >
+      asdfasdf
+    </button>
   </main>
-
 </template>
 
 <style>
@@ -48,6 +59,6 @@ body,
   width: 100%;
   height: 100%;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 </style>
