@@ -12,13 +12,23 @@ export default {
     swapLoginRegister() {
       this.$emit("swapLoginRegister");
     },
-    checkUser() {
+    checkUser() {    
+      let userList = "";
       console.log("funciona");
-      // let userList = "";
       crud
         .getAllUsuarios()
-        .then((response) => console.log(response))
+        .then((response) => (userList=response))
         .catch((error) => crud.handleError(error));
+        console.log(userList);
+        for (let i = 0; i < userList.length; i++) {
+           if (userList[i][correo]==this.email && userList[i][contrasena]==this.password) {
+            console.log("Existe el usuario");
+           }
+           else{
+            console.log("no existe :(");
+           }
+          
+        }
     },
   },
 };
