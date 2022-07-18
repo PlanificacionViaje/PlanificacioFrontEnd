@@ -1,5 +1,5 @@
 <script setup>
-import Header from "./Components/Header/header.vue";
+import Header from "./Components/Header.vue";
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
