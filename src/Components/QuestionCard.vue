@@ -24,16 +24,27 @@
         </div>
 
         <div v-else class="grid-item">
-            <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
-            <h5 class="text-note">{{ note.Nombre }}</h5>
+            <section id="cabecera-grid">           
+            <p> icono </p>  
+             <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
+             <a href="#" @click.prevent="editCard" id="edit-flashcard"
+            class="edit-flashcard text-uppercase" data-id="edit">Editar</a>       
+            
+            </section>
+
+            <!-- <h5 class="text-note">{{ note.Nombre }}</h5> -->
             <h6  class="text-note">{{ note.Fechainicio }}</h6>
             <h6  class="text-note">{{ note.Fechafin }}</h6>
             <h6 class="text-note">{{ note.Presupuesto }}</h6>
-            <h6 class=".text-note-desc">{{ note.Descripcion }}</h6>        
-            <a href="#" @click.prevent="editCard" id="edit-flashcard"
-            class="edit-flashcard text-uppercase" data-id="">Editar</a>
+            <h6 class="text-note-desc">{{ note.Descripcion }}</h6>        
+            
+            <section id="fin-grid">
             <a href="#" @click.prevent="deleteCard" id="delete-flashcard"
             class="delete-flashcard text-uppercase">Borrar</a>
+            </section>
+
+
+
         </div>          
     </div>
    
@@ -123,10 +134,27 @@ background-color: rgba(255, 255, 255, 0.8);
 .text-note-desc{
     font-family: inherit;
     overflow-wrap: break-word;
+    margin-bottom: 0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;    
     }
 
-.text-note-desc{
-    font-family: inherit;
+    #cabecera-grid{
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    }
+
+    #fin-grid{
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .text-note{
+        margin-bottom: 0px;
+        margin-block-start: 0px;
+        margin-block-end: 0px;
+        font-family: inherit;
     }
 
 </style>
