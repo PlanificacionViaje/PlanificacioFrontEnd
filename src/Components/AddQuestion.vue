@@ -11,6 +11,8 @@
         <div v-show="showAlertMsg" class="alert">
             No puedes dejar la tarjeta vacia
         </div>
+
+
         <form id="question-form" @submit.prevent="addNewNote">
             <!-- single input -->
             <h5 class="text">Nombre</h5>
@@ -33,15 +35,19 @@
              <!-- single input -->
             <h5 class="text">Presupuesto</h5>
             <div class="">
-                <input type="number" class="inputsubmit" v-model="notePresupuesto">
+                <input type="" class="inputsubmit" v-model="notePresupuesto">
             </div>
             <!-- end of single input -->
+
+
              <!-- single input -->
             <h5 class="text">Descripción</h5>
             <div class="">
                 <input type="text" class="inputsubmit" v-model="noteDescripcion" maxlength="500">
             </div>
-            <!-- end of single input -->
+
+
+            
             <!-- end of single input -->
             <button type="submit" class="submitBtn">Guardar</button>
         </form>
@@ -59,12 +65,12 @@ export default {
             noteFechainicio: "",
             noteFechafin: "",
             notePresupuesto: "",
-            noteDescripcion: "",
+            noteDescripcion: ""
         }
     },
     methods: {
         addNewNote() {
-            if (this.noteNombre.trim() == "" || this.noteFechafin.trim() == "" || this.noteFechainicio.trim() == "" || this.noteFechafin.trim() == "" || this.notePresupuesto.trim() == "" || this.noteDescripcion.trim() == "") {
+            if (this.noteNombre.trim() == ""  || this.noteFechainicio.trim() == "" || this.noteFechafin.trim() == "" || this.notePresupuesto.trim() == "" || this.noteDescripcion.trim() == "") {
                 this.showAlertMsg = true;
 
                 setTimeout(() => {
@@ -88,7 +94,7 @@ export default {
             this.noteNombre = this.noteNombre = "";
             this.noteFechainicio = this.noteFechainicio="";
             this.noteFechafin = this.noteFechafin="";
-            this.notePresupuesto = this.noteFechainicio="";
+            this.notePresupuesto = this.notePresupuesto="";
             this.noteDescripcion = this.noteDescripcion="";
         }
     }

@@ -10,7 +10,7 @@
                 <h5 class="">Fechafin</h5>             
                     <input type="date" class="" id="Fechafin-input" rows="3" v-model="noteFechafinEdited">        
                 <h5 class="">Presupuesto</h5>              
-                    <input type="number" class="" id="Presupuesto-input" rows="3" v-model="notePresupuestoEdited">            
+                    <input type="" class="" id="Presupuesto-input" rows="3" v-model="notePresupuestoEdited">            
                 <h5 class="">Descripcion</h5>              
                     <input type="text" class="" id="Descripcion-input" rows="3" v-model="noteDescripcionEdited" maxlength="500">
                     <div class="btnedit">
