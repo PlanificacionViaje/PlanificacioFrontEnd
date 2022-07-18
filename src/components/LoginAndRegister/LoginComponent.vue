@@ -1,11 +1,21 @@
+<script setup>
+import { getAllUsuarios } from "../AxiosPlayground.vue";
+</script>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      email: "",
+      password: "",
+    };
   },
   methods: {
     swapLoginRegister() {
       this.$emit("swapLoginRegister");
+    },
+    checkUser() {
+      let allUsers = getAllUsuarios();
+      console.log(allUsers);
     },
   },
 };
@@ -14,14 +24,21 @@ export default {
 <template>
   <div id="login-component">
     <h1 class="title">Login</h1>
-    <form class="form" action="" @submit.prevent>
+    <form class="form" action="" @submit.prevent="checkUser">
       <label class="form-field-container" for="correo">
         <p>Correo</p>
-        <input class="form-input" type="email" name="correo" id="correo" />
+        <input
+          :v-model="{ email }"
+          class="form-input"
+          type="email"
+          name="correo"
+          id="correo"
+        />
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
         <input
+          :v-model="{ password }"
           class="form-input"
           type="password"
           name="contrasena"
