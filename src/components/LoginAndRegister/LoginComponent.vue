@@ -13,13 +13,13 @@ export default {
       this.$emit("swapLoginRegister");
     },
     checkUser() {    
-      let userList = "";
-      console.log("funciona");
+      let userList = {};
+      console.log("funcionaaaaa");
       crud
         .getAllUsuarios()
-        .then((response) => (userList=response))
+        .then((response) => (userList=response.data))
         .catch((error) => crud.handleError(error));
-        console.log(userList);
+        console.log("hola", userList);
         for (let i = 0; i < userList.length; i++) {
            if (userList[i][correo]==this.email && userList[i][contrasena]==this.password) {
             console.log("Existe el usuario");

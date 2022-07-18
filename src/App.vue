@@ -10,7 +10,7 @@ export default {
   data() {
     return {
       loginActive: true,
-      displayLoginRegisterModal: false,
+      displayLoginRegisterModal: true,
     };
   },
   methods: {
@@ -31,8 +31,8 @@ export default {
   </header>
   <main>
     <Header />
-    <Profile />
-    <!-- <AxiosPlayground /> -->
+    <!-- <Profile />
+    <AxiosPlayground /> -->
     <LoginAndRegisterModal
       :loginActive="loginActive"
       :displayLoginRegisterModal="displayLoginRegisterModal"
