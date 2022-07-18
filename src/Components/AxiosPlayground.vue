@@ -313,7 +313,7 @@ export default {
             name="ubicacionlongitud"
             placeholder="ubicacionlongitud"
           />
-          <input type="number" name="idviaje" placeholder="idviaje" />
+          <input type="number" name="idviajes" placeholder="idviaje" />
           <button type="submit">PUT ItemsViaje</button>
         </form>
       </div>
