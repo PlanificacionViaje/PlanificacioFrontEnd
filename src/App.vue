@@ -32,7 +32,7 @@ export default {
   <main>
     <Header />
     <Profile />
-    <AxiosPlayground />
+    <!-- <AxiosPlayground /> -->
     <LoginAndRegisterModal
       :loginActive="loginActive"
       :displayLoginRegisterModal="displayLoginRegisterModal"

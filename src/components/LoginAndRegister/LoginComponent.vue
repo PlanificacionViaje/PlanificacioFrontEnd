@@ -1,7 +1,6 @@
-<script setup>
-import { getAllUsuarios } from "../AxiosPlayground.vue";
-</script>
+
 <script>
+import * as crud from "../../axios/axiosFunctions";
 export default {
   data() {
     return {
@@ -14,8 +13,12 @@ export default {
       this.$emit("swapLoginRegister");
     },
     checkUser() {
-      let allUsers = getAllUsuarios();
-      console.log(allUsers);
+      console.log("funciona");
+      // let userList = "";
+      crud
+        .getAllUsuarios()
+        .then((response) => console.log(response))
+        .catch((error) => crud.handleError(error));
     },
   },
 };
