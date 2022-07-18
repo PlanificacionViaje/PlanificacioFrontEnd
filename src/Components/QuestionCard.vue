@@ -27,9 +27,9 @@
             <section id="cabecera-grid">           
             <p> icono </p>  
              <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
-             <a href="#" @click.prevent="editCard" id="edit-flashcard"
-            class="edit-flashcard text-uppercase" data-id="edit">Editar</a>       
-            
+            <a href="#" @click.prevent="editCard" id="edit-flashcard">
+            <img src="public\Icons\edit.svg" id="icon-edit"  alt="icon delete">
+            </a>       
             </section>
 
             <!-- <h5 class="text-note">{{ note.Nombre }}</h5> -->
@@ -39,8 +39,9 @@
             <h6 class="text-note-desc">{{ note.Descripcion }}</h6>        
             
             <section id="fin-grid">
-            <a href="#" @click.prevent="deleteCard" id="delete-flashcard"
-            class="delete-flashcard text-uppercase">Borrar</a>
+            <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
+            <img src="public\Icons\delete.svg"  id="icon-delete" alt="icon delete" >
+            </a>
             </section>
 
 
@@ -111,7 +112,7 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
-  text-align: center; 
+  text-align: start; 
   margin-top: 10px;
   filter: drop-shadow(5px 7px 2px #000000);
   border-radius: 24px;
@@ -157,4 +158,13 @@ background-color: rgba(255, 255, 255, 0.8);
         font-family: inherit;
     }
 
+    #icon-edit{
+     width: 24px;
+    height: 24px;
+    }
+
+
+
+#icon-edit { opacity: 0; } 
+#icon-edit:hover { opacity: 1.0; } 
 </style>

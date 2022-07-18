@@ -107,11 +107,14 @@ textarea {
 .edit-flashcard {
   font-family: inherit;
   font-size: 24px;
-  margin: 20px;
   align-items: right;
   align-content: right;
   justify-content: end;
+  width: 24px;
+  height: 24px;
 }
+
+
 
 .delete-flashcard { 
   font-family: inherit;
@@ -128,3 +131,4 @@ textarea {
   padding: 10px;
   gap: 20px;
 }
+
