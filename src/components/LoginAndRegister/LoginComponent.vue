@@ -21,9 +21,11 @@ export default {
         .catch((error) => crud.handleError(error));
       console.log(this.userList);
       for (let i = 0; i < this.userList.length; i++) {
+        console.log(this.userList[1].correo);
+        console.log(this.password);        
         if (
-          this.userList[i][correo] == this.email &&
-          this.userList[i][contrasena] == this.password
+          this.userList[i].correo == this.email &&
+          this.userList[i].contrasena == this.password
         ) {
           console.log("Existe el usuario");
         } else {
@@ -42,7 +44,7 @@ export default {
       <label class="form-field-container" for="correo">
         <p>Correo</p>
         <input
-          :v-model="{ email }"
+          v-model="email"
           class="form-input"
           type="email"
           name="correo"
@@ -52,7 +54,7 @@ export default {
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
         <input
-          :v-model="{ password }"
+          v-model="password"
           class="form-input"
           type="password"
           name="contrasena"
