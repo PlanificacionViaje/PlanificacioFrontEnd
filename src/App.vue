@@ -31,7 +31,7 @@ export default {
   </header>
   <main>
     <Header />
-    <!-- <Profile />
+    <Profile />
     <AxiosPlayground /> -->
     <LoginAndRegisterModal
       :loginActive="loginActive"
