@@ -5,12 +5,7 @@ export default {
       name: "Profile",
     };
   },
-  methods: {
-    userInfo() {
-      this.$emit("updateUserInfo", this.userId);
-      console.log(this.userId);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -18,7 +13,6 @@ export default {
   <div class="profile">
     <div class="profileHeader">
       <img
-        @click="userInfo"
         class="backHome"
         src="../../../public/Icons/arrow_forward_ios.svg"
         alt="Edit profile"
