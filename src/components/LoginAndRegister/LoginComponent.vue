@@ -6,7 +6,7 @@ export default {
     return {
       email: "",
       password: "",
-      userList: {},
+      userId:{},
     };
   },
   methods: {
@@ -14,24 +14,19 @@ export default {
       this.$emit("swapLoginRegister");
     },
     checkUser() {
-      console.log("funcionaaaaaaaa");
       crud
         .getAllUsuarios()
-        .then((response) => (this.userList = response.data))
+        .then((response) => {          
+            for (let i = 0; i < response.data.length; i++) {
+            if (response.data[i].correo == this.email && response.data[i].contrasena == this.password ) {
+              console.log("Existe el usuario");
+              this.userId=response.data[i];
+            }
+          }          
+        })
         .catch((error) => crud.handleError(error));
-      console.log(this.userList);
-      for (let i = 0; i < this.userList.length; i++) {
-        console.log(this.userList[1].correo);
-        console.log(this.password);        
-        if (
-          this.userList[i].correo == this.email &&
-          this.userList[i].contrasena == this.password
-        ) {
-          console.log("Existe el usuario");
-        } else {
-          console.log("no existe :(");
-        }
-      }
+      
+      
     },
   },
 };
