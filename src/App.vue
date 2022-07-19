@@ -1,8 +1,8 @@
 <script setup>
-import Header from "./Components/Header.vue";
-import Profile from "./Components/Profile.vue";
-import AxiosPlayground from "./Components/AxiosPlayground.vue";
-import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
+import Header from "@/Components/Header.vue";
+import Profile from "@/Components/Profile.vue";
+import AxiosPlayground from "@/Components/AxiosPlayground.vue";
+import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
 </script>
 
 <script>
@@ -11,6 +11,7 @@ export default {
     return {
       loginActive: true,
       displayLoginRegisterModal: true,
+      userData: {},
     };
   },
   methods: {
@@ -20,6 +21,10 @@ export default {
     closeLoginRegisterModal() {
       this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
       this.loginActive = true;
+    },
+    loginCorrect(userData) {
+      this.userData = userData;
+      this.displayLoginRegisterModal = false;
     },
   },
 };
@@ -38,6 +43,7 @@ export default {
       :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister"
       @closeLoginRegisterModal="closeLoginRegisterModal"
+      @loginCorrect="(userData) => loginCorrect(userData)"
     />
     <button
       id="loginregister"
@@ -58,7 +64,6 @@ body,
 #app {
   width: 100%;
   height: 100%;
-  margin: 0;
   font-family: "Inter", sans-serif;
 }
 </style>
