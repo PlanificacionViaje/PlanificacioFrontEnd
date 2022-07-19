@@ -9,18 +9,9 @@ import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegiste
 export default {
   data() {
     return {
-      loginActive: true,
-      displayLoginRegisterModal: true,
     };
   },
   methods: {
-    swapLoginRegister() {
-      this.loginActive = !this.loginActive;
-    },
-    closeLoginRegisterModal() {
-      this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
-      this.loginActive = true;
-    },
   },
 };
 </script>
@@ -30,21 +21,9 @@ export default {
     <div class=""></div>
   </header>
   <main>
-    <Header />
+    <Header/>
     <AxiosPlayground /> 
     <!-- <Profile />-->
-    <LoginAndRegisterModal
-      :loginActive="loginActive"
-      :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister"
-      @closeLoginRegisterModal="closeLoginRegisterModal"
-    />
-    <button
-      id="loginregister"
-      @click="displayLoginRegisterModal = !displayLoginRegisterModal"
-    >
-      asdfasdf
-    </button>
   </main>
 </template>
 

@@ -1,3 +1,29 @@
+<script setup>
+import LoginAndRegisterModal from "../components/LoginAndRegister/LoginAndRegisterModal.vue";
+</script>
+
+<script>
+export default {
+  name: "Header",
+  data() {
+    return {
+      isOnline: false,
+      loginActive: true,
+      displayLoginRegisterModal: false,
+    };
+  },
+   methods: {
+    swapLoginRegister() {
+      this.loginActive = !this.loginActive;
+    },
+    closeLoginRegisterModal() {
+      this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
+      this.loginActive = true;
+    },
+  },
+};
+</script>
+
 <template>
   <div class="header">
     <div class="Title">
@@ -15,23 +41,17 @@
       alt=""
     />
     <div v-show="!isOnline" class="btns">
-      <p>Iniciar sesión</p>
-      <p>Registrarse</p>
+      <p @click="displayLoginRegisterModal = !displayLoginRegisterModal">Iniciar sesión</p>
+      <p @click="displayLoginRegisterModal = !displayLoginRegisterModal,swapLoginRegister()">Registrarse</p>
     </div>
   </div>
+   <LoginAndRegisterModal
+      :loginActive="loginActive"
+      :displayLoginRegisterModal="displayLoginRegisterModal"
+      @swapLoginRegister="swapLoginRegister"
+      @closeLoginRegisterModal="closeLoginRegisterModal"
+    />
 </template>
-
-<script>
-export default {
-  name: "Header",
-
-  data() {
-    return {
-      isOnline: false,
-    };
-  },
-};
-</script>
 
 <style scoped>
 h1 {
