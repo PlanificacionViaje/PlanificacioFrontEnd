@@ -4,13 +4,17 @@ import LoginAndRegisterModal from "@/components/LoginAndRegister/LoginAndRegiste
 
 <script>
 export default {
-  name: "Header",
+  props: {
+    userData: Object,
+  },
   data() {
     return {
       isOnline: false,
       loginActive: true,
       displayLoginRegisterModal: false,
-      userData: false,
+      // userData: false,
+      //Mirar abajo!!
+      // Object.keys(obj).length === 0;
     };
   },
   methods: {
@@ -22,7 +26,6 @@ export default {
       this.loginActive = true;
     },
     loginCorrect(userData) {
-      this.userData = userData;
       this.displayLoginRegisterModal = false;
       this.$emit("loginCorrect", userData);
     },

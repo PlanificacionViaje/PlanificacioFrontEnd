@@ -9,7 +9,7 @@ import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegiste
 export default {
   data() {
     return {
-      userData: "",
+      userData: {},
     };
   },
   methods: {
@@ -25,7 +25,10 @@ export default {
     <div class=""></div>
   </header>
   <main>
-    <Header @loginCorrect="(userData) => loginCorrect(userData)" />
+    <Header
+      :userData="userData"
+      @loginCorrect="(userData) => loginCorrect(userData)"
+    />
     <!-- <AxiosPlayground /> -->
     <Profile />
   </main>
