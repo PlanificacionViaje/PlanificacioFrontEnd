@@ -8,9 +8,15 @@ import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegiste
 <script>
 export default {
   data() {
-    return {};
+    return {
+      userData: "",
+    };
   },
-  methods: {},
+  methods: {
+    loginCorrect(userData) {
+      this.userData = userData;
+    },
+  },
 };
 </script>
 
@@ -19,9 +25,9 @@ export default {
     <div class=""></div>
   </header>
   <main>
-    <Header />
-    <AxiosPlayground />
-    <!-- <Profile />-->
+    <Header @loginCorrect="(userData) => loginCorrect(userData)" />
+    <!-- <AxiosPlayground /> -->
+    <Profile />
   </main>
 </template>
 

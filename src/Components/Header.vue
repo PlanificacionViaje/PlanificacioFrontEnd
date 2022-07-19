@@ -1,5 +1,5 @@
 <script setup>
-import LoginAndRegisterModal from "../components/LoginAndRegister/LoginAndRegisterModal.vue";
+import LoginAndRegisterModal from "@/components/LoginAndRegister/LoginAndRegisterModal.vue";
 </script>
 
 <script>
@@ -10,15 +10,21 @@ export default {
       isOnline: false,
       loginActive: true,
       displayLoginRegisterModal: false,
+      userData: false,
     };
   },
-   methods: {
+  methods: {
     swapLoginRegister() {
       this.loginActive = !this.loginActive;
     },
     closeLoginRegisterModal() {
       this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
       this.loginActive = true;
+    },
+    loginCorrect(userData) {
+      this.userData = userData;
+      this.displayLoginRegisterModal = false;
+      this.$emit("loginCorrect", userData);
     },
   },
 };
@@ -35,22 +41,32 @@ export default {
       <h1>Free Way</h1>
     </div>
     <img
-      v-show="isOnline"
+      v-if="userData"
       class="perfil"
       src="../../../public/Icons/perfil.svg"
       alt=""
     />
-    <div v-show="!isOnline" class="btns">
-      <p @click="displayLoginRegisterModal = !displayLoginRegisterModal">Iniciar sesión</p>
-      <p @click="displayLoginRegisterModal = !displayLoginRegisterModal,swapLoginRegister()">Registrarse</p>
+    <div v-if="!userData" class="btns">
+      <p @click="displayLoginRegisterModal = !displayLoginRegisterModal">
+        Iniciar sesión
+      </p>
+      <p
+        @click="
+          (displayLoginRegisterModal = !displayLoginRegisterModal),
+            swapLoginRegister()
+        "
+      >
+        Registrarse
+      </p>
     </div>
   </div>
-   <LoginAndRegisterModal
-      :loginActive="loginActive"
-      :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister"
-      @closeLoginRegisterModal="closeLoginRegisterModal"
-    />
+  <LoginAndRegisterModal
+    :loginActive="loginActive"
+    :displayLoginRegisterModal="displayLoginRegisterModal"
+    @swapLoginRegister="swapLoginRegister"
+    @closeLoginRegisterModal="closeLoginRegisterModal"
+    @loginCorrect="(userData) => loginCorrect(userData)"
+  />
 </template>
 
 <style scoped>
