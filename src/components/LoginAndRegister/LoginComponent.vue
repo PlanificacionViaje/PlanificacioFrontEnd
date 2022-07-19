@@ -1,4 +1,3 @@
-
 <script>
 import * as crud from "../../axios/axiosFunctions";
 export default {
@@ -6,7 +5,7 @@ export default {
     return {
       email: "",
       password: "",
-      userId:{},
+      userInfo:{},
     };
   },
   methods: {
@@ -18,15 +17,13 @@ export default {
         .getAllUsuarios()
         .then((response) => {          
             for (let i = 0; i < response.data.length; i++) {
-            if (response.data[i].correo == this.email && response.data[i].contrasena == this.password ) {
-              console.log("Existe el usuario");
-              this.userId=response.data[i];
-            }
+              if (response.data[i].correo == this.email && response.data[i].contrasena == this.password ) {
+                console.log("Existe el usuario");
+                this.userInfo=response.data[i];
+              }
           }          
         })
-        .catch((error) => crud.handleError(error));
-      
-      
+        .catch((error) => crud.handleError(error));     
     },
   },
 };
