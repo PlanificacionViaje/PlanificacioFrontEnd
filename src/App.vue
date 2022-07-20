@@ -29,8 +29,9 @@ export default {
 
 <template>
   <main>
-     <Carousel_Slider></Carousel_Slider>
+     
     <Header></Header>
+    <Carousel_Slider/> 
     <Home />
     <Profile />
     <AxiosPlayground />
