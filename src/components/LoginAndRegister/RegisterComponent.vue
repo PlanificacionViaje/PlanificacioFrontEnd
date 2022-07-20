@@ -1,6 +1,8 @@
 <script>
 import * as crud from "../../axios/axiosFunctions";
+
 export default {
+  emits: ["swapLoginRegister"],
   data() {
     return {};
   },
@@ -8,7 +10,7 @@ export default {
     swapLoginRegister() {
       this.$emit("swapLoginRegister");
     },
-    postUsuario(e){
+    postUsuario(e) {
       const formData = new FormData(e.target);
       crud
         .postUsuario(formData)
@@ -37,20 +39,13 @@ export default {
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
-        <input
-          class="form-input"
-          type="password"
-          name="contrasena"
-          id="contrasena"
-        />
+        <input class="form-input" type="password" name="contrasena" id="contrasena" />
       </label>
       <button class="form-button" type="submit">Registrarse</button>
     </form>
     <p class="login-text">
       ¿Ya tienes cuenta?
-      <a href="#" id="login-link" @click.prevent="swapLoginRegister"
-        >¡Inicia sesión!</a
-      >
+      <a href="#" id="login-link" @click.prevent="swapLoginRegister">¡Inicia sesión!</a>
     </p>
   </div>
 </template>

@@ -17,6 +17,11 @@ export default {
       this.userData = userData;
     },
   },
+  computed: {
+    userDataHaveData() {
+      return Object.keys(this.userData).length !== 0;
+    }
+  },
 };
 </script>
 
@@ -25,12 +30,9 @@ export default {
     <div class=""></div>
   </header>
   <main>
-    <Header
-      :userData="userData"
-      @loginCorrect="(userData) => loginCorrect(userData)"
-    />
+    <Header :userData="userData" @loginCorrect="(userData) => loginCorrect(userData)" />
     <!-- <AxiosPlayground /> -->
-    <Profile />
+    <Profile v-if="userDataHaveData" :userData="userData" />
   </main>
 </template>
 

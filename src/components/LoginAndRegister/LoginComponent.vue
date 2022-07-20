@@ -2,6 +2,7 @@
 import * as crud from "@/axios/axiosFunctions.js";
 
 export default {
+  emits: ["loginCorrect", "swapLoginRegister"],
   data() {
     return {
       loginIncorrect: false,
@@ -41,12 +42,7 @@ export default {
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
-        <input
-          class="form-input"
-          type="password"
-          name="contrasena"
-          id="contrasena"
-        />
+        <input class="form-input" type="password" name="contrasena" id="contrasena" />
       </label>
       <p class="error-message" v-if="loginIncorrect">
         Correo o contraseña incorrectos.
@@ -55,9 +51,7 @@ export default {
     </form>
     <p class="register-text">
       ¿Aún no tienes cuenta?
-      <a href="#" id="register-link" @click.prevent="swapLoginRegister"
-        >¡Regístrate!</a
-      >
+      <a href="#" id="register-link" @click.prevent="swapLoginRegister">¡Regístrate!</a>
     </p>
   </div>
 </template>

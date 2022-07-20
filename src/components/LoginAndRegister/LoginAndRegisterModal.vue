@@ -8,6 +8,7 @@ export default {
   data() {
     return {};
   },
+  emits: ["loginCorrect", "swapLoginRegister", "closeLoginRegisterModal"],
   props: {
     loginActive: Boolean,
     displayLoginRegisterModal: Boolean,
@@ -27,17 +28,10 @@ export default {
 </script>
 
 <template>
-  <div
-    id="modal-background"
-    v-show="displayLoginRegisterModal"
-    @click="closeLoginRegisterModal"
-  >
+  <div id="modal-background" v-show="displayLoginRegisterModal" @click="closeLoginRegisterModal">
     <div id="modal" @click.stop>
-      <LoginComponent
-        v-if="loginActive"
-        @loginCorrect="(userData) => loginCorrect(userData)"
-        @swapLoginRegister="swapLoginRegister"
-      />
+      <LoginComponent v-if="loginActive" @loginCorrect="(userData) => loginCorrect(userData)"
+        @swapLoginRegister="swapLoginRegister" />
       <RegisterComponent v-else @swapLoginRegister="swapLoginRegister" />
       <a href="#" @click.prevent="closeLoginRegisterModal">X</a>
     </div>
