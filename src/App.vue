@@ -3,6 +3,7 @@ import Header from "./Components/Header.vue";
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
+import EditTrip from "./Components/TripModal.vue";
 </script>
 
 <script>
@@ -45,6 +46,8 @@ export default {
     >
       asdfasdf
     </button>
+
+    <EditTrip/>
   </main>
 </template>
 
