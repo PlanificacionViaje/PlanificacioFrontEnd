@@ -9,8 +9,6 @@
                     <input type="date" class="" id="fechainicio-input" rows="3" v-model="noteFechainicioEdited">          
                 <h5 class="">Fechafin</h5>             
                     <input type="date" class="" id="Fechafin-input" rows="3" v-model="noteFechafinEdited">        
-                <h5 class="">Presupuesto</h5>              
-                    <input type="" class="" id="Presupuesto-input" rows="3" v-model="notePresupuestoEdited">            
                 <h5 class="">Descripcion</h5>              
                     <input type="text" class="" id="Descripcion-input" rows="3" v-model="noteDescripcionEdited" maxlength="500">
                     <div class="btnedit">
@@ -23,29 +21,41 @@
             </form>
         </div>
 
-        <div v-else class="grid-item">
-            <section id="cabecera-grid">           
-            <p> icono </p>  
-             <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
-            <a href="#" @click.prevent="editCard" id="edit-flashcard">
-            <img src="public\Icons\edit.svg" id="icon-edit" alt="icon edit" class="icon">
-            </a>       
-            </section>
+        <div v-else class="grid-item">           
+            <div class="nombre"> 
+         
+            <a href="www.google.com" id="arrow-flashcard">
+            <img src="public\Icons\arrow_forward_ios.svg"  id="icon-arrow" alt="icon arrow">
+            </a>
+             <a href="#" id="ubi-flashcard">
+            <img src="  public\Icons\location-deco.svg" id="icon-ubi" alt="icon ubi">
+            </a>    
+           
 
-            <!-- <h5 class="text-note">{{ note.Nombre }}</h5> -->
-            <h6  class="text-note">{{ note.Fechainicio }}</h6>
+             <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
+             <a href="#" @click.prevent="editCard" id="edit-flashcard">
+            <img src="public\Icons\edit.svg" id="icon-edit" alt="icon edit" class="icon">
+            </a>   
+            </div>
+            <div class="fechainicio">
+            <h2>fecha Inicio:</h2>
+            <h2>Fecha Fin:</h2>
+            </div>
+            <div class="numerofecha">
+             <h6  class="text-note">{{ note.Fechainicio }}</h6>
             <h6  class="text-note">{{ note.Fechafin }}</h6>
-            <h6 class="text-note">{{ note.Presupuesto }}</h6>
-            <h6 class="text-note-desc">{{ note.Descripcion }}</h6>        
-            
-            <section id="fin-grid">
+            </div>
+            <div>
+            <h2>descripcion</h2>
+            </div>
+            <div>
+             <h6 class="text-note-desc">{{ note.Descripcion }}</h6>    
+            </div>  
+            <div>              
             <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
             <img src="public\Icons\delete.svg"  id="icon-delete" alt="icon delete" class="icon">
             </a>
-            </section>
-
-
-
+            </div>        
         </div>          
     </div>
    
@@ -64,20 +74,18 @@ export default {
             noteAnswerEdited: "",
             noteFechainicioEdited:"",
             noteFechafinEdited:"",
-            notePresupuestoEdited:"",
             noteDescripcionEdited:""
             
         }
     },
     methods: {
         submitEditNote() {
-            this.$emit("edit", { id: this.note.id, newData: { Nombre: this.noteNombreEdited, Fechainicio: this.noteFechainicioEdited, Fechafin: this.noteFechafinEdited,Presupuesto:this.notePresupuestoEdited,Descripcion:this.noteDescripcionEdited } });
+            this.$emit("edit", { id: this.note.id, newData: { Nombre: this.noteNombreEdited, Fechainicio: this.noteFechainicioEdited, Fechafin: this.noteFechafinEdited,Descripcion:this.noteDescripcionEdited } });
 
             this.showEditCard = !this.showEditCard;
             this.noteNombreEdited = "";
             this. noteFechainicioEdited ="";
             this. noteFechafinEdited = "";
-            this.notePresupuestoEdited ="";
             this.noteDescripcionEdited ="";
             
         },
@@ -85,7 +93,6 @@ export default {
             this.noteNombreEdited = "";         
             this. noteFechainicioEdited ="";
             this. noteFechafinEdited = "";
-            this.notePresupuestoEdited ="";
             this.noteDescripcionEdited ="";
             this.showEditCard = !this.showEditCard;
         },
@@ -93,7 +100,6 @@ export default {
             this.noteNombreEdited = this.note.Nombre;        
             this. noteFechainicioEdited =this.note.Fechainicio;
             this. noteFechafinEdited = this.note.Fechafin;
-            this.notePresupuestoEdited =this.note.Presupuesto;
             this.noteDescripcionEdited =this.note.Descripcion;
             this.showEditCard = !this.showEditCard;
         },
@@ -108,16 +114,8 @@ export default {
 
 
 .grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
   padding: 20px;
   font-size: 30px;
-  text-align: start; 
-  margin-top: 10px;
-  filter: drop-shadow(5px 7px 2px #000000);
-  border-radius: 24px;
-  min-height: 430px;
-  width: 270px;
 }
 
 
@@ -172,4 +170,36 @@ background-color: rgba(255, 255, 255, 0.8);
 .grid-item:hover .icon {
     opacity: 1;
 }
+
+
+.nombre{
+     display: flex;
+    justify-content: space-between;   
+    align-items: center;
+}
+
+
+.fechainicio{
+     display: flex;
+    justify-content: space-between;   
+    align-items: center;    
+}
+
+.numerofecha{
+     display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    }
+
+    #icon-ubi{
+    height: 70px;
+    }
+
+   .obj{
+    display: flex;
+    justify-content: space-between;   
+    align-items: center;
+   }
+
+
 </style>

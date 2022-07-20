@@ -125,9 +125,6 @@ textarea {
   }
 
 #questions-list{
-  display: grid;
-  column-gap: 50px;
-  grid-template-columns: auto auto auto auto;
   padding: 10px;
   gap: 20px;
 }
