@@ -3,6 +3,7 @@ import Header from "./Components/Header.vue";
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
+import Footer from "./Components/Footer.vue";
 </script>
 
 <script>
@@ -32,19 +33,20 @@ export default {
   <main>
     <Header />
     <Profile />
-    <AxiosPlayground />
+    <!-- <AxiosPlayground /> -->
     <LoginAndRegisterModal
       :loginActive="loginActive"
       :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister"
       @closeLoginRegisterModal="closeLoginRegisterModal"
     />
-    <button
+    <!-- <button
       id="loginregister"
       @click="displayLoginRegisterModal = !displayLoginRegisterModal"
     >
       asdfasdf
-    </button>
+    </button> -->
+    <Footer></Footer>
   </main>
 </template>
 
