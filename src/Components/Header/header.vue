@@ -20,7 +20,7 @@
         return {
             isOnline: false
         }
-    }
+        }
     }
 </script>
 
