@@ -1,5 +1,6 @@
 <script setup>
 import Header from "./Components/Header.vue";
+import Home from "./Components/Home.vue"
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
@@ -31,6 +32,7 @@ export default {
   </header>
   <main>
     <Header />
+    <Home />
     <Profile />
     <AxiosPlayground />
     <LoginAndRegisterModal
