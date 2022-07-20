@@ -28,7 +28,7 @@
             <p> icono </p>  
              <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
             <a href="#" @click.prevent="editCard" id="edit-flashcard">
-            <img src="public\Icons\edit.svg" id="icon-edit"  alt="icon delete">
+            <img src="public\Icons\edit.svg" id="icon-edit" alt="icon edit" class="icon">
             </a>       
             </section>
 
@@ -40,7 +40,7 @@
             
             <section id="fin-grid">
             <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
-            <img src="public\Icons\delete.svg"  id="icon-delete" alt="icon delete" >
+            <img src="public\Icons\delete.svg"  id="icon-delete" alt="icon delete" class="icon">
             </a>
             </section>
 
@@ -165,6 +165,11 @@ background-color: rgba(255, 255, 255, 0.8);
 
 
 
-#icon-edit { opacity: 0; } 
-#icon-edit:hover { opacity: 1.0; } 
+.icon {
+    opacity: 0;
+} 
+
+.grid-item:hover .icon {
+    opacity: 1;
+}
 </style>
