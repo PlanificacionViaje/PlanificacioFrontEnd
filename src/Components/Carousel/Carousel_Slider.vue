@@ -26,19 +26,19 @@
         },
     },
     methods: {
-    SwitchImage(value) {
-        this.index = value;
+        SwitchImage(value) {
+            this.index = value;
+        },
     },
     created() {
-        setInterval (function () {
-            if (this.index != this.imgArray.lenght-1) {
-                this.index += index;                
+        setInterval(() => {
+            if (this.index+1 < this.imgArray.length) {
+                this.index++;                
             }
             else {
                 this.index = 0;
             }
-        }, 1000)
-    },
+        }, 3000)
     },
   }
 </script>
