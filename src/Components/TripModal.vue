@@ -1,25 +1,32 @@
 <script>
+import * as crud from "@/axios/axiosFunctions.js";
 export default {
   data() {
-    return {
-      
+    return {    
     };
   },
-  methods: {
-    
+  methods: {  
+    postViaje(e) {
+      const formData = new FormData(e.target);
+      crud
+        .postViaje(formData)
+        .then((response) => console.log(response))
+        .catch((error) => crud.handleError(error));
+    },
   },
   props:{
-    newEditTrip:Boolean,
-    displayNewEditTripModal: Boolean,
+    newEditTrip:Boolean, 
+    displayNewEditTripModal: Boolean,   
+    dataTrip:{},   
   }
 };
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayNewEditTripModal">
+  <div class="modal-background" v-show="displayNewEditTripModal" @click.prevent="displayNewEditTripModal=false">
     <div v-if="newEditTrip" class="modal"  @click.stop id="edit-component">
     <h1 class="title">Nuevo viaje</h1>
-        <form class="form" action="" @submit.prevent="">
+        <form class="form" action="" @submit.prevent="postViaje">
         <label class="form-field-container" for="tittle">
           <p>Tittle</p>
           <input class="form-input" type="text" name="tittle" id="tittle" />
@@ -39,7 +46,8 @@ export default {
           </label>
           <button class="form-button" type="submit">Añadir</button>
         </div>
-      </form> 
+        <a href="#" @click.prevent="displayNewEditTripModal=false">X</a>
+      </form>       
     </div>
     <div v-else class="modal"  @click.stop id="edit-component">      
       <h1 class="title">Editar viaje</h1>
@@ -63,15 +71,15 @@ export default {
           </label>
           <button class="form-button" type="submit">Guardar</button>
         </div>         
-      </form>
+        <a href="#" @click.prevent="displayNewEditTripModal=false">X</a>
+      </form>      
     </div>
-    <a href="#" @click.prevent="closeNewEditTripModal">X</a>
   </div>
 </template>
 
 <style scoped>
 .modal-background {
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     z-index: 10;

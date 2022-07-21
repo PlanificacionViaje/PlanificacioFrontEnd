@@ -2,8 +2,9 @@
 import Header from "./Components/Header.vue";
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
-import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
-import EditTrip from "./Components/TripModal.vue";
+import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
+import TripModal from "./Components/TripModal.vue";
+import ItemTripModal from "./Components/ItemTripModal.vue";
 </script>
 
 <script>
@@ -12,6 +13,12 @@ export default {
     return {
       loginActive: true,
       displayLoginRegisterModal: false,
+      //Modal Trip
+      newEditTrip:true,
+      displayNewEditTripModal:false,
+      //Modal Item Trip
+      newEditItemTrip:false,
+      displayNewEditItemTripModal:true,
     };
   },
   methods: {
@@ -46,8 +53,19 @@ export default {
     >
       asdfasdf
     </button>
-
-    <EditTrip/>
+  <button @click="displayNewEditTripModal=true, newEditTrip=true">
+    Display modal new trip
+  </button>
+   <button @click="displayNewEditTripModal=true, newEditTrip=false">
+    Display modal edit trip
+  </button>
+    <TripModal 
+    :newEditTrip="newEditTrip" 
+    :displayNewEditTripModal="displayNewEditTripModal" />
+    <ItemTripModal 
+    :newEditItemTrip="newEditItemTrip" 
+    :displayNewEditItemTripModal="displayNewEditItemTripModal"
+    />
   </main>
 </template>
 
