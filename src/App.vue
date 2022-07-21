@@ -3,8 +3,9 @@ import Header from "./Components/Header.vue";
 import Home from "./Components/Home.vue"
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
-import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
+import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
 import Carousel_Slider from './Components/Carousel/Carousel_Slider.vue';
+import Footer from "./Components/Footer.vue";
 </script>
 
 <script>
@@ -34,33 +35,38 @@ export default {
     <Carousel_Slider/> 
     <Home />
     <Profile />
-    <AxiosPlayground />
+    <!-- <AxiosPlayground /> -->
     <LoginAndRegisterModal
       :loginActive="loginActive"
       :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister"
       @closeLoginRegisterModal="closeLoginRegisterModal"
     />
-    <button
+    <!-- <button
       id="loginregister"
       @click="displayLoginRegisterModal = !displayLoginRegisterModal"
     >
       asdfasdf
-    </button>
+    </button> -->    
   </main>
+  <Footer/>
 </template>
 
 <style>
 * {
   box-sizing: border-box;
 }
-
 html,
 body,
 #app {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   font-family: "Inter", sans-serif;
 }
+body{   
+    padding-bottom: 130px;  
+    height: 0;
+} 
 </style>
