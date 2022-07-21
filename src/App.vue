@@ -4,6 +4,7 @@ import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
 import Footer from "./Components/Footer.vue";
+import Footer2 from "./Components/Footer.vue";
 </script>
 
 <script>
@@ -45,9 +46,9 @@ export default {
       @click="displayLoginRegisterModal = !displayLoginRegisterModal"
     >
       asdfasdf
-    </button> -->
-    <Footer></Footer>
+    </button> -->    
   </main>
+  <Footer/>
 </template>
 
 <style>
@@ -59,8 +60,13 @@ html,
 body,
 #app {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  min-height: 100vh;
   margin: 0;
   font-family: "Inter", sans-serif;
 }
+body{   
+    padding-bottom: 130px;  
+    height: 0;
+} 
 </style>
