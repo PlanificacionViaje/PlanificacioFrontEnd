@@ -3,6 +3,7 @@ import Header from "@/Components/Header.vue";
 import Profile from "@/Components/Profile.vue";
 import AxiosPlayground from "@/Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
+import TravelPage from "@/Components/TravelPage.vue";
 </script>
 
 <script>
@@ -11,6 +12,9 @@ export default {
     return {
       loginActive: true,
       displayLoginRegisterModal: false,
+      userData: {
+        id: 4,
+      },
     };
   },
   methods: {
@@ -31,7 +35,7 @@ export default {
   </header>
   <main>
     <Header />
-    <Profile />
+    <TravelPage :UserInfo="userData" />
   </main>
 </template>
 
