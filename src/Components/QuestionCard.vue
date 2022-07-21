@@ -23,30 +23,33 @@
 
         <div v-else class="grid-item">           
             <div class="nombre"> 
-         
+                <div class="arrow-ubi">     
             <a href="www.google.com" id="arrow-flashcard">
             <img src="public\Icons\arrow_forward_ios.svg"  id="icon-arrow" alt="icon arrow">
             </a>
              <a href="#" id="ubi-flashcard">
             <img src="  public\Icons\location-deco.svg" id="icon-ubi" alt="icon ubi">
             </a>    
+            <h1 class="text-note-nombre" v-html="note.Nombre" ></h1>
+            </div>    
            
-
-             <h4 class="text-note-nombre" v-html="note.Nombre" ></h4>
              <a href="#" @click.prevent="editCard" id="edit-flashcard">
             <img src="public\Icons\edit.svg" id="icon-edit" alt="icon edit" class="icon">
             </a>   
             </div>
+
+
+
             <div class="fechainicio">
-            <h2>fecha Inicio:</h2>
-            <h2>Fecha Fin:</h2>
+            <h2 class="text-mide">fecha Inicio:</h2>
+            <h2  class="text-mide">Fecha Fin:</h2>
             </div>
             <div class="numerofecha">
              <h6  class="text-note">{{ note.Fechainicio }}</h6>
             <h6  class="text-note">{{ note.Fechafin }}</h6>
             </div>
             <div>
-            <h2>descripcion</h2>
+            <h2  class="text-mide">Descripción:</h2>
             </div>
             <div>
              <h6 class="text-note-desc">{{ note.Descripcion }}</h6>    
@@ -150,9 +153,7 @@ background-color: rgba(255, 255, 255, 0.8);
     }
 
     .text-note{
-        margin-bottom: 0px;
-        margin-block-start: 0px;
-        margin-block-end: 0px;
+       font-size: 18px;
         font-family: inherit;
     }
 
@@ -195,11 +196,25 @@ background-color: rgba(255, 255, 255, 0.8);
     height: 70px;
     }
 
-   .obj{
-    display: flex;
-    justify-content: space-between;   
-    align-items: center;
-   }
+  
 
+    
+    .text-mide{
+        font-size: 30px;
+         font-family: inherit;
+    }
+
+    .text-note-nombre{
+        font-size: 40px;
+        font-family: inherit;
+    }
+
+    .arrow-ubi{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 610px;
+    }
 
 </style>
