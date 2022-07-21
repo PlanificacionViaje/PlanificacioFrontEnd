@@ -101,14 +101,17 @@ export default {
     color: #FFFFFF;
     text-shadow: 2px 4px 2px #000000; 
     }
-    .card-box {
+
+
+
+    /* .card-box {
         display: flex;
         justify-content: center;
         background-color:#FDE74C;
         filter: drop-shadow(5px 7px 2px #000000);
         border-radius: 42px;  
+    } */
 
-
-    }
+  
     
 </style>

@@ -17,7 +17,7 @@ body {
   font-style: normal;
 }
 
-#show-btn {
+/* #show-btn {
   width: 167px;
   height: 55px;
   background-color:var(--boxColorWhite);
@@ -29,47 +29,37 @@ body {
   border-bottom-left-radius: 20px;
   box-shadow: 4px 3px 0px rgba(0, 0, 0, 0.89);
 
-}
-#show-btn:hover {
+} */
+
+
+/* #show-btn:hover {
  background-color:#2B50AA;
  color: white;
  box-shadow: 0px 0px 0px transparent;
-}
+} */
 
-/*.show-btn {
-  border-color: var(--mainOrange);
-  color: var(--mainOrange);
-  background: transparent;
-}*/
 
-/*.show-btn:hover {
-  background: var(--mainOrange);
-  color: var(--mainDark);
-}*/
-
-.material-symbols-outlined {
-
+/* .material-symbols-outlined {
 font-size: 12px;
+} */
 
-}
-
-.question-card {
+/* .question-card {
   display: none;
   position: relative;
   background: transparent;
   border-color: var(--mainOrange);
-}
+} */
 
-.feedback {
+/* .feedback {
   display: none;
-}
+} */
 
-textarea {
+/* textarea {
   border-radius: 0.25rem;
   border-color: var(--mainOrange);
-}
+} */
 
-.close-btn {
+/* .close-btn {
   position: absolute;
   top: 0;
   right: 2%;
@@ -102,9 +92,9 @@ textarea {
 .cancelBtn:hover {
   background: var(--mainOrange);
   color: var(--mainWhite);
-}
+} */
 
-.edit-flashcard {
+/* .edit-flashcard {
   font-family: inherit;
   font-size: 24px;
   align-items: right;
@@ -112,17 +102,17 @@ textarea {
   justify-content: end;
   width: 24px;
   height: 24px;
-}
+} */
 
 
 
-.delete-flashcard { 
+/* .delete-flashcard { 
   font-family: inherit;
   font-size: 24px;
   align-items: right;
   align-content: right;
   justify-content: end;
-  }
+  } */
 
 #questions-list{
   padding: 10px;
