@@ -9,7 +9,7 @@
             <img src="public\Icons\arrow_forward_ios.svg"  id="icon-arrow" alt="icon arrow">
             </a>            
             <img src="  public\Icons\location-deco.svg" id="icon-ubi" alt="icon ubi">           
-            <h1 class="text-note-nombre" v-html="traveldata.nombre" ></h1>
+            <h1 class="text-title" v-html="traveldata.nombre" ></h1>
             </div>  
             <!-- cierre div ubi -->
            
@@ -20,25 +20,25 @@
                <!-- cierre div nombre -->
 
             <div class="div-fecha">
-            <h2 class="text-mide">fecha Inicio:</h2>
-            <h2  class="text-mide">Fecha Fin:</h2>
+            <h2 class="text-subtitle">fecha Inicio:</h2>
+            <h2  class="text-subtitle">Fecha Fin:</h2>
             </div>
 
 
             <div class="div-fechatravel">
-            <h6  class="text-note">{{ traveldata.fechainicio }}</h6>
-            <h6  class="text-note">{{ traveldata.fechafin }}</h6>
+            <h6  class="text-desc">{{ traveldata.fechainicio }}</h6>
+            <h6  class="text-desc">{{ traveldata.fechafin }}</h6>
             </div>
 
 
 
             <div class="div-descripcion">
-            <h2  class="text-mide">Descripción:</h2>
+            <h2  class="text-subtitle">Descripción:</h2>
             </div>
 
 
             <div class="div-descripciontravel">
-             <h6 class="text-note-desc">{{ traveldata.descripcion }}</h6>    
+             <h6 class="text-desc">{{ traveldata.descripcion }}</h6>    
             </div>  
 
 
@@ -57,49 +57,32 @@
 export default {
     props: {
         traveldata: Object
-    },   
-   
-    }
+    }, 
+ }
 
 </script>
 
 <style scoped>
-.grid-item {
-  padding: 20px;
-  font-size: 30px;
+
+/* textos de la pagina */
+
+  .text-title{
+    font-size: 40px;
+    font-family: 'Inter', sans-serif;
 }
 
-
-.edit-grid-item{
-background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center; 
-  margin-top: 10px;
-  filter: drop-shadow(5px 7px 2px #000000);
-  border-radius: 24px;
-}
-
-
-.text-note-desc{
-    font-family: inherit;
-    overflow-wrap: break-word;
-    margin-bottom: 0px;
-    margin-block-start: 0px;
-    margin-block-end: 0px;    
+   .text-subtitle{
+        font-size: 30px;
+         font-family: 'Inter', sans-serif;
     }
 
    
-    .text-note{
+    .text-desc{
        font-size: 18px;
-        font-family: inherit;
+       font-family: 'Inter', sans-serif;
     }
 
-    #icon-edit{
-     width: 24px;
-    height: 24px;
-    }
+   
 
 
 /* animacion icones (delete y edit) */
@@ -111,6 +94,18 @@ background-color: rgba(255, 255, 255, 0.8);
 }
 
 
+/* iconos de la pagina */
+#icon-ubi{
+ height: 70px;
+ }
+
+
+ #icon-edit{
+    width: 24px;
+    height: 24px;
+    }
+
+/* div de la pagina */
 .div-nombre{
      display: flex;
     justify-content: space-between;   
@@ -137,24 +132,78 @@ background-color: rgba(255, 255, 255, 0.8);
     justify-content: space-between;   
     align-items: center;
     }
+  
+
+  /* divs gordos */
+
+  /* .grid-item {
+  padding: 20px;
+  font-size: 30px;
+}
 
 
-    #icon-ubi{
-    height: 70px;
-    }
+.edit-grid-item{
+background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center; 
+  margin-top: 10px;
+  filter: drop-shadow(5px 7px 2px #000000);
+  border-radius: 24px;
+} */
 
 
-    
-    .text-mide{
-        font-size: 30px;
-         font-family: inherit;
-    }
+/* tamaño tablet */
+@media (max-width: 915px) {
 
-    .text-note-nombre{
-        font-size: 40px;
-        font-family: inherit;
-    }
 
+/* div de la pagina */
+.div-nombre{
+     display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    max-width: 700px;
    
+}
+
+ .div-arrow-ubi{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+        max-width: 700px;
+    }
+
+
+.div-fecha{
+     display: flex;
+    justify-content: space-between;   
+    align-items: center;   
+    max-width: 700px; 
+}
+
+.div-fechatravel{
+     display: flex;
+    justify-content: space-between;   
+    align-items: center;
+    max-width: 700px;
+    }
+
+
+#icon-ubi{
+ height: 50px;
+ }
+
+ .text-title{
+    font-size: 35px;
+    font-family: 'Inter', sans-serif;
+}
+
+}
+
+
+
 
 </style>
