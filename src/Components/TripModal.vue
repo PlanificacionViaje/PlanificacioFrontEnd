@@ -3,75 +3,109 @@ import * as crud from "@/axios/axiosFunctions.js";
 export default {
   data() {
     return {    
+      fechainicio:"",
+      errorMessage:"",
     };
   },
   methods: {  
     postViaje(e) {
       const formData = new FormData(e.target);
+      formData.append("idusuarios",this.idUsuario);
       crud
         .postViaje(formData)
-        .then((response) => console.log(response))
+        .then((response) =>{ 
+        console.log(response)
+        this.closeModal();
+        })
         .catch((error) => crud.handleError(error));
     },
+    putViaje(e) {
+      const formData = new FormData(e.target);
+      formData.append("idusuarios",this.idUsuario);
+      formData.append("id",this.dataTrip.id);
+      crud
+        .putViaje(formData)
+        .then((response) =>{ 
+        console.log(response)
+        this.closeModal();
+        })
+        .catch((error) => crud.handleError(error));
+    },
+    cleanElements(){
+      document.querySelector("#TripNewnombre").value="";
+      document.querySelector("#TripNewdescripcion").value="";
+      document.querySelector("#TripNewfechainicio").value="";
+      document.querySelector("#TripNewfechafin").value="";
+    },
+    closeModal(){
+      this.cleanElements();
+      this.errorMessage="";
+      this.fechainicio="";
+      this.$emit('closeTripModal');
+    }
   },
   props:{
-    newEditTrip:Boolean, 
-    displayNewEditTripModal: Boolean,   
+    idUsuario: Number,
     dataTrip:{},   
+    //Displays
+    newEditTrip:Boolean, 
+    displayNewEditTripModal: Boolean,  
   }
 };
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayNewEditTripModal" @click.prevent="displayNewEditTripModal=false">
-    <div v-if="newEditTrip" class="modal"  @click.stop id="edit-component">
+  <div class="modal-background" v-show="displayNewEditTripModal" @click.prevent="closeModal">
+    <div v-if="newEditTrip" class="modal"  @click.stop id="newTrip-component">
     <h1 class="title">Nuevo viaje</h1>
         <form class="form" action="" @submit.prevent="postViaje">
-        <label class="form-field-container" for="tittle">
-          <p>Tittle</p>
-          <input class="form-input" type="text" name="tittle" id="tittle" />
+        <label class="form-field-container" for="nombre">
+          <p>Nombre</p>
+          <input class="form-input" type="text" name="nombre" id="TripNewnombre" />
         </label>
-        <label class="form-field-container" for="fechaInicio">
+        <label class="form-field-container" for="fechainicio">
           <p>Fecha Inicio</p>
-          <input class="form-input" type="date" name="fechaInicio" id="fechaInicio" />
+          <input class="form-input" onkeydown="return false" v-model="fechainicio" type="date" name="fechainicio" id="TripNewfechainicio" />
         </label>
-        <label class="form-field-container" for="fechaFin">
+        <label class="form-field-container" for="fechafin">
           <p>Fecha Fin</p>
-          <input class="form-input" type="date" name="Fechafin" id="fechaFin" />
+          <input class="form-input" onkeydown="return false" :value=fechainicio :min=fechainicio type="date" name="fechafin" id="TripNewfechafin" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="descripcion">
             <p>Descripción</p>
-            <textarea rows="4" class="form-input" type="textarea" name="descripcion" id="descripcion" />
+            <textarea rows="4" class="form-input" type="textarea" name="descripcion" id="TripNewdescripcion" />
           </label>
+          <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
           <button class="form-button" type="submit">Añadir</button>
         </div>
-        <a href="#" @click.prevent="displayNewEditTripModal=false">X</a>
+        <a href="#" @click.prevent="closeModal">X</a>
       </form>       
     </div>
-    <div v-else class="modal"  @click.stop id="edit-component">      
+    <div v-else class="modal"  @click.stop id="editTrip-component">      
       <h1 class="title">Editar viaje</h1>
-      <form class="form" action="" @submit.prevent="">
-        <label class="form-field-container" for="tittle">
-          <p>Tittle</p>
-          <input class="form-input" type="text" name="tittle" id="tittle" />
+      <form class="form" action="" @submit.prevent="putViaje">
+        <label class="form-field-container" for="nombre">
+          <p>Nombre</p>
+          <input class="form-input" :value=dataTrip.nombre type="text" name="nombre" id="nombre" />
         </label>
-        <label class="form-field-container" for="fechaInicio">
+        <label class="form-field-container" for="fechainicio">
           <p>Fecha Inicio</p>
-          <input class="form-input" type="date" name="fechaInicio" id="fechaInicio" />
+          <input class="form-input" onkeydown="return false" :value=dataTrip.fechainicio type="date" name="fechainicio" id="fechainicio" />
         </label>
-        <label class="form-field-container" for="fechaFin">
+        <label class="form-field-container" for="fechafin">
           <p>Fecha Fin</p>
-          <input class="form-input" type="date" name="Fechafin" id="fechaFin" />
+          <input class="form-input" onkeydown="return false" :min=fechainicio :value=dataTrip.fechafin type="date" name="fechafin" id="fechafin" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="descripcion">
             <p>Descripción</p>
-            <textarea rows="4" class="form-input" type="textarea" name="descripcion" id="descripcion" />
+            <textarea rows="4" class="form-input" :value=dataTrip.descripcion type="textarea" name="descripcion" id="descripcion" />
           </label>
+          <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
           <button class="form-button" type="submit">Guardar</button>
         </div>         
-        <a href="#" @click.prevent="displayNewEditTripModal=false">X</a>
+        <a href="#" @click.prevent="closeModal">X</a>
       </form>      
     </div>
   </div>
@@ -160,5 +194,16 @@ a {
     font-size: 30px;
     top: 1rem;
     right: 1rem;
+}
+
+.error-message {
+  width: 100%;
+  background-color: rgb(255, 140, 140);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 68, 68);
+  margin: 0;
+  color: rgb(121, 0, 0);
+  font-weight: 100;
 }
 </style>

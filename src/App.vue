@@ -15,10 +15,32 @@ export default {
       displayLoginRegisterModal: false,
       //Modal Trip
       newEditTrip:true,
-      displayNewEditTripModal:false,
+      displayNewEditTripModal:true,
       //Modal Item Trip
-      newEditItemTrip:false,
+      newEditItemTrip:true,
       displayNewEditItemTripModal:true,
+
+      //testing
+      idUsuario:1,
+      dataTrip:{
+          id:1,
+          nombre:"Tenerife",
+          descripcion:"Por fin... Una semanita en las Canarias ;-;",
+          fechainicio:"2022-08-12",
+          fechafin:"2022-08-19",
+          idusuarios:1,
+      },
+      dataItemTrip:{
+        id:1,
+        nombre:"Guigui",
+        descripcion:"asdf",
+        fecha:"2022-08-16",
+        hora:"16:00:00",
+        precio:100,
+        ubicacionlatitud:0,
+        ubicacionlongitud:-100,
+        idviajes:1
+      }
     };
   },
   methods: {
@@ -40,7 +62,7 @@ export default {
   <main>
     <Header />
     <Profile />
-    <AxiosPlayground />
+    <!-- <AxiosPlayground /> -->
     <LoginAndRegisterModal
       :loginActive="loginActive"
       :displayLoginRegisterModal="displayLoginRegisterModal"
@@ -50,22 +72,38 @@ export default {
     <button
       id="loginregister"
       @click="displayLoginRegisterModal = !displayLoginRegisterModal"
-    >
-      asdfasdf
+    >      asdfasdf
     </button>
+    <TripModal 
+    :newEditTrip="newEditTrip" 
+    :displayNewEditTripModal="displayNewEditTripModal" 
+    :idUsuario="idUsuario"
+    :dataTrip="dataTrip"
+    @closeTripModal="displayNewEditTripModal=false"
+    />
+
   <button @click="displayNewEditTripModal=true, newEditTrip=true">
     Display modal new trip
   </button>
    <button @click="displayNewEditTripModal=true, newEditTrip=false">
     Display modal edit trip
   </button>
-    <TripModal 
-    :newEditTrip="newEditTrip" 
-    :displayNewEditTripModal="displayNewEditTripModal" />
+
+  <button @click="displayNewEditItemTripModal=true, newEditItemTrip=true">
+    Display modal new item trip
+  </button>
+   <button @click="displayNewEditItemTripModal=true, newEditItemTrip=false">
+    Display modal edit item trip
+  </button>
     <ItemTripModal 
     :newEditItemTrip="newEditItemTrip" 
     :displayNewEditItemTripModal="displayNewEditItemTripModal"
+    :idViajes=1
+    :dataTrip="dataTrip"
+    :dataItemTrip="dataItemTrip"
+    @closeTripModal="displayNewEditItemTripModal=false"
     />
+    
   </main>
 </template>
 

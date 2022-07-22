@@ -2,88 +2,139 @@
 import * as crud from "@/axios/axiosFunctions.js";
 export default {
   data() {
-    return {      
+    return {    
+        errorMessage:"",
     };
   },
   methods: {  
-
+    postItemsViaje(e) {
+      const formData = new FormData(e.target);
+      formData.append("idviajes",this.dataTrip.id);
+      crud
+        .postItemsViaje(formData)
+        .then((response) =>{ 
+        console.log(response)
+        this.closeModal();
+        })
+        .catch((error) => crud.handleError(error));
+    },
+    putItemsViaje(e) {
+      const formData = new FormData(e.target);
+      formData.append("idviajes",this.dataTrip.id);
+      formData.append("id",this.dataItemTrip.id);
+      crud
+        .putItemsViaje(formData)
+        .then((response) => { 
+        console.log(response)
+        this.closeModal();
+        })
+        .catch((error) => crud.handleError(error));
+    },
+    cleanElements(){
+      document.querySelector("#itemnombre").value="";
+      document.querySelector("#itemdescripcion").value="";
+      document.querySelector("#itemfecha").value=this.dataTrip.fechainicio;
+      document.querySelector("#itemhora").value="00:00:00";
+      document.querySelector("#itemprecio").value=0;
+      document.querySelector("#itemubicacionlatitud").value=0;
+      document.querySelector("#itemubicacionlongitud").value=0;
+    },
+    closeModal(){
+      this.cleanElements();
+      this.errorMessage="";
+      this.$emit('closeTripModal');
+    }
   },
   props:{
+    dataTrip: {},
+    dataItemTrip:{},   
+
+    //Display
     newEditItemTrip:Boolean, 
     displayNewEditItemTripModal: Boolean,   
-    dataItemTrip:{},   
+    
   }
 };
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayNewEditItemTripModal" @click.prevent="displayNewEditItemTripModal=false">
-    <div v-if="newEditItemTrip" class="modal"  @click.stop id="edit-component">
+  <div class="modal-background" v-show="displayNewEditItemTripModal" @click.prevent="closeModal">
+    <div v-if="newEditItemTrip" class="modal"  @click.stop id="newItem-component">
     <h1 class="title">Nuevo Item</h1>
-        <form class="form" action="" @submit.prevent="">
-        <label class="form-field-container" for="name">
+        <form class="form" action="" @submit.prevent="postItemsViaje">
+        <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input class="form-input" type="text" name="name" id="name" />
+          <input class="form-input" type="text" name="nombre" id="ttemnombre" />
         </label>
         <label class="form-field-container" for="descripcion">
           <p>Descripción</p>
-          <input class="form-input" type="text" name="descripcion" id="descripcion" />
+          <input class="form-input" type="text" name="descripcion" id="itemdescripcion" />
+        </label>
+        <label class="form-field-container" for="fecha">
+          <p>Fecha</p>
+          <input class="form-input" onkeydown="return false" :value="dataTrip.fechainicio" :min="dataTrip.fechainicio" :max="dataTrip.fechafin" type="date" name="fecha" id="itemfecha" placeholder="fecha"/>
         </label>
        <label class="form-field-container" for="hora">
           <p>Hora</p>
-          <input class="form-input" type="time" name="hora" placeholder="hora" value="00:00:00" step="1"/>
+          <input class="form-input" onkeydown="return false" type="time" name="hora" id="itemhora" placeholder="hora" value="00:00:00" step="1"/>
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input class="form-input" type="number" name="precio" id="precio" />
+          <input class="form-input" value="0" type="number" name="precio" id="itemprecio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input class="form-input" type="number" name="ubicacionlatitud" id="ubicacionlatitud" />
+            <input class="form-input" value="0" type="number" name="ubicacionlatitud" id="itemubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input class="form-input" type="number" name="ubicacionlongitud" id="ubicacionlongitud" />
+            <input class="form-input" value="0" type="number" name="ubicacionlongitud" id="itemubicacionlongitud" />
           </label>
         </div>
+        <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
         <button class="form-button" type="submit">Añadir</button>
-        <a href="#" @click.prevent="displayNewEditItemTripModal=false">X</a>
-      </form>       
+        <a href="#" @click.prevent="closeModal">X</a>
+      </form>   
     </div>
-    <div v-else class="modal"  @click.stop id="edit-component">      
+    <div v-else class="modal"  @click.stop id="editItem-component">      
       <h1 class="title">Editar Item</h1>
-        <form class="form" action="" @submit.prevent="">
-        <label class="form-field-container" for="name">
+        <form class="form" action="" @submit.prevent="putItemsViaje">
+        <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input class="form-input" type="text" name="name" id="name" />
+          <input class="form-input" :value=dataItemTrip.nombre type="text" name="nombre" id="nombre" />
         </label>
         <label class="form-field-container" for="descripcion">
           <p>Descripción</p>
-          <input class="form-input" type="text" name="descripcion" id="descripcion" />
+          <input class="form-input" :value=dataItemTrip.descripcion type="text" name="descripcion" id="descripcion" />
+        </label>
+        <label class="form-field-container" for="fecha">
+          <p>Fecha</p>
+          <input class="form-input" onkeydown="return false" :min="dataTrip.fechainicio" :max="dataTrip.fechafin" :value="dataItemTrip.fecha" type="date" name="fecha" placeholder="fecha"/>
         </label>
        <label class="form-field-container" for="hora">
           <p>Hora</p>
-          <input class="form-input" type="time" name="hora" placeholder="hora" value="00:00:00" step="1"/>
+          <input class="form-input" onkeydown="return false" :value=dataItemTrip.hora type="time" name="hora" placeholder="hora" step="1"/>
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input class="form-input" type="number" name="precio" id="precio" />
+          <input class="form-input" :value=dataItemTrip.precio type="number" name="precio" id="precio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input class="form-input" type="number" name="ubicacionlatitud" id="ubicacionlatitud" />
+            <input class="form-input" :value=dataItemTrip.ubicacionlatitud type="number" name="ubicacionlatitud" id="ubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input class="form-input" type="number" name="ubicacionlongitud" id="ubicacionlongitud" />
+            <input class="form-input" :value=dataItemTrip.ubicacionlongitud type="number" name="ubicacionlongitud" id="ubicacionlongitud" />
           </label>
         </div>
+        <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
         <button class="form-button" type="submit">Guardar</button>
-        <a href="#" @click.prevent="displayNewEditItemTripModal=false">X</a>
-      </form>       
-    </div>
+        <a href="#" @click.prevent="closeModal">X</a>
+      </form> 
+    </div>     
   </div>
 </template>
 
@@ -176,5 +227,16 @@ a {
     font-size: 30px;
     top: 1rem;
     right: 1rem;
+}
+
+.error-message {
+  width: 100%;
+  background-color: rgb(255, 140, 140);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 68, 68);
+  margin: 0;
+  color: rgb(121, 0, 0);
+  font-weight: 100;
 }
 </style>
