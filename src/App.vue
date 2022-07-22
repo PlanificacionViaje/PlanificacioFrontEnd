@@ -1,7 +1,6 @@
 <script setup>
 import Header from "./Components/Header.vue";
 import Profile from "./Components/Profile.vue";
-import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "./components/LoginAndRegister/LoginAndRegisterModal.vue";
 </script>
 
@@ -29,10 +28,8 @@ export default {
   <main>
     <router-link to="/profile">App</router-link>
     <router-view />
-
     <Header />
     <Profile />
-    <AxiosPlayground />
     <LoginAndRegisterModal
       :loginActive="loginActive"
       :displayLoginRegisterModal="displayLoginRegisterModal"
