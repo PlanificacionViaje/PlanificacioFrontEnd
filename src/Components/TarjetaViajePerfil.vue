@@ -31,11 +31,24 @@ export default {
       return { dia: fecha.getDate(), mes: this.ARRAY_MESES[fecha.getMonth()] };
     },
   },
+  methods: {
+    getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    },
+    randomBackgroundColor() {
+      const colors = ["#FDE74C", "#C3BEF7", "#E6AACE", "#80ED99"];
+      let RandomIndex = this.getRandomInt(colors.length);
+      return colors[RandomIndex];
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="tarjeta-viaje">
+  <div
+    class="tarjeta-viaje"
+    :style="{ backgroundColor: randomBackgroundColor() }"
+  >
     <h2 class="viaje-title">{{ viajeData.nombre }}</h2>
     <div class="fechas">
       <div class="fecha fecha-inicio">
@@ -59,14 +72,16 @@ export default {
   display: inline-block;
   padding: 1rem;
   max-width: 260px;
-  height: 300px;
+  /* height: 300px; */
   border-radius: 20px;
-  filter: drop-shadow(5px 7px 2px #0000009f);
+  filter: drop-shadow(5px 7px 2px #ccb3b39f);
   background-color: orange;
 }
 
 .viaje-title {
   text-align: center;
+  text-shadow: -2.5px 1px 1px black;
+  font-size: 45px;
 }
 
 .fechas {
@@ -121,6 +136,7 @@ export default {
 }
 
 .descripcion {
-  margin-top: 1rem;
+  margin-top: 2rem;
+  text-align: center;
 }
 </style>
