@@ -3,6 +3,9 @@
 
 <script>
 export default {
+  props: {
+    userData: Object
+  },
   data() {
     return {};
   },
@@ -47,15 +50,6 @@ export default {
 
   </div>
 </template>
-
-<script>
-export default {
-    name: "Profile",
-    props: {
-        userData: Object
-    }
-}
-</script>
 
 <style scoped>
 .profileHeader {
