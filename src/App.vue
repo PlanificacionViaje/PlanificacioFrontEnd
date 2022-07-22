@@ -36,15 +36,8 @@ export default {
     <Carousel_Slider />
     <Home />
     <Profile :userData="userData" v-if="userDataHaveData" />
-    <!-- <AxiosPlayground /> -->
     <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
-    <!-- <button
-      id="loginregister"
-      @click="displayLoginRegisterModal = !displayLoginRegisterModal"
-    >
-      asdfasdf
-    </button> -->
   </main>
   <Footer />
 </template>
@@ -68,5 +61,6 @@ body,
 body {
   padding-bottom: 130px;
   height: 0;
+  background-color: #a2d2ff;
 }
 </style>
