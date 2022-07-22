@@ -26,10 +26,10 @@ export default {
 </script>
 
 <template>
-  <header>
-    <div class=""></div>
-  </header>
   <main>
+    <router-link to="/profile">App</router-link>
+    <router-view />
+
     <Header />
     <Profile />
     <AxiosPlayground />
