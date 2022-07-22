@@ -16,7 +16,7 @@
   export default {
     data() {
         return {
-            imgArray: ["fondo", "fondo1", "minusEyes"],
+            imgArray: ["example_1", "example_3", "example_5"],
             index: 0,
         }
     },
