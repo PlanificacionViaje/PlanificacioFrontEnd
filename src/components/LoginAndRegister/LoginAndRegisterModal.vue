@@ -1,6 +1,6 @@
 <script setup>
-import LoginComponent from "./LoginComponent.vue";
-import RegisterComponent from "./RegisterComponent.vue";
+import LoginComponent from "@/Components/LoginAndRegister/LoginComponent.vue";
+import RegisterComponent from "@/Components/LoginAndRegister/RegisterComponent.vue";
 </script>
 
 <script>
@@ -53,7 +53,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
 }
 
 #modal {

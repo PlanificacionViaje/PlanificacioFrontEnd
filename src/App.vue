@@ -6,6 +6,7 @@ import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
 import Carousel_Slider from './Components/Carousel/Carousel_Slider.vue';
 import Footer from "./Components/Footer.vue";
+import TravelPage from "@/Components/TravelPage.vue";
 </script>
 
 <script>
@@ -13,6 +14,8 @@ export default {
   data() {
     return {
       userData: {},
+      loginActive: true,
+      displayLoginRegisterModal: false,
     };
   },
   methods: {
@@ -38,6 +41,7 @@ export default {
     <Profile :userData="userData" v-if="userDataHaveData" />
     <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
+    <TravelPage :UserInfo="userData" />
   </main>
   <Footer />
 </template>
