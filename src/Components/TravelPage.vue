@@ -12,11 +12,13 @@ export default {
   props: {
     UserInfo: Object,
   },
-  created() {
-    crud
-      .getAllViajesFromUsuario(this.UserInfo.id)
-      .then((response) => (this.arrayTravels = response.data.data))
-      .catch((error) => crud.handleError(error));
+  watch: {
+    UserInfo() {
+      crud
+        .getAllViajesFromUsuario(this.UserInfo.id)
+        .then((response) => (this.arrayTravels = response.data.data))
+        .catch((error) => crud.handleError(error));
+    }
   },
 };
 </script>
@@ -30,31 +32,7 @@ export default {
       </button>
     </div>
     <div class="cards">
-      <TarjetaViajePerfil
-        v-for="travel in arrayTravels"
-        :key="travel.id"
-        :viajeData="travel"
-      />
-      <TarjetaViajePerfil
-        v-for="travel in arrayTravels"
-        :key="travel.id"
-        :viajeData="travel"
-      />
-      <TarjetaViajePerfil
-        v-for="travel in arrayTravels"
-        :key="travel.id"
-        :viajeData="travel"
-      />
-      <TarjetaViajePerfil
-        v-for="travel in arrayTravels"
-        :key="travel.id"
-        :viajeData="travel"
-      />
-      <TarjetaViajePerfil
-        v-for="travel in arrayTravels"
-        :key="travel.id"
-        :viajeData="travel"
-      />
+      <TarjetaViajePerfil v-for="travel in arrayTravels" :key="travel.id" :viajeData="travel" />
     </div>
   </div>
 </template>
@@ -64,6 +42,7 @@ export default {
   flex-direction: column;
   align-items: center;
 }
+
 .button-add {
   background-color: orange;
   border: none;
@@ -82,13 +61,16 @@ export default {
   justify-content: center;
   gap: 1rem;
 }
+
 .button-add:hover {
   cursor: pointer;
 }
+
 .img-button {
   height: 25px;
   filter: invert();
 }
+
 .cards {
   display: flex;
   flex-direction: row;
@@ -104,6 +86,7 @@ h2 {
   font-size: 45px;
   color: white;
 }
+
 p {
   text-transform: uppercase;
   color: white;

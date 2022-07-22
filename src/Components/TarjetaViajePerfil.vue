@@ -45,10 +45,7 @@ export default {
 </script>
 
 <template>
-  <div
-    class="tarjeta-viaje"
-    :style="{ backgroundColor: randomBackgroundColor() }"
-  >
+  <div class="tarjeta-viaje" :style="{ backgroundColor: randomBackgroundColor() }">
     <h2 class="viaje-title">{{ viajeData.nombre }}</h2>
     <div class="fechas">
       <div class="fecha fecha-inicio">
@@ -69,16 +66,21 @@ export default {
 
 <style>
 .tarjeta-viaje {
-  display: inline-block;
-  padding: 1rem;
+  padding: 2.5rem 1.5rem;
   max-width: 260px;
   /* height: 300px; */
   border-radius: 20px;
-  filter: drop-shadow(5px 7px 2px #ccb3b39f);
+  filter: drop-shadow(5px 7px 2px #00000054);
   background-color: orange;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 2.5rem;
 }
 
 .viaje-title {
+  margin: 0;
   text-align: center;
   text-shadow: -2.5px 1px 1px black;
   font-size: 45px;
@@ -136,7 +138,6 @@ export default {
 }
 
 .descripcion {
-  margin-top: 2rem;
   text-align: center;
 }
 </style>
