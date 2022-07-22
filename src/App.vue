@@ -12,50 +12,48 @@ import Footer from "./Components/Footer.vue";
 export default {
   data() {
     return {
-      loginActive: true,
-      displayLoginRegisterModal: false,
+      userData: {},
     };
   },
   methods: {
-    swapLoginRegister() {
-      this.loginActive = !this.loginActive;
-    },
-    closeLoginRegisterModal() {
-      this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
-      this.loginActive = true;
+    loginCorrect(userData) {
+      this.userData = userData;
     },
   },
+  computed: {
+    userDataHaveData() {
+      return Object.keys(this.userData).length != 0;
+    }
+  }
 };
 </script>
 
 <template>
   <main>
-     
-    <Header></Header>
-    <Carousel_Slider/> 
+
+    <Header @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => loginCorrect(userData)"
+      :userData="userData" />
+    <Carousel_Slider />
     <Home />
-    <Profile />
+    <Profile :userData="userData" v-if="userDataHaveData" />
     <!-- <AxiosPlayground /> -->
-    <LoginAndRegisterModal
-      :loginActive="loginActive"
-      :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister"
-      @closeLoginRegisterModal="closeLoginRegisterModal"
-    />
+    <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
+      @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
     <!-- <button
       id="loginregister"
       @click="displayLoginRegisterModal = !displayLoginRegisterModal"
     >
       asdfasdf
-    </button> -->    
+    </button> -->
   </main>
-  <Footer/>
+  <Footer />
 </template>
 
 <style>
 * {
   box-sizing: border-box;
 }
+
 html,
 body,
 #app {
@@ -63,10 +61,12 @@ body,
   height: 100vh;
   min-height: 100vh;
   margin: 0;
+  height: 100%;
   font-family: "Inter", sans-serif;
 }
-body{   
-    padding-bottom: 130px;  
-    height: 0;
-} 
+
+body {
+  padding-bottom: 130px;
+  height: 0;
+}
 </style>
