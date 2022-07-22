@@ -5,12 +5,15 @@ import LoginAndRegisterModal from "@/components/LoginAndRegister/LoginAndRegiste
 <script>
 export default {
   name: "Header",
+  emits: ["loginCorrect", "registerCorrect"],
+  props: {
+    userData: Object
+  },
   data() {
     return {
       isOnline: false,
       loginActive: true,
       displayLoginRegisterModal: false,
-      userData: false,
     };
   },
   methods: {
@@ -22,51 +25,44 @@ export default {
       this.loginActive = true;
     },
     loginCorrect(userData) {
-      this.userData = userData;
       this.displayLoginRegisterModal = false;
       this.$emit("loginCorrect", userData);
     },
+    registerCorrect(userData) {
+      this.displayLoginRegisterModal = false;
+      this.$emit("registerCorrect", userData);
+    }
   },
+  computed: {
+    userDataHaveData() {
+      return Object.keys(this.userData).length != 0;
+    }
+  }
 };
 </script>
 
 <template>
   <div class="header">
     <div class="Title">
-      <img
-        class="logo"
-        src="../../../public/Icons/logotipo-freeway.png"
-        alt="Logotipo Free Way"
-      />
+      <img class="logo" src="../../../public/Icons/logotipo-freeway.png" alt="Logotipo Free Way" />
       <h1>Free Way</h1>
     </div>
-    <img
-      v-if="userData"
-      class="perfil"
-      src="../../../public/Icons/perfil.svg"
-      alt=""
-    />
-    <div v-if="!userData" class="btns">
+    <img v-if="userDataHaveData" class="perfil" src="../../../public/Icons/perfil.svg" alt="" />
+    <div v-if="!userDataHaveData" class="btns">
       <p @click="displayLoginRegisterModal = !displayLoginRegisterModal">
         Iniciar sesión
       </p>
-      <p
-        @click="
-          (displayLoginRegisterModal = !displayLoginRegisterModal),
-            swapLoginRegister()
-        "
-      >
+      <p @click="
+        (displayLoginRegisterModal = !displayLoginRegisterModal),
+        swapLoginRegister()
+      ">
         Registrarse
       </p>
     </div>
   </div>
-  <LoginAndRegisterModal
-    :loginActive="loginActive"
-    :displayLoginRegisterModal="displayLoginRegisterModal"
-    @swapLoginRegister="swapLoginRegister"
-    @closeLoginRegisterModal="closeLoginRegisterModal"
-    @loginCorrect="(userData) => loginCorrect(userData)"
-  />
+  <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
+    @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal"
+    @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => registerCorrect(userData)" />
 </template>
 
 <style scoped>
@@ -90,6 +86,7 @@ p {
 .header {
   font-family: "Inter", sans-serif;
 }
+
 .header {
   background-color: #6883ba;
   display: flex;

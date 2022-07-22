@@ -1,6 +1,7 @@
 <script>
 import * as crud from "../../axios/axiosFunctions";
 export default {
+  emits: ["registerCorrect"],
   data() {
     return {};
   },
@@ -8,13 +9,22 @@ export default {
     swapLoginRegister() {
       this.$emit("swapLoginRegister");
     },
-    postUsuario(e){
+    postUsuario(e) {
       const formData = new FormData(e.target);
+
       crud
         .postUsuario(formData)
-        .then((response) => console.log(response))
+        .then((response) => {
+          console.log(response);
+          if (response.data.status == 201) {
+            this.registerCorrect(response.data.data);
+          }
+        })
         .catch((error) => crud.handleError(error));
     },
+    registerCorrect(userData) {
+      this.$emit("registerCorrect", userData);
+    }
   },
 };
 </script>
@@ -37,20 +47,13 @@ export default {
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
-        <input
-          class="form-input"
-          type="password"
-          name="contrasena"
-          id="contrasena"
-        />
+        <input class="form-input" type="password" name="contrasena" id="contrasena" />
       </label>
       <button class="form-button" type="submit">Registrarse</button>
     </form>
     <p class="login-text">
       ¿Ya tienes cuenta?
-      <a href="#" id="login-link" @click.prevent="swapLoginRegister"
-        >¡Inicia sesión!</a
-      >
+      <a href="#" id="login-link" @click.prevent="swapLoginRegister">¡Inicia sesión!</a>
     </p>
   </div>
 </template>

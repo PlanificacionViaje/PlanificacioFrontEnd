@@ -2,9 +2,11 @@
 import * as crud from "@/axios/axiosFunctions.js";
 
 export default {
+  emits: ["loginCorrect", "swapLoginRegister"],
   data() {
     return {
       loginIncorrect: false,
+      loginIncorrectMessage: ""
     };
   },
   methods: {
@@ -15,13 +17,15 @@ export default {
       const formData = new FormData(e.target);
 
       crud.onLogin(formData).then((response) => {
-        if (response.data === null) {
+        if (response.data.status !== 200) {
           this.loginIncorrect = true;
+          this.loginIncorrectMessage = response.data.message;
           return;
         }
 
         this.loginIncorrect = false;
-        this.loginCorrect(response.data);
+        this.loginIncorrectMessage = "";
+        this.loginCorrect(response.data.data);
       });
     },
     loginCorrect(userData) {
@@ -41,23 +45,16 @@ export default {
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
-        <input
-          class="form-input"
-          type="password"
-          name="contrasena"
-          id="contrasena"
-        />
+        <input class="form-input" type="password" name="contrasena" id="contrasena" />
       </label>
       <p class="error-message" v-if="loginIncorrect">
-        Correo o contraseña incorrectos.
+        {{ loginIncorrectMessage }}
       </p>
       <button class="form-button" type="submit">Iniciar sesión</button>
     </form>
     <p class="register-text">
       ¿Aún no tienes cuenta?
-      <a href="#" id="register-link" @click.prevent="swapLoginRegister"
-        >¡Regístrate!</a
-      >
+      <a href="#" id="register-link" @click.prevent="swapLoginRegister">¡Regístrate!</a>
     </p>
   </div>
 </template>

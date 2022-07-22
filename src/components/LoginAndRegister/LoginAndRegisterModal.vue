@@ -5,6 +5,7 @@ import RegisterComponent from "./RegisterComponent.vue";
 
 <script>
 export default {
+  emits: ["registerCorrect"],
   data() {
     return {};
   },
@@ -22,23 +23,20 @@ export default {
     loginCorrect(userData) {
       this.$emit("loginCorrect", userData);
     },
+    registerCorrect(userData) {
+      this.$emit("registerCorrect", userData);
+    }
   },
 };
 </script>
 
 <template>
-  <div
-    id="modal-background"
-    v-show="displayLoginRegisterModal"
-    @click="closeLoginRegisterModal"
-  >
+  <div id="modal-background" v-show="displayLoginRegisterModal" @click="closeLoginRegisterModal">
     <div id="modal" @click.stop>
-      <LoginComponent
-        v-if="loginActive"
-        @loginCorrect="(userData) => loginCorrect(userData)"
-        @swapLoginRegister="swapLoginRegister"
-      />
-      <RegisterComponent v-else @swapLoginRegister="swapLoginRegister" />
+      <LoginComponent v-if="loginActive" @loginCorrect="(userData) => loginCorrect(userData)"
+        @swapLoginRegister="swapLoginRegister" />
+      <RegisterComponent v-else @swapLoginRegister="swapLoginRegister"
+        @registerCorrect="(userData) => registerCorrect(userData)" />
       <a href="#" @click.prevent="closeLoginRegisterModal">X</a>
     </div>
   </div>
