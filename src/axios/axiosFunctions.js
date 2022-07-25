@@ -1,10 +1,14 @@
 import axios from "axios";
 
-const url = "http://127.0.0.1:8080";
+const url = "http://10.1.12.94:8080";
 
 //
 // USUARIOS
 //
+export function onLogin(formData) {
+  return axios.post(url + "/usuarios/login", formData);
+}
+
 export function getAllUsuarios() {
   return axios.get(url + "/usuarios");
 }
