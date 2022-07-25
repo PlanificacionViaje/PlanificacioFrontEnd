@@ -8,29 +8,38 @@ export default {
   },
   methods: {  
      checkDataForm(form){
-      if(form.get("nombre")==""){
+      if(form.get("nombre").trim()==""){
         this.errorMessage="Nombre no puede estar vacío";
+        return false;
       }
       if(form.get("fecha")==""){
         this.errorMessage="Fecha no puede estar vacía";
+        return false;
       }
       if(form.get("hora")==""){
         this.errorMessage="Hora no puede estar vacía";
+        return false;
       }
-      if(form.get("precio")==""){
+      if(form.get("precio").trim()==""){
         this.errorMessage="Precio no puede estar vacío";
+        return false;
       }
-      if(form.get("ubicacionlatitud")==""){
+      if(form.get("ubicacionlatitud").trim()==""){
         this.errorMessage="Ubicación latitud no puede estar vacía";
+        return false;
       }
-      if(form.get("ubicacionlongitud")==""){
+      if(form.get("ubicacionlongitud").trim()==""){
         this.errorMessage="Ubicación longitud no puede estar vacía";
+        return false;
       }
+      return true;
     },
     postItemsViaje(e) {
       const formData = new FormData(e.target);
       formData.append("idviajes",this.dataTrip.id);
-      this.checkDataForm(formData)
+      if(!this.checkDataForm(formData)){
+        return;
+      }
       crud
         .postItemsViaje(formData)
         .then((response) =>{ 

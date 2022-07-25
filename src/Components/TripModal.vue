@@ -9,21 +9,27 @@ export default {
   },
   methods: {  
     checkDataForm(form){
-      if(form.get("nombre")==""){
+      if(form.get("nombre").trim()==""){
         this.errorMessage="Nombre no puede estar vacío";
+        return false;
       }
       if(form.get("fechainicio")=="" || form.get("fechafin")==""){
         this.errorMessage="Fecha inicio o fecha final no puede estar vacía";
-      }
+        return false;
+      } 
+      return true;
     },
     postViaje(e) {
       const formData = new FormData(e.target);
       formData.append("idusuarios",this.idUsuario);
-      this.checkDataForm(formData)
+      this.checkDataForm(formData);
+      if(!this.checkDataForm(formData)){
+        return;
+      }
       crud
         .postViaje(formData)
         .then((response) =>{ 
-        //console.log(response);
+        console.log(response);
         this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -32,7 +38,7 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idusuarios",this.idUsuario);
       formData.append("id",this.dataTrip.id);
-      this.checkDataForm(formData)
+      this.checkDataForm(formData);
       crud
         .putViaje(formData)
         .then((response) =>{ 
