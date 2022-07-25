@@ -26,8 +26,15 @@
 
 
             <div class="div-fechatravel">
-            <h6  class="text-desc">{{ traveldata.fechainicio }}</h6>
-            <h6  class="text-desc">{{ traveldata.fechafin }}</h6>
+            <div class="fecha fecha-inicio">
+             <p class="mes">{{ fechainicio.mes }}</p>
+             <p class="dia">{{ fechainicio.dia }}</p>
+             </div>
+
+            <div class="fecha fecha-inicio">
+            <p class="mes">{{ fechafin.mes }}</p>
+            <p class="dia">{{ fechafin.dia }}</p>
+            </div>
             </div>
 
 
@@ -38,7 +45,7 @@
 
 
             <div class="div-descripciontravel">
-             <h6 class="text-desc">{{ traveldata.descripcion }}</h6>    
+             <p class="text-desc">{{ traveldata.descripcion }}</p>    
             </div>  
 
 
@@ -48,33 +55,101 @@
             </a>
             </div>    
             
-            
+ 
         </div>          
     </div>
    
 </template>
+
+
+
 <script>
 export default {
+     data() {
+    return {
+      ARRAY_MESES: [
+        "ENE",
+        "FEB",
+        "MAR",
+        "ABR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AGO",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DIC",
+      ],
+    };
+  },
     props: {
         traveldata: Object
     }, 
+     computed: {
+    fechainicio() {
+      const fecha = new Date(this.traveldata.fechainicio);
+      return { dia: fecha.getDate(), mes: this.ARRAY_MESES[fecha.getMonth()] };
+    },
+    fechafin() {
+      const fecha = new Date(this.traveldata.fechafin);
+      return { dia: fecha.getDate(), mes: this.ARRAY_MESES[fecha.getMonth()] };
+    },
  }
+}
+
+
 
 </script>
 
 <style scoped>
+.fecha {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 2px;
+  border-radius: 10px;
+}
+
+.fecha p {
+  margin: 0;
+  width: 100%;
+}
+
+.fecha .mes {
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  padding: 5px 0;
+  background-color: rgb(220, 0, 0);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+
+.fecha .dia {
+  background-color: white;
+  color: black;
+  font-size: 1.5rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+
+
 
 /* textos de la pagina */
 
   .text-title{
-    font-size: 40px;
     font-family: 'Inter', sans-serif;
 }
 
-   .text-subtitle{
-        font-size: 30px;
-         font-family: 'Inter', sans-serif;
-    }
+
 
    
     .text-desc{
@@ -107,9 +182,11 @@ export default {
 
 /* div de la pagina */
 .div-nombre{
+    width: 100%;
+    height: 100%;
      display: flex;
-    justify-content: space-between;   
-    align-items: center;
+     justify-content: space-between;   
+     align-items: center;
 }
 
  .div-arrow-ubi{
@@ -117,7 +194,7 @@ export default {
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 610px;
+        gap: 40px;
     }
 
 
@@ -134,29 +211,28 @@ export default {
     }
   
 
-  /* divs gordos */
-
-  /* .grid-item {
-  padding: 20px;
-  font-size: 30px;
+.grid-container{
+  padding: 10px;
+  gap: 20px;
+  margin: 10px;
+  background-color: #FDE74C;
+  border-radius: 24px;
 }
 
 
-.edit-grid-item{
-background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center; 
-  margin-top: 10px;
-  filter: drop-shadow(5px 7px 2px #000000);
-  border-radius: 24px;
-} */
+
 
 
 /* tamaño tablet */
 @media (max-width: 915px) {
-
+.grid-container {
+  padding: 10px;
+  gap: 20px;
+  margin: 10px;
+  min-height: 302px;
+  max-width: 700px;
+  background-color: #FDE74C;
+}
 
 /* div de la pagina */
 .div-nombre{
@@ -196,11 +272,9 @@ background-color: rgba(255, 255, 255, 0.8);
  height: 50px;
  }
 
- .text-title{
-    font-size: 35px;
-    font-family: 'Inter', sans-serif;
+.grid-container{
+    margin: 10px;
 }
-
 }
 
 

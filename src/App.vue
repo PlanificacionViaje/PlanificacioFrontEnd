@@ -23,22 +23,12 @@ export default {
 </script>
 
 <template>
-  <header>
-    <div class="">
-     <Header></Header>
-    </div>
-  </header>
-  <div class="">
-      <div class="">
-      </div>
-    </div>
-
-    <div class="" id="questions-list">
+ <main>
+  <Header />    
       <TravelComponent :traveldata = "traveldata"/>
-    </div>
   
-
   
+ </main>
 </template>
 
 <style>
