@@ -58,6 +58,16 @@ export default {
       this.errorMessage="";
       this.fechainicio="";
       this.$emit('closeTripModal');
+    },
+    changeOfEditfechainicio(e){
+      var fechainicio=document.querySelector("#EditTripfechainicio");
+      var fechainicioDate=new Date (fechainicio.value);
+      var fechafin=document.querySelector("#EditTripfechafin");
+      var fechafinDate=new Date (fechafin.value);      
+      if(fechainicioDate.getTime()>fechafinDate.getTime()){
+        fechafin.value=fechainicio.value;
+      }
+      fechafin.setAttribute('min',fechainicio.value);
     }
   },
   props:{
@@ -66,7 +76,12 @@ export default {
     //Displays
     newEditTrip:Boolean, 
     displayNewEditTripModal: Boolean,  
-  }
+  },
+  mounted() {
+  setTimeout(() => {
+    this.fechainicio = this.dataTrip.fechainicio;
+  }, 500)
+}
 };
 </script>
 
@@ -108,11 +123,11 @@ export default {
         </label>
         <label class="form-field-container" for="fechainicio">
           <p>Fecha Inicio</p>
-          <input class="form-input" onkeydown="return false" :value=dataTrip.fechainicio type="date" name="fechainicio" id="fechainicio" />
+          <input class="form-input" onkeydown="return false" :value=dataTrip.fechainicio type="date" name="fechainicio" id="EditTripfechainicio"  @change="changeOfEditfechainicio"/>
         </label>
         <label class="form-field-container" for="fechafin">
           <p>Fecha Fin</p>
-          <input class="form-input" onkeydown="return false" :min=fechainicio :value=dataTrip.fechafin type="date" name="fechafin" id="fechafin" />
+          <input class="form-input" onkeydown="return false" :value=dataTrip.fechafin :min=dataTrip.fechainicio  type="date" name="fechafin" id="EditTripfechafin" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="descripcion">
