@@ -13,12 +13,13 @@ export default {
     return {
       loginActive: true,
       displayLoginRegisterModal: false,
+
       //Modal Trip
       newEditTrip:true,
-      displayNewEditTripModal:true,
+      displayNewEditTripModal:false,
       //Modal Item Trip
       newEditItemTrip:true,
-      displayNewEditItemTripModal:true,
+      displayNewEditItemTripModal:false,
 
       //testing
       idUsuario:1,

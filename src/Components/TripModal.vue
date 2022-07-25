@@ -8,13 +8,22 @@ export default {
     };
   },
   methods: {  
+    checkDataForm(form){
+      if(form.get("nombre")==""){
+        this.errorMessage="Nombre no puede estar vacío";
+      }
+      if(form.get("fechainicio")=="" || form.get("fechafin")==""){
+        this.errorMessage="Fecha inicio o fecha final no puede estar vacía";
+      }
+    },
     postViaje(e) {
       const formData = new FormData(e.target);
       formData.append("idusuarios",this.idUsuario);
+      this.checkDataForm(formData)
       crud
         .postViaje(formData)
         .then((response) =>{ 
-        console.log(response)
+        //console.log(response);
         this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -23,10 +32,11 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idusuarios",this.idUsuario);
       formData.append("id",this.dataTrip.id);
+      this.checkDataForm(formData)
       crud
         .putViaje(formData)
         .then((response) =>{ 
-        console.log(response)
+        //console.log(response)        
         this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -38,7 +48,7 @@ export default {
       document.querySelector("#TripNewfechafin").value="";
     },
     closeModal(){
-      this.cleanElements();
+      if(this.newEditTrip){this.cleanElements();}
       this.errorMessage="";
       this.fechainicio="";
       this.$emit('closeTripModal');
@@ -76,9 +86,10 @@ export default {
             <p>Descripción</p>
             <textarea rows="4" class="form-input" type="textarea" name="descripcion" id="TripNewdescripcion" />
           </label>
-          <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
+          
           <button class="form-button" type="submit">Añadir</button>
         </div>
+        <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>       
     </div>

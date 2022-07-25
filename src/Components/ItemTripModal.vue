@@ -7,14 +7,35 @@ export default {
     };
   },
   methods: {  
+     checkDataForm(form){
+      if(form.get("nombre")==""){
+        this.errorMessage="Nombre no puede estar vacío";
+      }
+      if(form.get("fecha")==""){
+        this.errorMessage="Fecha no puede estar vacía";
+      }
+      if(form.get("hora")==""){
+        this.errorMessage="Hora no puede estar vacía";
+      }
+      if(form.get("precio")==""){
+        this.errorMessage="Precio no puede estar vacío";
+      }
+      if(form.get("ubicacionlatitud")==""){
+        this.errorMessage="Ubicación latitud no puede estar vacía";
+      }
+      if(form.get("ubicacionlongitud")==""){
+        this.errorMessage="Ubicación longitud no puede estar vacía";
+      }
+    },
     postItemsViaje(e) {
       const formData = new FormData(e.target);
       formData.append("idviajes",this.dataTrip.id);
+      this.checkDataForm(formData)
       crud
         .postItemsViaje(formData)
         .then((response) =>{ 
-        console.log(response)
-        this.closeModal();
+        //console.log(response)
+        this.closeModal()
         })
         .catch((error) => crud.handleError(error));
     },
@@ -22,10 +43,11 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idviajes",this.dataTrip.id);
       formData.append("id",this.dataItemTrip.id);
+      this.checkDataForm(formData)
       crud
         .putItemsViaje(formData)
         .then((response) => { 
-        console.log(response)
+        //console.log(response)
         this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -40,7 +62,7 @@ export default {
       document.querySelector("#itemubicacionlongitud").value=0;
     },
     closeModal(){
-      this.cleanElements();
+      if(this.newEditItemTrip){this.cleanElements();}      
       this.errorMessage="";
       this.$emit('closeTripModal');
     }
@@ -64,7 +86,7 @@ export default {
         <form class="form" action="" @submit.prevent="postItemsViaje">
         <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input class="form-input" type="text" name="nombre" id="ttemnombre" />
+          <input class="form-input" type="text" name="nombre" id="itemnombre" />
         </label>
         <label class="form-field-container" for="descripcion">
           <p>Descripción</p>
@@ -93,7 +115,7 @@ export default {
           </label>
         </div>
         <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
-        <button class="form-button" type="submit">Añadir</button>
+        <button class="form-button" name="submit" type="submit">Añadir</button>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>   
     </div>
@@ -131,7 +153,7 @@ export default {
           </label>
         </div>
         <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
-        <button class="form-button" type="submit">Guardar</button>
+        <button class="form-button" name="submit" type="submit">Guardar</button>
         <a href="#" @click.prevent="closeModal">X</a>
       </form> 
     </div>     
