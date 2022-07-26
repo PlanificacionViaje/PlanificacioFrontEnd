@@ -1,12 +1,15 @@
 <script setup>
 import TarjetaViajePerfil from "./TarjetaViajePerfil.vue";
 import * as crud from "@/axios/axiosFunctions.js";
+import TripModal from "@/Components/TripModal.vue";
 </script>
 <script>
 export default {
   data() {
     return {
       arrayTravels: [],
+      //Modal Trip
+      displayNewEditTripModal:false,
     };
   },
   props: {
@@ -26,10 +29,17 @@ export default {
   <div>
     <div class="header-travels">
       <h2>Mis viajes</h2>
-      <button class="button-add">
+      <button class="button-add" @click="displayNewEditTripModal=true">
         <p>Añadir un viaje</p>
-        <img class="img-button" src="plus.png" alt="" />
+        <img class="img-button" src="plus.png" alt=""/>
       </button>
+      <TripModal 
+      :newEditTrip=true 
+      :displayNewEditTripModal="displayNewEditTripModal" 
+      :idUsuario="UserInfo.id"
+      :dataTrip="dataTrip"
+      @closeTripModal="displayNewEditTripModal=false"
+      />
     </div>
     <div class="cards">
       <TarjetaViajePerfil v-for="travel in arrayTravels" :key="travel.id" :viajeData="travel" />
