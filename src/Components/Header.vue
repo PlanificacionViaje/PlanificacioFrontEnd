@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     userDataHaveData() {
-      return Object.keys(this.userData).length != 0;
+      // return Object.keys(this.userData).length != 0;
     }
   }
 };
@@ -48,7 +48,7 @@ export default {
       <h1 class="title-freeway">Free Way</h1>
     </div>
     <img v-if="userDataHaveData" class="perfil" src="../../../public/Icons/perfil.svg" alt="" />
-    <div v-if="!userDataHaveData" class="btns">
+    <div v-else class="btns">
       <button @click="displayLoginRegisterModal = !displayLoginRegisterModal">
         Iniciar sesión
       </button>
@@ -71,8 +71,9 @@ h1 {
   color: white;
   text-shadow: -2.5px 1px 1px black;
 }
+
 /*El boton del Registro / Iniciar sesion*/
-button{
+button {
   background-color: transparent;
   color: white;
   padding-left: 2rem;
@@ -85,19 +86,17 @@ button{
   font-family: 'Inter', sans-serif;
 }
 
-button:hover{
-
-background-color:white;
-color: black;
-border: none;
+button:hover {
+  background-color: white;
+  color: black;
+  border: none;
 }
 
 button:active {
-
-background-color: #C2DBFF;
-color:white;
-
+  background-color: #C2DBFF;
+  color: white;
 }
+
 /*Aqui termina los botones de Registrarse / Iniciar sesion*/
 
 .header {
@@ -116,7 +115,7 @@ color:white;
 }
 
 .perfil {
-  margin:10px;
+  margin: 10px;
   width: 48px;
   height: auto;
 }
@@ -125,47 +124,54 @@ color:white;
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  margin:5px;
+  margin: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
-.Title{
-  margin:10px;
+
+.Title {
+  margin: 10px;
 }
 
 /* A partir de aqui va las pantallas Responsive*/
 
-/* Para Tablets */ /* Medida Media*/
+/* Para Tablets */
+/* Medida Media*/
 
 @media only screen and (min-width:768px) {
 
-.header{
+  .header {
 
-  height:100%;
+    height: 100%;
+
+  }
 
 }
 
-}
-/* Para Moviles Grandes y Tablets Pequeñas */ /* Medida Pequeña*/
+/* Para Moviles Grandes y Tablets Pequeñas */
+/* Medida Pequeña*/
 
 @media only screen and (min-width: 600px) {
-.header{
+  .header {
 
-  width: 100%;
-  
+    width: 100%;
+
   }
-  
+
 }
 
-/* Para Moviles Pequeños */ /* Medida Extra Pequeña */
+/* Para Moviles Pequeños */
+/* Medida Extra Pequeña */
 
 @media only screen and (max-width: 600px) {
-  .header{
-  width: 100%;
+  .header {
+    width: 100%;
   }
-  .title-freeway{
-    
+
+  .title-freeway {
+
     display: none;
   }
 
 }
-
 </style>

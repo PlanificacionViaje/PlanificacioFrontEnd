@@ -33,15 +33,9 @@ export default {
 
 <template>
   <main>
-
     <Header @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => loginCorrect(userData)"
       :userData="userData" />
-    <Carousel_Slider />
     <Home />
-    <Profile :userData="userData" v-if="userDataHaveData" />
-    <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
-    <TravelPage :UserInfo="userData" />
   </main>
   <Footer />
 </template>
