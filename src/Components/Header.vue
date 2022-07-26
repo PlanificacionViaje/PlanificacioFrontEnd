@@ -89,7 +89,7 @@ button {
 button:hover {
   background-color: white;
   color: black;
-  border: none;
+  border-color: transparent;
 }
 
 button:active {
@@ -107,10 +107,11 @@ button:active {
   background-color: #6883ba;
   display: flex;
   justify-content: space-between;
+  padding: 0 2rem;
 }
 
 .logo {
-  width: 128px;
+  width: 96px;
   height: auto;
 }
 
@@ -131,6 +132,9 @@ button:active {
 
 .Title {
   margin: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 /* A partir de aqui va las pantallas Responsive*/
