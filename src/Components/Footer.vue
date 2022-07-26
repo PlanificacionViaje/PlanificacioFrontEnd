@@ -85,6 +85,7 @@ a {
 }
 p {
   margin: 0;  
+  color:black;
 } 
 
 @media (max-width: 1140px){

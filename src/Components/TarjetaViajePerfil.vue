@@ -64,7 +64,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .tarjeta-viaje {
   padding: 2.5rem 1.5rem;
   max-width: 260px;

@@ -9,6 +9,7 @@ import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
 import TripModal from "./Components/TripModal.vue";
 import ItemTripModal from "./Components/ItemTripModal.vue";
+import DeleteModal from "./Components/DeleteModal.vue";
 </script>
 
 <script>
@@ -26,10 +27,14 @@ export default {
       newEditItemTrip:true,
       displayNewEditItemTripModal:false,
 
+      //Modal Trip/Item Deletp
+      deleteItemOrTrip:true,
+      displayDeleteItemOrTripModal:false,
+
       //testing
       idUsuario:1,
       dataTrip:{
-          id:1,
+          id:9,
           nombre:"Tenerife",
           descripcion:"Por fin... Una semanita en las Canarias ;-;",
           fechainicio:"2022-08-12",
@@ -37,7 +42,7 @@ export default {
           idusuarios:1,
       },
       dataItemTrip:{
-        id:1,
+        id:17,
         nombre:"Guigui",
         descripcion:"asdf",
         fecha:"2022-08-11",
@@ -75,13 +80,7 @@ export default {
     <TravelPage :UserInfo="userData" />    
    
     <!-- <AxiosPlayground /> -->    
-    <TripModal 
-    :newEditTrip="newEditTrip" 
-    :displayNewEditTripModal="displayNewEditTripModal" 
-    :idUsuario="idUsuario"
-    :dataTrip="dataTrip"
-    @closeTripModal="displayNewEditTripModal=false"
-    />
+    
 
   <button @click="displayNewEditTripModal=true, newEditTrip=true">
     Display modal new trip
@@ -89,6 +88,13 @@ export default {
    <button @click="displayNewEditTripModal=true, newEditTrip=false">
     Display modal edit trip
   </button>
+  <TripModal 
+    :newEditTrip="newEditTrip" 
+    :displayNewEditTripModal="displayNewEditTripModal" 
+    :idUsuario="idUsuario"
+    :dataTrip="dataTrip"
+    @closeTripModal="displayNewEditTripModal=false"
+    />
 
   <button @click="displayNewEditItemTripModal=true, newEditItemTrip=true">
     Display modal new item trip
@@ -99,12 +105,27 @@ export default {
     <ItemTripModal 
     :newEditItemTrip="newEditItemTrip" 
     :displayNewEditItemTripModal="displayNewEditItemTripModal"
-    :idViajes=1
     :dataTrip="dataTrip"
     :dataItemTrip="dataItemTrip"
     @closeTripModal="displayNewEditItemTripModal=false"
     />
+    <br/><br/>
+
+    <button @click="displayDeleteItemOrTripModal=true, deleteItemOrTrip=true">
+    delete trip
+    </button>
+    <button @click="displayDeleteItemOrTripModal=true, deleteItemOrTrip=false">
+    delete item
+    </button>
+    <DeleteModal 
+    :deleteItemOrTrip="deleteItemOrTrip"
+    :displayDeleteItemOrTripModal="displayDeleteItemOrTripModal"
+    :dataTrip="dataTrip"
+    :dataItemTrip="dataItemTrip"
+    @closeTripModal="displayDeleteItemOrTripModal=false"
+    />
     
+
   </main>
   <Footer />
 </template>
