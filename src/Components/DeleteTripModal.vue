@@ -15,50 +15,27 @@ export default {
         })
         .catch((error) => crud.handleError(error));
     },
-    deleteItemsViaje(e) {
-      crud
-        .deleteItemsViaje(this.dataItemTrip.id)
-        .then((response) => {
-          console.log(response)        
-          this.closeModal();
-        })
-        .catch((error) => crud.handleError(error));
-    },
     closeModal() {
       this.$emit('closeTripModal');
     },    
   },
   props: {
     dataTrip: {},
-    dataItemTrip: {},
     //Displays
-    deleteItemOrTrip:Boolean, 
-    displayDeleteItemOrTripModal:Boolean,  
+    displayDeleteTripModal:Boolean,  
   },
 };
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayDeleteItemOrTripModal" @click.prevent="closeModal">
-    <div v-if="deleteItemOrTrip" class="modal" @click.stop id="deleteTrip-component">
+  <div class="modal-background" v-show="displayDeleteTripModal" @click.prevent="closeModal">
+    <div class="modal" @click.stop id="deleteTrip-component">
       <h1 class="title">Estas seguro que quieres eliminar el viaje <em>"{{dataTrip.nombre}}"</em> ?</h1>
       <form class="form" action="" @submit.prevent="deleteViaje">       
         <div class="flexedElements">          
           <button class="form-button borrar-btn" type="submit">Borrar</button>
           <button class="form-button" type="submit" v-on:click="closeModal">Cancelar</button>
         </div>
-        <p v-if="errorMessage" class="error-message blink_me">{{errorMessage}}</p>
-        <a href="#" @click.prevent="closeModal">X</a>
-      </form>
-    </div>
-    <div v-else class="modal" @click.stop id="deleteItem-component">
-      <h1 class="title">Estas seguro que quieres eliminar el item <em>"{{dataItemTrip.nombre}}"</em> ?</h1>
-      <form class="form" action="" @submit.prevent="deleteItemsViaje">
-        <div class="flexedElements">          
-          <button class="form-button borrar-btn" type="submit">Borrar</button>
-          <button class="form-button" type="submit" v-on:click="closeModal">Cancelar</button>
-        </div>
-        <p v-if="errorMessage" class="error-message blink_me">{{errorMessage}}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>
     </div>

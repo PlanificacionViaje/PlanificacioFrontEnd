@@ -9,7 +9,8 @@ import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
 import TripModal from "./Components/TripModal.vue";
 import ItemTripModal from "./Components/ItemTripModal.vue";
-import DeleteModal from "./Components/DeleteModal.vue";
+import DeleteTripModal from "./Components/DeleteTripModal.vue";
+import DeleteItemModal from "./Components/DeleteItemModal.vue";
 </script>
 
 <script>
@@ -27,9 +28,10 @@ export default {
       newEditItemTrip:true,
       displayNewEditItemTripModal:false,
 
-      //Modal Trip/Item Deletp
-      deleteItemOrTrip:true,
-      displayDeleteItemOrTripModal:false,
+      //Modal Trip Delete
+      displayDeleteTripModal:false,      
+      //Modal Item Delete
+      displayDeleteItemModal:false,
 
       //testing
       idUsuario:1,
@@ -111,19 +113,21 @@ export default {
     />
     <br/><br/>
 
-    <button @click="displayDeleteItemOrTripModal=true, deleteItemOrTrip=true">
-    delete trip
-    </button>
-    <button @click="displayDeleteItemOrTripModal=true, deleteItemOrTrip=false">
-    delete item
-    </button>
-    <DeleteModal 
-    :deleteItemOrTrip="deleteItemOrTrip"
-    :displayDeleteItemOrTripModal="displayDeleteItemOrTripModal"
+    <button @click="displayDeleteTripModal=true">delete trip</button>
+    <DeleteTripModal 
+    :displayDeleteTripModal="displayDeleteTripModal"
     :dataTrip="dataTrip"
-    :dataItemTrip="dataItemTrip"
-    @closeTripModal="displayDeleteItemOrTripModal=false"
+    @closeTripModal="displayDeleteTripModal=false"
     />
+
+    <button @click="displayDeleteItemModal=true">delete item</button>
+    <DeleteItemModal 
+    :displayDeleteItemModal="displayDeleteItemModal"
+    :dataItemTrip="dataItemTrip"
+    @closeTripModal="displayDeleteItemModal=false"
+    />
+
+   
     
 
   </main>
