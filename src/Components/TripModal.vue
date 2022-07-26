@@ -10,11 +10,11 @@ export default {
   methods: {  
     checkDataForm(form){
       if(form.get("nombre").trim()==""){
-        this.errorMessage="Nombre no puede estar vacío";
+        this.errorMessage="Nombre no puede estar vacío.";
         return false;
       }
       if(form.get("fechainicio")=="" || form.get("fechafin")==""){
-        this.errorMessage="Fecha inicio o fecha final no puede estar vacía";
+        this.errorMessage="Fecha inicio o fecha final no puede estar vacía.";
         return false;
       } 
       return true;
@@ -38,7 +38,9 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idusuarios",this.idUsuario);
       formData.append("id",this.dataTrip.id);
-      this.checkDataForm(formData);
+      if(!this.checkDataForm(formData)){
+        return;
+      }
       crud
         .putViaje(formData)
         .then((response) =>{ 
@@ -77,11 +79,13 @@ export default {
     newEditTrip:Boolean, 
     displayNewEditTripModal: Boolean,  
   },
-  mounted() {
-  setTimeout(() => {
-    this.fechainicio = this.dataTrip.fechainicio;
-  }, 500)
-}
+   watch: {
+        errorMessage: function(value) {
+          setTimeout(() => {
+            this.errorMessage = "";
+          }, 6000);
+        }
+  },
 };
 </script>
 
@@ -110,7 +114,7 @@ export default {
           
           <button class="form-button" type="submit">Añadir</button>
         </div>
-        <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me">{{errorMessage}}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>       
     </div>
@@ -134,7 +138,7 @@ export default {
             <p>Descripción</p>
             <textarea rows="4" class="form-input" :value=dataTrip.descripcion type="textarea" name="descripcion" id="descripcion" />
           </label>
-          <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
+          <p v-if="errorMessage" class="error-message blink_me">{{errorMessage}}</p>
           <button class="form-button" type="submit">Guardar</button>
         </div>         
         <a href="#" @click.prevent="closeModal">X</a>
@@ -237,5 +241,15 @@ a {
   margin: 0;
   color: rgb(121, 0, 0);
   font-weight: 100;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 </style>

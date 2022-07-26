@@ -9,27 +9,27 @@ export default {
   methods: {  
      checkDataForm(form){
       if(form.get("nombre").trim()==""){
-        this.errorMessage="Nombre no puede estar vacío";
+        this.errorMessage="Nombre no puede estar vacío.";
         return false;
       }
       if(form.get("fecha")==""){
-        this.errorMessage="Fecha no puede estar vacía";
+        this.errorMessage="Fecha no puede estar vacía.";
         return false;
       }
       if(form.get("hora")==""){
-        this.errorMessage="Hora no puede estar vacía";
+        this.errorMessage="Hora no puede estar vacía.";
         return false;
       }
       if(form.get("precio").trim()==""){
-        this.errorMessage="Precio no puede estar vacío";
+        this.errorMessage="Precio no puede estar vacío.";
         return false;
       }
       if(form.get("ubicacionlatitud").trim()==""){
-        this.errorMessage="Ubicación latitud no puede estar vacía";
+        this.errorMessage="Ubicación latitud no puede estar vacía.";
         return false;
       }
       if(form.get("ubicacionlongitud").trim()==""){
-        this.errorMessage="Ubicación longitud no puede estar vacía";
+        this.errorMessage="Ubicación longitud no puede estar vacía.";
         return false;
       }
       return true;
@@ -52,7 +52,9 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idviajes",this.dataTrip.id);
       formData.append("id",this.dataItemTrip.id);
-      this.checkDataForm(formData)
+      if(!this.checkDataForm(formData)){
+        return;
+      }
       crud
         .putItemsViaje(formData)
         .then((response) => { 
@@ -74,6 +76,17 @@ export default {
       if(this.newEditItemTrip){this.cleanElements();}      
       this.errorMessage="";
       this.$emit('closeTripModal');
+    }, 
+    compareFecha(){
+      var fechaitem = new Date (this.dataItemTrip.fechafin).getTime();
+      var fechainicio = new Date (this.dataTrip.fechainicio).getTime();
+      var fechafin = new Date (this.dataTrip.fechafin).getTime(); 
+      if(fechaitem>=fechainicio && fechaitem<=fechafin){
+        return true;
+      }else{   
+        this.errorMessage="La fecha esta fuera de los días establecidos del viaje.";
+        return false;
+      }
     }
   },
   props:{
@@ -84,7 +97,17 @@ export default {
     newEditItemTrip:Boolean, 
     displayNewEditItemTripModal: Boolean,   
     
-  }
+  },
+  watch: {
+        errorMessage: function(value) {
+          setTimeout(() => {
+            this.errorMessage = "";
+          }, 6000);
+        }
+  },
+  mounted() { 
+      this.compareFecha();
+  },
 };
 </script>
 
@@ -123,7 +146,7 @@ export default {
             <input class="form-input" value="0" type="number" name="ubicacionlongitud" id="itemubicacionlongitud" />
           </label>
         </div>
-        <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me ">{{errorMessage}}</p>
         <button class="form-button" name="submit" type="submit">Añadir</button>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>   
@@ -141,7 +164,7 @@ export default {
         </label>
         <label class="form-field-container" for="fecha">
           <p>Fecha</p>
-          <input class="form-input" onkeydown="return false" :min="dataTrip.fechainicio" :max="dataTrip.fechafin" :value="dataItemTrip.fecha" type="date" name="fecha" placeholder="fecha"/>
+          <input class="form-input" onkeydown="return false" :min="dataTrip.fechainicio" :max="dataTrip.fechafin" id="EditItemfecha" :value="dataItemTrip.fecha" type="date" name="fecha" placeholder="fecha"/>
         </label>
        <label class="form-field-container" for="hora">
           <p>Hora</p>
@@ -161,7 +184,7 @@ export default {
             <input class="form-input" :value=dataItemTrip.ubicacionlongitud type="number" name="ubicacionlongitud" id="ubicacionlongitud" />
           </label>
         </div>
-        <p v-if="errorMessage" class="error-message">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me ">{{errorMessage}}</p>
         <button class="form-button" name="submit" type="submit">Guardar</button>
         <a href="#" @click.prevent="closeModal">X</a>
       </form> 
@@ -269,5 +292,15 @@ a {
   margin: 0;
   color: rgb(121, 0, 0);
   font-weight: 100;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 </style>

@@ -35,7 +35,7 @@ export default {
         id:1,
         nombre:"Guigui",
         descripcion:"asdf",
-        fecha:"2022-08-16",
+        fecha:"2022-08-11",
         hora:"16:00:00",
         precio:100,
         ubicacionlatitud:0,
