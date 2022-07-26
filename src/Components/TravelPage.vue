@@ -36,7 +36,7 @@ export default {
     </div>
   </div>
 </template>
-<style scooped>
+<style scoped>
 .header-travels {
   display: flex;
   flex-direction: column;
