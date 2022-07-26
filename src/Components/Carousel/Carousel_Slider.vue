@@ -116,20 +116,4 @@ export default {
     cursor: pointer;
     background-color: #3a6dd3;
 }
-
-@media (max-width: 915px) {
-    .contenidoCarousel {
-        margin: 5px;
-    }
-
-    /* #compo {
-        display: flex;
-        align-content: center;
-        justify-content: center;
-        align-items: center;
-        margin: 300px;
-        width: 100px;
-        height: 200px;
-    } */
-}
 </style>
