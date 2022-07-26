@@ -1,10 +1,10 @@
 <script setup>
 import Header from "./Components/Header.vue";
-import Home from "./Components/Home.vue"
+import Home from "./Components/Home.vue";
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
-import Carousel_Slider from './Components/Carousel/Carousel_Slider.vue';
+import Carousel_Slider from "./Components/Carousel/Carousel_Slider.vue";
 import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
 </script>
@@ -26,23 +26,27 @@ export default {
   computed: {
     userDataHaveData() {
       return Object.keys(this.userData).length != 0;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <template>
+  <Header
+    @loginCorrect="(userData) => loginCorrect(userData)"
+    @registerCorrect="(userData) => loginCorrect(userData)"
+    :userData="userData"
+  />
   <main>
-
-    <Header @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => loginCorrect(userData)"
-      :userData="userData" />
-    <Carousel_Slider />
+    <!-- <Carousel_Slider />
     <Home />
     <Profile :userData="userData" v-if="userDataHaveData" />
     <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
-    <TravelPage :UserInfo="userData" />
+    <TravelPage :UserInfo="userData" />-->
+    <router-view></router-view>
   </main>
+
   <Footer />
 </template>
 

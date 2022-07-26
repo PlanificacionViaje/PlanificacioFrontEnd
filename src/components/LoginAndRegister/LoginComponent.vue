@@ -6,7 +6,7 @@ export default {
   data() {
     return {
       loginIncorrect: false,
-      loginIncorrectMessage: ""
+      loginIncorrectMessage: "",
     };
   },
   methods: {
@@ -25,7 +25,11 @@ export default {
 
         this.loginIncorrect = false;
         this.loginIncorrectMessage = "";
-        this.loginCorrect(response.data.data);
+        console.log(this.$userData);
+        this.$session.userData = response.data.data;
+        this.$router.push("/profile");
+        console.log(this.$userData);
+        console.log("logged");
       });
     },
     loginCorrect(userData) {
@@ -45,7 +49,12 @@ export default {
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
-        <input class="form-input" type="password" name="contrasena" id="contrasena" />
+        <input
+          class="form-input"
+          type="password"
+          name="contrasena"
+          id="contrasena"
+        />
       </label>
       <p class="error-message" v-if="loginIncorrect">
         {{ loginIncorrectMessage }}
@@ -54,8 +63,11 @@ export default {
     </form>
     <p class="register-text">
       ¿Aún no tienes cuenta?
-      <a href="#" id="register-link" @click.prevent="swapLoginRegister">¡Regístrate!</a>
+      <a href="#" id="register-link" @click.prevent="swapLoginRegister"
+        >¡Regístrate!</a
+      >
     </p>
+    <router-link to="/profile">al perfil</router-link>
   </div>
 </template>
 

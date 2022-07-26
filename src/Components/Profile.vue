@@ -4,32 +4,54 @@
 <script>
 export default {
   props: {
-    userData: Object
+    userData: Object,
   },
   data() {
     return {};
+  },
+  mounted() {
+    console.log(this.$session.userData);
   },
 };
 </script>
 
 <template>
-  <div class="profile">
+  <div v-if="$session.userData" class="profile">
     <div class="profileHeader">
-      <img class="backHome" src="../../../public/Icons/arrow_forward_ios.svg" alt="Edit profile">
+      <img
+        class="backHome"
+        src="../../../public/Icons/arrow_forward_ios.svg"
+        alt="Edit profile"
+      />
       <h2 class="whiteLetter">Perfil</h2>
-      <img class="editProfile" src="../../../public/Icons/edit.svg" alt="Go back">
+      <img
+        class="editProfile"
+        src="../../../public/Icons/edit.svg"
+        alt="Go back"
+      />
     </div>
     <div class="iconAndUsername">
-      <img class="userIcon" src="../../../public/Icons/perfil.svg" alt="userIcon">
-      <h3 class="blackLetter">Hola, {{ userData.nombre + " " + userData.apellidos }}!</h3>
+      <img
+        class="userIcon"
+        src="../../../public/Icons/perfil.svg"
+        alt="userIcon"
+      />
+      <h3 class="blackLetter">
+        Hola,
+        {{ $session.userData.nombre + " " + $session.userData.apellidos }}!
+      </h3>
     </div>
 
     <div class="mainUserInfo">
       <div class="userInfo">
         <h4 class="blackLetter">Nombre:</h4>
-        <h4 class="blackLetter smallUserLetter">{{ userData.nombre + " " + userData.apellidos }}</h4>
+        <h4 class="blackLetter smallUserLetter">
+          {{ $session.userData.nombre + " " + $session.userData.apellidos }}
+        </h4>
         <h4 class="blackLetter">Correo electronico:</h4>
-        <h4 class="blackLetter smallUserLetter">{{ userData.correo }}</h4>
+        <h4 class="blackLetter smallUserLetter">
+          {{ $session.userData.correo }}
+        </h4>
       </div>
       <div class="recentTrips">
         <h3 class="blackLetter recentTripsLetters">Proximos viajes</h3>
@@ -47,7 +69,6 @@ export default {
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -84,7 +105,7 @@ export default {
   padding-top: 2rem;
   width: 23.55px;
   height: auto;
-  color: #1C1B1F;
+  color: #1c1b1f;
 }
 
 .backHome {
@@ -107,13 +128,12 @@ export default {
   font-weight: 300;
 }
 
-.iconAndUsername>.blackLetter,
+.iconAndUsername > .blackLetter,
 .userIcon {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .recentTripsLetters {
   display: block;
@@ -130,11 +150,11 @@ export default {
 }
 
 .yellowTrip {
-  background-color: #FDE74C;
+  background-color: #fde74c;
 }
 
 .purpleTrip {
-  background-color: #C3BEF7;
+  background-color: #c3bef7;
 }
 
 .tripTittle {
@@ -159,13 +179,13 @@ export default {
     align-items: center;
   }
 
-  .userInfo>h4 {
+  .userInfo > h4 {
     margin-block-start: 0;
     margin-block-end: 0.5em;
   }
 
   .recentTripsLetters {
-    margin-block-end: 1rem
+    margin-block-end: 1rem;
   }
 
   .trip {
