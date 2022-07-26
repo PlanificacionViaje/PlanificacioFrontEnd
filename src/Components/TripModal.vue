@@ -38,7 +38,7 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idusuarios",this.idUsuario);
       formData.append("id",this.dataTrip.id);
-      if(!this.checkDataForm(formData)){
+      gitif(!this.checkDataForm(formData)){
         return;
       }
       crud
