@@ -49,7 +49,7 @@ export default {
     class="tarjeta-viaje"
     :style="{ backgroundColor: randomBackgroundColor() }"
   >
-    <h2 class="viaje-title">{{ viajeData.nombre }}</h2>
+    <h3 class="viaje-title">{{ viajeData.nombre }}</h3>
     <div class="fechas">
       <div class="fecha fecha-inicio">
         <p class="mes">{{ fechainicio.mes }}</p>

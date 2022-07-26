@@ -58,6 +58,9 @@ export default {
     </div>
   </div>
 </template>
+
+
+
 <style scooped>
 .header-travels {
   display: flex;
@@ -90,15 +93,14 @@ export default {
   filter: invert();
 }
 .cards {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   justify-content: center;
   gap: 2rem;
   margin-top: 2.5rem;
-  flex-wrap: wrap;
 }
 
-h2 {
+h3 {
   text-transform: uppercase;
   font-weight: 600;
   font-size: 45px;
@@ -108,4 +110,39 @@ p {
   text-transform: uppercase;
   color: white;
 }
+
+
+@media only screen and (max-width:1200px) {
+.cards {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+}
+
+@media only screen and (max-width:1102px) {
+.cards {
+  display: grid;
+  grid-template-columns: auto auto ;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+}
+
+
+
+@media only screen and (max-width: 600px) {
+  .cards {
+    display: grid;
+  grid-template-columns: auto;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2.5rem;
+  }
+}
+
+
 </style>
