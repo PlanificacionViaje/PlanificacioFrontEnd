@@ -7,7 +7,7 @@ export default {
   name: "Header",
   emits: ["loginCorrect", "registerCorrect"],
   props: {
-    userData: Object
+    userData: Object,
   },
   data() {
     return {
@@ -31,38 +31,55 @@ export default {
     registerCorrect(userData) {
       this.displayLoginRegisterModal = false;
       this.$emit("registerCorrect", userData);
-    }
+    },
   },
   computed: {
     userDataHaveData() {
-      return Object.keys(this.userData).length != 0;
-    }
-  }
+      return this.$session.userData;
+    },
+  },
 };
 </script>
 
 <template>
   <div class="header">
     <div class="Title">
-      <img class="logo" src="../../../public/Icons/logotipo-freeway.png" alt="Logotipo Free Way" />
+      <img
+        class="logo"
+        src="../../../public/Icons/logotipo-freeway.png"
+        alt="Logotipo Free Way"
+      />
       <h1>Free Way</h1>
     </div>
-    <img v-if="userDataHaveData" class="perfil" src="../../../public/Icons/perfil.svg" alt="" />
+    <router-link to="/profile"
+      ><img
+        v-if="userDataHaveData"
+        class="perfil"
+        src="../../../public/Icons/perfil.svg"
+        alt=""
+    /></router-link>
     <div v-if="!userDataHaveData" class="btns">
       <p @click="displayLoginRegisterModal = !displayLoginRegisterModal">
         Iniciar sesión
       </p>
-      <p @click="
-        (displayLoginRegisterModal = !displayLoginRegisterModal),
-        swapLoginRegister()
-      ">
+      <p
+        @click="
+          (displayLoginRegisterModal = !displayLoginRegisterModal),
+            swapLoginRegister()
+        "
+      >
         Registrarse
       </p>
     </div>
   </div>
-  <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
-    @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal"
-    @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => registerCorrect(userData)" />
+  <LoginAndRegisterModal
+    :loginActive="loginActive"
+    :displayLoginRegisterModal="displayLoginRegisterModal"
+    @swapLoginRegister="swapLoginRegister"
+    @closeLoginRegisterModal="closeLoginRegisterModal"
+    @loginCorrect="(userData) => loginCorrect(userData)"
+    @registerCorrect="(userData) => registerCorrect(userData)"
+  />
 </template>
 
 <style scoped>

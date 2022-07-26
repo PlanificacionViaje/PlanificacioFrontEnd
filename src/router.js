@@ -20,14 +20,14 @@ const routes = [
         props: true,
     },
     {
-        path: '/viajes',
-        name: 'viajes',
+        path: '/trips',
+        name: 'trips',
         component: TravelPage,
     },
     // {
-    //     path: '/',
-    //     name: 'home',
-    //     component: Home
+    //     path: '/trip/:id',
+    //     name: 'trip',
+    //     component: GreatTrav
     // },
 ]
 

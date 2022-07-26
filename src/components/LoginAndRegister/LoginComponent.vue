@@ -67,7 +67,7 @@ export default {
         >¡Regístrate!</a
       >
     </p>
-    <router-link to="/profile">al perfil</router-link>
+    <router-link to="/viajes">a viajes</router-link>
   </div>
 </template>
 

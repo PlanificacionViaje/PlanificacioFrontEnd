@@ -32,11 +32,11 @@ export default {
 </script>
 
 <template>
-  <Header
+  <!-- <Header
     @loginCorrect="(userData) => loginCorrect(userData)"
     @registerCorrect="(userData) => loginCorrect(userData)"
     :userData="userData"
-  />
+  /> -->
   <main>
     <!-- <Carousel_Slider />
     <Home />
