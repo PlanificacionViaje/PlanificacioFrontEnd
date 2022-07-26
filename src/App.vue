@@ -7,6 +7,8 @@ import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegiste
 import Carousel_Slider from './Components/Carousel/Carousel_Slider.vue';
 import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
+import TripModal from "./Components/TripModal.vue";
+import ItemTripModal from "./Components/ItemTripModal.vue";
 </script>
 
 <script>
@@ -16,6 +18,35 @@ export default {
       userData: {},
       loginActive: true,
       displayLoginRegisterModal: false,
+
+      //Modal Trip
+      newEditTrip:true,
+      displayNewEditTripModal:false,
+      //Modal Item Trip
+      newEditItemTrip:true,
+      displayNewEditItemTripModal:false,
+
+      //testing
+      idUsuario:1,
+      dataTrip:{
+          id:1,
+          nombre:"Tenerife",
+          descripcion:"Por fin... Una semanita en las Canarias ;-;",
+          fechainicio:"2022-08-12",
+          fechafin:"2022-08-19",
+          idusuarios:1,
+      },
+      dataItemTrip:{
+        id:1,
+        nombre:"Guigui",
+        descripcion:"asdf",
+        fecha:"2022-08-11",
+        hora:"16:00:00",
+        precio:100,
+        ubicacionlatitud:0,
+        ubicacionlongitud:-100,
+        idviajes:1
+      }
     };
   },
   methods: {
@@ -41,7 +72,39 @@ export default {
     <Profile :userData="userData" v-if="userDataHaveData" />
     <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
-    <TravelPage :UserInfo="userData" />
+    <TravelPage :UserInfo="userData" />    
+   
+    <!-- <AxiosPlayground /> -->    
+    <TripModal 
+    :newEditTrip="newEditTrip" 
+    :displayNewEditTripModal="displayNewEditTripModal" 
+    :idUsuario="idUsuario"
+    :dataTrip="dataTrip"
+    @closeTripModal="displayNewEditTripModal=false"
+    />
+
+  <button @click="displayNewEditTripModal=true, newEditTrip=true">
+    Display modal new trip
+  </button>
+   <button @click="displayNewEditTripModal=true, newEditTrip=false">
+    Display modal edit trip
+  </button>
+
+  <button @click="displayNewEditItemTripModal=true, newEditItemTrip=true">
+    Display modal new item trip
+  </button>
+   <button @click="displayNewEditItemTripModal=true, newEditItemTrip=false">
+    Display modal edit item trip
+  </button>
+    <ItemTripModal 
+    :newEditItemTrip="newEditItemTrip" 
+    :displayNewEditItemTripModal="displayNewEditItemTripModal"
+    :idViajes=1
+    :dataTrip="dataTrip"
+    :dataItemTrip="dataItemTrip"
+    @closeTripModal="displayNewEditItemTripModal=false"
+    />
+    
   </main>
   <Footer />
 </template>
