@@ -20,32 +20,32 @@ export default {
       displayLoginRegisterModal: false,
 
       //Modal Trip
-      newEditTrip:true,
-      displayNewEditTripModal:false,
+      newEditTrip: true,
+      displayNewEditTripModal: false,
       //Modal Item Trip
-      newEditItemTrip:true,
-      displayNewEditItemTripModal:false,
+      newEditItemTrip: true,
+      displayNewEditItemTripModal: false,
 
       //testing
-      idUsuario:1,
-      dataTrip:{
-          id:1,
-          nombre:"Tenerife",
-          descripcion:"Por fin... Una semanita en las Canarias ;-;",
-          fechainicio:"2022-08-12",
-          fechafin:"2022-08-19",
-          idusuarios:1,
+      idUsuario: 1,
+      dataTrip: {
+        id: 1,
+        nombre: "Tenerife",
+        descripcion: "Por fin... Una semanita en las Canarias ;-;",
+        fechainicio: "2022-08-12",
+        fechafin: "2022-08-19",
+        idusuarios: 1,
       },
-      dataItemTrip:{
-        id:1,
-        nombre:"Guigui",
-        descripcion:"asdf",
-        fecha:"2022-08-11",
-        hora:"16:00:00",
-        precio:100,
-        ubicacionlatitud:0,
-        ubicacionlongitud:-100,
-        idviajes:1
+      dataItemTrip: {
+        id: 1,
+        nombre: "Guigui",
+        descripcion: "asdf",
+        fecha: "2022-08-11",
+        hora: "16:00:00",
+        precio: 100,
+        ubicacionlatitud: 0,
+        ubicacionlongitud: -100,
+        idviajes: 1
       }
     };
   },
@@ -64,47 +64,35 @@ export default {
 
 <template>
   <main>
-
     <Header @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => loginCorrect(userData)"
       :userData="userData" />
-    <Carousel_Slider />
     <Home />
     <Profile :userData="userData" v-if="userDataHaveData" />
     <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
       @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
-    <TravelPage :UserInfo="userData" />    
-   
-    <!-- <AxiosPlayground /> -->    
-    <TripModal 
-    :newEditTrip="newEditTrip" 
-    :displayNewEditTripModal="displayNewEditTripModal" 
-    :idUsuario="idUsuario"
-    :dataTrip="dataTrip"
-    @closeTripModal="displayNewEditTripModal=false"
-    />
+    <TravelPage :UserInfo="userData" />
 
-  <button @click="displayNewEditTripModal=true, newEditTrip=true">
-    Display modal new trip
-  </button>
-   <button @click="displayNewEditTripModal=true, newEditTrip=false">
-    Display modal edit trip
-  </button>
+    <!-- <AxiosPlayground /> -->
+    <TripModal :newEditTrip="newEditTrip" :displayNewEditTripModal="displayNewEditTripModal" :idUsuario="idUsuario"
+      :dataTrip="dataTrip" @closeTripModal="displayNewEditTripModal = false" />
 
-  <button @click="displayNewEditItemTripModal=true, newEditItemTrip=true">
-    Display modal new item trip
-  </button>
-   <button @click="displayNewEditItemTripModal=true, newEditItemTrip=false">
-    Display modal edit item trip
-  </button>
-    <ItemTripModal 
-    :newEditItemTrip="newEditItemTrip" 
-    :displayNewEditItemTripModal="displayNewEditItemTripModal"
-    :idViajes=1
-    :dataTrip="dataTrip"
-    :dataItemTrip="dataItemTrip"
-    @closeTripModal="displayNewEditItemTripModal=false"
-    />
-    
+    <button @click="displayNewEditTripModal = true, newEditTrip = true">
+      Display modal new trip
+    </button>
+    <button @click="displayNewEditTripModal = true, newEditTrip = false">
+      Display modal edit trip
+    </button>
+
+    <button @click="displayNewEditItemTripModal = true, newEditItemTrip = true">
+      Display modal new item trip
+    </button>
+    <button @click="displayNewEditItemTripModal = true, newEditItemTrip = false">
+      Display modal edit item trip
+    </button>
+    <ItemTripModal :newEditItemTrip="newEditItemTrip" :displayNewEditItemTripModal="displayNewEditItemTripModal"
+      :idViajes=1 :dataTrip="dataTrip" :dataItemTrip="dataItemTrip"
+      @closeTripModal="displayNewEditItemTripModal = false" />
+
   </main>
   <Footer />
 </template>
