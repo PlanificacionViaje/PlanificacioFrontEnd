@@ -1,13 +1,12 @@
 <script setup>
 import Header from './Components/Header/header.vue';
 import Profile from './Components/Profile.vue';
+import TravelComponent from './components/TravelComponent.vue';
+import Travel from './Components/travel/Travels.vue';
+
 </script>
 
 <script>
-
-
-import TravelComponent from './components/TravelComponent.vue';
-
 export default {
   components: {
     TravelComponent
@@ -24,9 +23,10 @@ export default {
 
 <template>
  <main>
-  <Header />    
       <TravelComponent :traveldata = "traveldata"/>
-  
+
+      
+
   
  </main>
 </template>

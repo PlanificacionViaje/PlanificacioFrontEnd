@@ -1,4 +1,9 @@
+<script setup>
+import Travels from "./travel/Travels.vue";
+</script>
+
 <template>
+ 
     <div class="grid-container">      
         <div class="grid-item"> 
             
@@ -53,15 +58,11 @@
             <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
             <img src="public\Icons\delete.svg"  id="icon-delete" alt="icon delete" class="icon">
             </a>
-            </div>    
-            
- 
+            </div>   
         </div>          
     </div>
-   
+ <Travels />
 </template>
-
-
 
 <script>
 export default {
@@ -103,16 +104,7 @@ export default {
 </script>
 
 <style scoped>
-.fecha {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 70px;
-  box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 2px;
-  border-radius: 10px;
-}
+
 
 .fecha p {
   margin: 0;
@@ -185,7 +177,7 @@ export default {
     width: 100%;
     height: 100%;
      display: flex;
-     justify-content: space-between;   
+     justify-content: space-around;   
      align-items: center;
 }
 
@@ -200,16 +192,16 @@ export default {
 
 .div-fecha{
      display: flex;
-    justify-content: space-between;   
+    justify-content: space-evenly;   
     align-items: center;    
+    color:slategray;
 }
 
 .div-fechatravel{
      display: flex;
-    justify-content: space-between;   
+    justify-content: space-evenly;   
     align-items: center;
     }
-  
 
 .grid-container{
   padding: 10px;
