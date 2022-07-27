@@ -6,9 +6,6 @@ import LoginAndRegisterModal from "@/components/LoginAndRegister/LoginAndRegiste
 export default {
   name: "Header",
   emits: ["loginCorrect", "registerCorrect"],
-  props: {
-    userData: Object,
-  },
   data() {
     return {
       isOnline: false,
@@ -24,20 +21,12 @@ export default {
       this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
       this.loginActive = true;
     },
-    loginCorrect(userData) {
-      this.displayLoginRegisterModal = false;
-      this.$emit("loginCorrect", userData);
-    },
-    registerCorrect(userData) {
-      this.displayLoginRegisterModal = false;
-      this.$emit("registerCorrect", userData);
-    },
   },
   computed: {
-    userDataHaveData() {
+    userData() {
       return this.$session.userData;
     },
-  },
+  }
 };
 </script>
 
@@ -45,50 +34,35 @@ export default {
   <div class="header">
     <div class="Title">
       <router-link to="/">
-        <img
-          class="logo"
-          src="../../../public/Icons/logotipo-freeway.png"
-          alt="Logotipo Free Way"
-        />
+        <img class="logo" src="/Icons/logotipo-freeway.png" alt="Logotipo Free Way" />
       </router-link>
       <h1>Free Way</h1>
     </div>
-    <router-link to="/profile"
-      ><img
-        v-if="userDataHaveData"
-        class="perfil"
-        src="../../../public/Icons/perfil.svg"
-        alt=""
-    /></router-link>
-    <div v-if="!userDataHaveData" class="btns">
+    <router-link v-if="userData" to="/profile"><img class="perfil" src="/Icons/perfil.svg" alt="" />
+    </router-link>
+    <div v-else class="btns">
       <button @click="displayLoginRegisterModal = !displayLoginRegisterModal">
         Iniciar sesión
       </button>
-      <button
-        @click="
-          (displayLoginRegisterModal = !displayLoginRegisterModal),
-            swapLoginRegister()
-        "
-      >
+      <button @click="
+        (displayLoginRegisterModal = !displayLoginRegisterModal),
+        swapLoginRegister()
+      ">
         Registrarse
       </button>
     </div>
   </div>
-  <LoginAndRegisterModal
-    :loginActive="loginActive"
-    :displayLoginRegisterModal="displayLoginRegisterModal"
-    @swapLoginRegister="swapLoginRegister"
-    @closeLoginRegisterModal="closeLoginRegisterModal"
-    @loginCorrect="(userData) => loginCorrect(userData)"
-    @registerCorrect="(userData) => registerCorrect(userData)"
-  />
+  <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
+    @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
 </template>
 
 <style scoped>
 h1 {
   display: inline;
   color: white;
-  text-shadow: -2.5px 1px 1px black;
+  /* text-shadow: -2.5px 1px 1px black; */
+  font-weight: 200;
+  letter-spacing: 0.2rem;
 }
 
 /*El boton del Registro / Iniciar sesion*/
@@ -123,7 +97,8 @@ button:active {
 }
 
 .header {
-  background-color: #6883ba;
+  background-color: transparent;
+  /* background: linear-gradient(0deg, rgba(162, 210, 255, 1) 35%, #6883ba 100%); */
   display: flex;
   justify-content: space-between;
   padding: 0 2rem;
@@ -136,8 +111,7 @@ button:active {
 
 .perfil {
   margin: 10px;
-  width: 48px;
-  height: auto;
+  height: -webkit-fill-available;
 }
 
 .btns {

@@ -9,6 +9,8 @@ import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
 import TripModal from "./Components/TripModal.vue";
 import ItemTripModal from "./Components/ItemTripModal.vue";
+
+import * as utils from "@/utils/utils.js";
 </script>
 
 <script>
@@ -59,39 +61,43 @@ export default {
       return Object.keys(this.userData).length != 0;
     },
   },
+  beforeMount() {
+    const localData = utils.getLocalStorageSession("session");
+
+    if (localData) {
+      if ((new Date).getTime() <= localData.expires) {
+        console.log("session is active");
+        this.$session.userData = localData.data;
+        console.log("userDataApp");
+      } else {
+        console.log("session expired");
+        localStorage.removeItem("session");
+      }
+    } else {
+      console.log("no session");
+    }
+  },
+  beforeUnmount() {
+    if (this.$session.userData) {
+      utils.setLocalStorageSession("session", this.$session.userData, 30 * 1000)
+    }
+  }
 };
 </script>
 
 <template>
-  <!-- <Header
-    @loginCorrect="(userData) => loginCorrect(userData)"
-    @registerCorrect="(userData) => loginCorrect(userData)"
-    :userData="userData"
-  /> -->
   <main>
-    <Header
-      @loginCorrect="(userData) => loginCorrect(userData)"
-      @registerCorrect="(userData) => loginCorrect(userData)"
-      :userData="userData"
-    />
-    <Home />
+    <!-- <Header @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => loginCorrect(userData)"
+      :userData="userData" /> -->
+    <!-- <Home />
     <Profile :userData="userData" v-if="userDataHaveData" />
-    <LoginAndRegisterModal
-      :loginActive="loginActive"
-      :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister"
-      @closeLoginRegisterModal="closeLoginRegisterModal"
-    />
-    <TravelPage :UserInfo="userData" />
+    <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
+      @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
+    <TravelPage :UserInfo="userData" /> -->
 
     <!-- <AxiosPlayground /> -->
-    <TripModal
-      :newEditTrip="newEditTrip"
-      :displayNewEditTripModal="displayNewEditTripModal"
-      :idUsuario="idUsuario"
-      :dataTrip="dataTrip"
-      @closeTripModal="displayNewEditTripModal = false"
-    />
+    <!-- <TripModal :newEditTrip="newEditTrip" :displayNewEditTripModal="displayNewEditTripModal" :idUsuario="idUsuario"
+      :dataTrip="dataTrip" @closeTripModal="displayNewEditTripModal = false" />
 
     <button @click="(displayNewEditTripModal = true), (newEditTrip = true)">
       Display modal new trip
@@ -100,26 +106,17 @@ export default {
       Display modal edit trip
     </button>
 
-    <button
-      @click="(displayNewEditItemTripModal = true), (newEditItemTrip = true)"
-    >
+    <button @click="(displayNewEditItemTripModal = true), (newEditItemTrip = true)">
       Display modal new item trip
     </button>
-    <button
-      @click="(displayNewEditItemTripModal = true), (newEditItemTrip = false)"
-    >
+    <button @click="(displayNewEditItemTripModal = true), (newEditItemTrip = false)">
       Display modal edit item trip
     </button>
-    <ItemTripModal
-      :newEditItemTrip="newEditItemTrip"
-      :displayNewEditItemTripModal="displayNewEditItemTripModal"
-      :idViajes="1"
-      :dataTrip="dataTrip"
-      :dataItemTrip="dataItemTrip"
-      @closeTripModal="displayNewEditItemTripModal = false"
-    />
+    <ItemTripModal :newEditItemTrip="newEditItemTrip" :displayNewEditItemTripModal="displayNewEditItemTripModal"
+      :idViajes="1" :dataTrip="dataTrip" :dataItemTrip="dataItemTrip"
+      @closeTripModal="displayNewEditItemTripModal = false" />
 
-    <TravelPage :UserInfo="userData" />-->
+    <TravelPage :UserInfo="userData" /> -->
     <router-view></router-view>
   </main>
 
@@ -135,16 +132,25 @@ html,
 body,
 #app {
   width: 100%;
-  height: 100vh;
   min-height: 100vh;
   margin: 0;
-  height: 100%;
   font-family: "Inter", sans-serif;
+
 }
 
 body {
+  /* background: rgb(162, 210, 255); */
   padding-bottom: 130px;
-  height: 0;
-  background-color: #a2d2ff;
+
+  background: linear-gradient(184deg, rgba(104, 131, 186, 1) 3%, rgba(162, 210, 255, 1) 35%, rgba(255, 255, 255, 1) 100%);
+  /* background: linear-gradient(180deg, rgba(162, 210, 255, 1) 35%, rgba(255, 255, 255, 1) 100%); */
+}
+
+router-link {
+  text-decoration: none;
+}
+
+router-link:visited {
+  color: inherit;
 }
 </style>

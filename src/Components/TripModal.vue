@@ -1,5 +1,5 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 export default {
   data() {
     return {
@@ -7,14 +7,14 @@ export default {
       errorMessage: "",
     };
   },
-  methods: {  
-    checkDataForm(form){
-      if(form.get("nombre").trim()==""){
-        this.errorMessage="Nombre no puede estar vacío.";
+  methods: {
+    checkDataForm(form) {
+      if (form.get("nombre").trim() == "") {
+        this.errorMessage = "Nombre no puede estar vacío.";
         return false;
       }
-      if(form.get("fechainicio")=="" || form.get("fechafin")==""){
-        this.errorMessage="Fecha inicio o fecha final no puede estar vacía.";
+      if (form.get("fechainicio") == "" || form.get("fechafin") == "") {
+        this.errorMessage = "Fecha inicio o fecha final no puede estar vacía.";
         return false;
       }
       return true;
@@ -36,9 +36,9 @@ export default {
     },
     putViaje(e) {
       const formData = new FormData(e.target);
-      formData.append("idusuarios",this.idUsuario);
-      formData.append("id",this.dataTrip.id);
-      if(!this.checkDataForm(formData)){
+      formData.append("idusuarios", this.idUsuario);
+      formData.append("id", this.dataTrip.id);
+      if (!this.checkDataForm(formData)) {
         return;
       }
       crud
@@ -76,15 +76,15 @@ export default {
     idUsuario: Number,
     dataTrip: {},
     //Displays
-    newEditTrip:Boolean, 
-    displayNewEditTripModal: Boolean,  
+    newEditTrip: Boolean,
+    displayNewEditTripModal: Boolean,
   },
-   watch: {
-        errorMessage: function(value) {
-          setTimeout(() => {
-            this.errorMessage = "";
-          }, 8000);
-        }
+  watch: {
+    errorMessage: function (value) {
+      setTimeout(() => {
+        this.errorMessage = "";
+      }, 8000);
+    }
   },
 };
 </script>
@@ -116,7 +116,7 @@ export default {
 
           <button class="form-button" type="submit">Añadir</button>
         </div>
-        <p v-if="errorMessage" class="error-message blink_me">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me">{{ errorMessage }}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>
     </div>
@@ -145,7 +145,7 @@ export default {
           </label>
           <button class="form-button" type="submit">Guardar</button>
         </div>
-        <p v-if="errorMessage" class="error-message blink_me">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me">{{ errorMessage }}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>
     </div>

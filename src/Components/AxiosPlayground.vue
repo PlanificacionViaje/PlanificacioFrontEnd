@@ -1,5 +1,5 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 
 export default {
   methods: {
@@ -264,24 +264,10 @@ export default {
           <input type="text" name="nombre" placeholder="nombre" />
           <input type="text" name="descripcion" placeholder="descripcion" />
           <!-- <input type="time" name="hora" placeholder="hora" /> -->
-          <input
-            type="time"
-            name="hora"
-            placeholder="hora"
-            value="00:00:00"
-            step="1"
-          />
+          <input type="time" name="hora" placeholder="hora" value="00:00:00" step="1" />
           <input type="number" name="precio" placeholder="precio" />
-          <input
-            type="number"
-            name="ubicacionlatitud"
-            placeholder="ubicacionlatitud"
-          />
-          <input
-            type="number"
-            name="ubicacionlongitud"
-            placeholder="ubicacionlongitud"
-          />
+          <input type="number" name="ubicacionlatitud" placeholder="ubicacionlatitud" />
+          <input type="number" name="ubicacionlongitud" placeholder="ubicacionlongitud" />
           <input type="number" name="idviajes" placeholder="idviaje" />
           <button type="submit">POST Items Viaje</button>
         </form>
@@ -303,16 +289,8 @@ export default {
           <input type="text" name="descripcion" placeholder="descripcion" />
           <input type="time" name="hora" step="1" placeholder="hora" />
           <input type="number" name="precio" placeholder="precio" />
-          <input
-            type="number"
-            name="ubicacionlatitud"
-            placeholder="ubicacionlatitud"
-          />
-          <input
-            type="number"
-            name="ubicacionlongitud"
-            placeholder="ubicacionlongitud"
-          />
+          <input type="number" name="ubicacionlatitud" placeholder="ubicacionlatitud" />
+          <input type="number" name="ubicacionlongitud" placeholder="ubicacionlongitud" />
           <input type="number" name="idviajes" placeholder="idviaje" />
           <button type="submit">PUT ItemsViaje</button>
         </form>

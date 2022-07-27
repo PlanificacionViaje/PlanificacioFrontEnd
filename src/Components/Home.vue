@@ -5,7 +5,7 @@
   <div class="viajes-imagen">
     <div class="box-viajes">
       <router-link :to="$session.userData ? '/trips' : ''">
-        <img class="shadow-box" src="public/img/example_2.png" alt="" />
+        <img class="shadow-box" src="fotosPruebaSlider/example_2.png" alt="" />
       </router-link>
       <p class="text-box">Viajes</p>
     </div>
@@ -33,7 +33,6 @@ export default {};
 .shadow-box {
   position: relative;
   box-shadow: 5px 7px 2px #000000;
-  border-radius: 22px;
   width: -webkit-fill-available;
 }
 

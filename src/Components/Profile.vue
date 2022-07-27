@@ -3,58 +3,52 @@
 
 <script>
 export default {
-  props: {
-    userData: Object,
-  },
   data() {
     return {};
   },
-  mounted() {
-    console.log(this.$session.userData);
-  },
+  computed: {
+    userData() {
+      return this.$session.userData;
+    }
+  }
 };
 </script>
 
 <template>
-  <div v-if="$session.userData" class="profile">
+  <div v-if="userData" class="profile">
     <div class="profileHeader">
-      <img
-        class="backHome"
-        src="../../../public/Icons/arrow_forward_ios.svg"
-        alt="Edit profile"
-      />
+      <img class="backHome" src="/Icons/arrow_forward_ios.svg" alt="Edit profile" />
       <h2 class="whiteLetter">Perfil</h2>
-      <img
-        class="editProfile"
-        src="../../../public/Icons/edit.svg"
-        alt="Go back"
-      />
+      <img class="editProfile" src="/Icons/edit.svg" alt="Go back" />
     </div>
     <div class="iconAndUsername">
-      <img
-        class="userIcon"
-        src="../../../public/Icons/perfil.svg"
-        alt="userIcon"
-      />
+      <img class="userIcon"
+        src="http://images6.fanpop.com/image/photos/40900000/Cardcaptor-Sakura-Clear-Card-cardcaptor-sakura-40955649-690-690.jpg"
+        alt="userIcon" />
       <h3 class="blackLetter">
-        Hola,
-        {{ $session.userData.nombre + " " + $session.userData.apellidos }}!
+        ¡Hola,
+        {{ userData.nombre + " " + userData.apellidos }}!
       </h3>
     </div>
 
     <div class="mainUserInfo">
       <div class="userInfo">
-        <h4 class="blackLetter">Nombre:</h4>
-        <h4 class="blackLetter smallUserLetter">
-          {{ $session.userData.nombre + " " + $session.userData.apellidos }}
-        </h4>
-        <h4 class="blackLetter">Correo electronico:</h4>
-        <h4 class="blackLetter smallUserLetter">
-          {{ $session.userData.correo }}
-        </h4>
+        <div>
+          <h4 class="blackLetter userInfoTitle">Nombre:</h4>
+          <p class="blackLetter smallUserLetter">
+            {{ userData.nombre + " " + userData.apellidos }}
+          </p>
+        </div>
+        <div>
+          <h4 class="blackLetter userInfoTitle">Correo electrónico:</h4>
+          <p class="blackLetter smallUserLetter">
+            {{ userData.correo }}
+          </p>
+        </div>
+        <router-link to="/trips">Ver todos mis viajes</router-link>
       </div>
       <div class="recentTrips">
-        <h3 class="blackLetter recentTripsLetters">Proximos viajes</h3>
+        <h3 class="blackLetter recentTripsLetters">Próximos viajes</h3>
         <div class="recentTripCards">
           <div class="trip yellowTrip">
             <p class="tripTittle">Barcelona</p>
@@ -70,7 +64,6 @@ export default {
       </div>
     </div>
   </div>
-  <router-link to="/trips"><button>A viajes</button></router-link>
 </template>
 
 <style scoped>
@@ -81,7 +74,9 @@ export default {
 }
 
 .userIcon {
-  height: 100px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid #4f40f8a6;
 }
 
 .mainUserInfo,
@@ -92,13 +87,25 @@ export default {
 }
 
 .userInfo {
-  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.userInfo>* {
+  width: 100%;
 }
 
 .whiteLetter {
   display: inline;
   color: white;
-  text-shadow: -2.5px 1px 1px black;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.623), 0 0 5px rgb(105, 105, 105);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 2rem;
 }
 
 .backHome,
@@ -125,11 +132,16 @@ export default {
   text-align: center;
 }
 
+.userInfoTitle {
+  text-transform: uppercase;
+  margin-top: 0;
+}
+
 .smallUserLetter {
   font-weight: 300;
 }
 
-.iconAndUsername > .blackLetter,
+.iconAndUsername>.blackLetter,
 .userIcon {
   display: block;
   margin-left: auto;
@@ -138,6 +150,7 @@ export default {
 
 .recentTripsLetters {
   display: block;
+  text-transform: uppercase;
 }
 
 .trip {
@@ -167,6 +180,10 @@ export default {
   font-size: 16px;
 }
 
+a:visited {
+  color: inherit;
+}
+
 @media (max-width: 915px) {
   .mainUserInfo {
     display: block;
@@ -175,12 +192,13 @@ export default {
 
   .userInfo {
     margin-top: 0rem;
+    margin: 2rem auto 4rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .userInfo > h4 {
+  .userInfo>h4 {
     margin-block-start: 0;
     margin-block-end: 0.5em;
   }

@@ -5,7 +5,7 @@ import RegisterComponent from "@/Components/LoginAndRegister/RegisterComponent.v
 
 <script>
 export default {
-  emits: ["registerCorrect"],
+  emits: ["swapLoginRegister", "closeLoginRegisterModal"],
   data() {
     return {};
   },
@@ -20,33 +20,15 @@ export default {
     closeLoginRegisterModal() {
       this.$emit("closeLoginRegisterModal");
     },
-    loginCorrect(userData) {
-      this.$emit("loginCorrect", userData);
-    },
-    registerCorrect(userData) {
-      this.$emit("registerCorrect", userData);
-    },
   },
 };
 </script>
 
 <template>
-  <div
-    id="modal-background"
-    v-show="displayLoginRegisterModal"
-    @click="closeLoginRegisterModal"
-  >
+  <div id="modal-background" v-if="displayLoginRegisterModal" @click="closeLoginRegisterModal">
     <div id="modal" @click.stop>
-      <LoginComponent
-        v-if="loginActive"
-        @loginCorrect="(userData) => loginCorrect(userData)"
-        @swapLoginRegister="swapLoginRegister"
-      />
-      <RegisterComponent
-        v-else
-        @swapLoginRegister="swapLoginRegister"
-        @registerCorrect="(userData) => registerCorrect(userData)"
-      />
+      <LoginComponent v-if="loginActive" @swapLoginRegister="swapLoginRegister" />
+      <RegisterComponent v-else @swapLoginRegister="swapLoginRegister" />
       <a href="#" @click.prevent="closeLoginRegisterModal">X</a>
     </div>
   </div>

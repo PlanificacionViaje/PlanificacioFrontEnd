@@ -1,6 +1,6 @@
 <script setup>
 import TarjetaViajePerfil from "./TarjetaViajePerfil.vue";
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 import TripModal from "@/Components/TripModal.vue";
 </script>
 <script>
@@ -9,20 +9,14 @@ export default {
     return {
       arrayTravels: [],
       //Modal Trip
-      displayNewEditTripModal:false,
+      displayNewEditTripModal: false,
     };
   },
-  props: {
-    UserInfo: Object,
-  },
   mounted() {
+    console.log(this.$session.userData);
     this.loadTravels();
   },
   methods: {
-    // verData() {
-    //   console.log(this.$session.userData.id);
-    //   console.log(this.arrayTravels);
-    // },
     loadTravels() {
       crud
         .getAllViajesFromUsuario(this.$session.userData.id)
@@ -30,6 +24,11 @@ export default {
         .catch((error) => crud.handleError(error));
     },
   },
+  computed: {
+    userData() {
+      return this.$session.userData;
+    }
+  }
 };
 </script>
 <template>
@@ -37,24 +36,15 @@ export default {
     <div class="header-travels">
       <router-link to="/profile"><button>DataViajes</button></router-link>
       <h2>Mis viajes</h2>
-      <button class="button-add" @click="displayNewEditTripModal=true">
+      <button class="button-add" @click="displayNewEditTripModal = true">
         <p>Añadir un viaje</p>
-        <img class="img-button" src="plus.png" alt=""/>
+        <img class="img-button" src="plus.png" alt="" />
       </button>
-      <TripModal 
-      :newEditTrip=true 
-      :displayNewEditTripModal="displayNewEditTripModal" 
-      :idUsuario="UserInfo.id"
-      :dataTrip="dataTrip"
-      @closeTripModal="displayNewEditTripModal=false"
-      />
+      <TripModal :newEditTrip=true :displayNewEditTripModal="displayNewEditTripModal" :idUsuario="userData.id"
+        :dataTrip="dataTrip" @closeTripModal="displayNewEditTripModal = false" />
     </div>
     <div class="cards">
-      <router-link
-        v-for="travel in arrayTravels"
-        :key="travel.id"
-        :to="`/trip/${travel.id}`"
-      >
+      <router-link v-for="travel in arrayTravels" :key="travel.id" :to="`/trip/${travel.id}`">
         <TarjetaViajePerfil :viajeData="travel" />
       </router-link>
     </div>
@@ -115,6 +105,7 @@ p {
   text-transform: uppercase;
   color: white;
 }
+
 a {
   text-decoration: none;
 }

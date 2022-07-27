@@ -1,5 +1,5 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 export default {
   props: {
     id: Number,

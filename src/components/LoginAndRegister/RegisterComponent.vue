@@ -1,9 +1,14 @@
 <script>
-import * as crud from "../../axios/axiosFunctions";
+import * as crud from "../../utils/axiosFunctions";
+import * as utils from "@/utils/utils.js";
+
 export default {
-  emits: ["registerCorrect"],
+  emits: ["swapLoginRegister"],
   data() {
-    return {};
+    return {
+      registerIncorrect: false,
+      registerIncorrectMessage: "",
+    };
   },
   methods: {
     swapLoginRegister() {
@@ -15,16 +20,22 @@ export default {
       crud
         .postUsuario(formData)
         .then((response) => {
-          console.log(response);
-          if (response.data.status == 201) {
-            this.registerCorrect(response.data.data);
+          if (response.data.status !== 201) {
+            this.registerIncorrect = true;
+            this.registerIncorrectMessage = response.data.message;
+            return;
           }
+
+          this.registerIncorrect = false;
+          this.registerIncorrectMessage = "";
+
+          this.$session.userData = response.data.data;
+          utils.setLocalStorageSession("session", this.$session.userData, 30 * 1000);
+
+          this.$router.go();
         })
         .catch((error) => crud.handleError(error));
     },
-    registerCorrect(userData) {
-      this.$emit("registerCorrect", userData);
-    }
   },
 };
 </script>
@@ -49,6 +60,9 @@ export default {
         <p>Contraseña</p>
         <input class="form-input" type="password" name="contrasena" id="contrasena" />
       </label>
+      <p class="error-message" v-if="registerIncorrect">
+        {{ registerIncorrectMessage }}
+      </p>
       <button class="form-button" type="submit">Registrarse</button>
     </form>
     <p class="login-text">
@@ -106,5 +120,16 @@ export default {
 
 .login-text {
   text-align: center;
+}
+
+.error-message {
+  width: 100%;
+  background-color: rgb(255, 140, 140);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 68, 68);
+  margin: 0;
+  color: rgb(121, 0, 0);
+  font-weight: 100;
 }
 </style>

@@ -1,8 +1,9 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
+import * as utils from "@/utils/utils.js";
 
 export default {
-  emits: ["loginCorrect", "swapLoginRegister"],
+  emits: ["swapLoginRegister"],
   data() {
     return {
       loginIncorrect: false,
@@ -25,16 +26,13 @@ export default {
 
         this.loginIncorrect = false;
         this.loginIncorrectMessage = "";
-        console.log(this.$userData);
+
         this.$session.userData = response.data.data;
-        this.$router.push("/profile");
-        console.log(this.$userData);
-        console.log("logged");
+        utils.setLocalStorageSession("session", this.$session.userData, 300 * 1000);
+
+        this.$router.go();
       });
-    },
-    loginCorrect(userData) {
-      this.$emit("loginCorrect", userData);
-    },
+    }
   },
 };
 </script>
@@ -49,12 +47,7 @@ export default {
       </label>
       <label class="form-field-container" for="contrasena">
         <p>Contraseña</p>
-        <input
-          class="form-input"
-          type="password"
-          name="contrasena"
-          id="contrasena"
-        />
+        <input class="form-input" type="password" name="contrasena" id="contrasena" />
       </label>
       <p class="error-message" v-if="loginIncorrect">
         {{ loginIncorrectMessage }}
@@ -63,11 +56,8 @@ export default {
     </form>
     <p class="register-text">
       ¿Aún no tienes cuenta?
-      <a href="#" id="register-link" @click.prevent="swapLoginRegister"
-        >¡Regístrate!</a
-      >
+      <a href="#" id="register-link" @click.prevent="swapLoginRegister">¡Regístrate!</a>
     </p>
-    <router-link to="/trips">a viajes</router-link>
   </div>
 </template>
 

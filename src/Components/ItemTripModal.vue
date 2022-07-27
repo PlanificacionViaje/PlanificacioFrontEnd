@@ -1,35 +1,35 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 export default {
   data() {
     return {
       errorMessage: "",
     };
   },
-  methods: {  
-     checkDataForm(form){
-      if(form.get("nombre").trim()==""){
-        this.errorMessage="Nombre no puede estar vacío.";
+  methods: {
+    checkDataForm(form) {
+      if (form.get("nombre").trim() == "") {
+        this.errorMessage = "Nombre no puede estar vacío.";
         return false;
       }
-      if(form.get("fecha")==""){
-        this.errorMessage="Fecha no puede estar vacía.";
+      if (form.get("fecha") == "") {
+        this.errorMessage = "Fecha no puede estar vacía.";
         return false;
       }
-      if(form.get("hora")==""){
-        this.errorMessage="Hora no puede estar vacía.";
+      if (form.get("hora") == "") {
+        this.errorMessage = "Hora no puede estar vacía.";
         return false;
       }
-      if(form.get("precio").trim()==""){
-        this.errorMessage="Precio no puede estar vacío.";
+      if (form.get("precio").trim() == "") {
+        this.errorMessage = "Precio no puede estar vacío.";
         return false;
       }
-      if(form.get("ubicacionlatitud").trim()==""){
-        this.errorMessage="Ubicación latitud no puede estar vacía.";
+      if (form.get("ubicacionlatitud").trim() == "") {
+        this.errorMessage = "Ubicación latitud no puede estar vacía.";
         return false;
       }
-      if(form.get("ubicacionlongitud").trim()==""){
-        this.errorMessage="Ubicación longitud no puede estar vacía.";
+      if (form.get("ubicacionlongitud").trim() == "") {
+        this.errorMessage = "Ubicación longitud no puede estar vacía.";
         return false;
       }
       return true;
@@ -50,9 +50,9 @@ export default {
     },
     putItemsViaje(e) {
       const formData = new FormData(e.target);
-      formData.append("idviajes",this.dataTrip.id);
-      formData.append("id",this.dataItemTrip.id);
-      if(!this.checkDataForm(formData)){
+      formData.append("idviajes", this.dataTrip.id);
+      formData.append("id", this.dataItemTrip.id);
+      if (!this.checkDataForm(formData)) {
         return;
       }
       crud
@@ -76,15 +76,15 @@ export default {
       if (this.newEditItemTrip) { this.cleanElements(); }
       this.errorMessage = "";
       this.$emit('closeTripModal');
-    }, 
-    compareFecha(){
-      var fechaitem = new Date (this.dataItemTrip.fechafin).getTime();
-      var fechainicio = new Date (this.dataTrip.fechainicio).getTime();
-      var fechafin = new Date (this.dataTrip.fechafin).getTime(); 
-      if(fechaitem>=fechainicio && fechaitem<=fechafin){
+    },
+    compareFecha() {
+      var fechaitem = new Date(this.dataItemTrip.fechafin).getTime();
+      var fechainicio = new Date(this.dataTrip.fechainicio).getTime();
+      var fechafin = new Date(this.dataTrip.fechafin).getTime();
+      if (fechaitem >= fechainicio && fechaitem <= fechafin) {
         return true;
-      }else{   
-        this.errorMessage="La fecha esta fuera de los días establecidos del viaje.";
+      } else {
+        this.errorMessage = "La fecha esta fuera de los días establecidos del viaje.";
         return false;
       }
     }
@@ -94,19 +94,19 @@ export default {
     dataItemTrip: {},
 
     //Display
-    newEditItemTrip:Boolean, 
-    displayNewEditItemTripModal: Boolean,   
-    
+    newEditItemTrip: Boolean,
+    displayNewEditItemTripModal: Boolean,
+
   },
   watch: {
-        errorMessage: function(value) {
-          setTimeout(() => {
-            this.errorMessage = "";
-          }, 8000);
-        }
+    errorMessage: function (value) {
+      setTimeout(() => {
+        this.errorMessage = "";
+      }, 8000);
+    }
   },
-  mounted() { 
-      this.compareFecha();
+  mounted() {
+    this.compareFecha();
   },
 };
 </script>
@@ -149,7 +149,7 @@ export default {
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Añadir</button>
-        <p v-if="errorMessage" class="error-message blink_me ">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me ">{{ errorMessage }}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>
     </div>
@@ -166,7 +166,8 @@ export default {
         </label>
         <label class="form-field-container" for="fecha">
           <p>Fecha</p>
-          <input class="form-input" onkeydown="return false" :min="dataTrip.fechainicio" :max="dataTrip.fechafin" id="EditItemfecha" :value="dataItemTrip.fecha" type="date" name="fecha" placeholder="fecha"/>
+          <input class="form-input" onkeydown="return false" :min="dataTrip.fechainicio" :max="dataTrip.fechafin"
+            id="EditItemfecha" :value="dataItemTrip.fecha" type="date" name="fecha" placeholder="fecha" />
         </label>
         <label class="form-field-container" for="hora">
           <p>Hora</p>
@@ -190,7 +191,7 @@ export default {
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Guardar</button>
-        <p v-if="errorMessage" class="error-message blink_me ">{{errorMessage}}</p>
+        <p v-if="errorMessage" class="error-message blink_me ">{{ errorMessage }}</p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>
     </div>
