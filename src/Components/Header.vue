@@ -7,7 +7,7 @@ export default {
   name: "Header",
   emits: ["loginCorrect", "registerCorrect"],
   props: {
-    userData: Object
+    userData: Object,
   },
   data() {
     return {
@@ -31,38 +31,57 @@ export default {
     registerCorrect(userData) {
       this.displayLoginRegisterModal = false;
       this.$emit("registerCorrect", userData);
-    }
+    },
   },
   computed: {
     userDataHaveData() {
-      // return Object.keys(this.userData).length != 0;
-    }
-  }
+      return this.$session.userData;
+    },
+  },
 };
 </script>
 
 <template>
   <div class="header">
     <div class="Title">
-      <img class="logo" src="../../../public/Icons/logotipo-freeway.png" alt="Logotipo Free Way" />
-      <h1 class="title-freeway">Free Way</h1>
+      <router-link to="/">
+        <img
+          class="logo"
+          src="../../../public/Icons/logotipo-freeway.png"
+          alt="Logotipo Free Way"
+        />
+      </router-link>
+      <h1>Free Way</h1>
     </div>
-    <img v-if="userDataHaveData" class="perfil" src="../../../public/Icons/perfil.svg" alt="" />
-    <div v-else class="btns">
+    <router-link to="/profile"
+      ><img
+        v-if="userDataHaveData"
+        class="perfil"
+        src="../../../public/Icons/perfil.svg"
+        alt=""
+    /></router-link>
+    <div v-if="!userDataHaveData" class="btns">
       <button @click="displayLoginRegisterModal = !displayLoginRegisterModal">
         Iniciar sesión
       </button>
-      <button @click="
-        (displayLoginRegisterModal = !displayLoginRegisterModal),
-        swapLoginRegister()
-      ">
+      <button
+        @click="
+          (displayLoginRegisterModal = !displayLoginRegisterModal),
+            swapLoginRegister()
+        "
+      >
         Registrarse
       </button>
     </div>
   </div>
-  <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
-    @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal"
-    @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => registerCorrect(userData)" />
+  <LoginAndRegisterModal
+    :loginActive="loginActive"
+    :displayLoginRegisterModal="displayLoginRegisterModal"
+    @swapLoginRegister="swapLoginRegister"
+    @closeLoginRegisterModal="closeLoginRegisterModal"
+    @loginCorrect="(userData) => loginCorrect(userData)"
+    @registerCorrect="(userData) => registerCorrect(userData)"
+  />
 </template>
 
 <style scoped>
@@ -83,7 +102,7 @@ button {
   border: 2px solid white;
   border-radius: 15px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 button:hover {
@@ -93,7 +112,7 @@ button:hover {
 }
 
 button:active {
-  background-color: #C2DBFF;
+  background-color: #c2dbff;
   color: white;
 }
 
@@ -142,14 +161,10 @@ button:active {
 /* Para Tablets */
 /* Medida Media*/
 
-@media only screen and (min-width:768px) {
-
+@media only screen and (min-width: 768px) {
   .header {
-
     height: 100%;
-
   }
-
 }
 
 /* Para Moviles Grandes y Tablets Pequeñas */
@@ -157,11 +172,8 @@ button:active {
 
 @media only screen and (min-width: 600px) {
   .header {
-
     width: 100%;
-
   }
-
 }
 
 /* Para Moviles Pequeños */
@@ -173,9 +185,7 @@ button:active {
   }
 
   .title-freeway {
-
     display: none;
   }
-
 }
 </style>

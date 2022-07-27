@@ -15,19 +15,27 @@ export default {
   props: {
     UserInfo: Object,
   },
-  watch: {
-    UserInfo() {
+  mounted() {
+    this.loadTravels();
+  },
+  methods: {
+    // verData() {
+    //   console.log(this.$session.userData.id);
+    //   console.log(this.arrayTravels);
+    // },
+    loadTravels() {
       crud
-        .getAllViajesFromUsuario(this.UserInfo.id)
+        .getAllViajesFromUsuario(this.$session.userData.id)
         .then((response) => (this.arrayTravels = response.data.data))
         .catch((error) => crud.handleError(error));
-    }
+    },
   },
 };
 </script>
 <template>
   <div>
     <div class="header-travels">
+      <router-link to="/profile"><button>DataViajes</button></router-link>
       <h2>Mis viajes</h2>
       <button class="button-add" @click="displayNewEditTripModal=true">
         <p>Añadir un viaje</p>
@@ -42,7 +50,13 @@ export default {
       />
     </div>
     <div class="cards">
-      <TarjetaViajePerfil v-for="travel in arrayTravels" :key="travel.id" :viajeData="travel" />
+      <router-link
+        v-for="travel in arrayTravels"
+        :key="travel.id"
+        :to="`/trip/${travel.id}`"
+      >
+        <TarjetaViajePerfil :viajeData="travel" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -100,5 +114,8 @@ h2 {
 p {
   text-transform: uppercase;
   color: white;
+}
+a {
+  text-decoration: none;
 }
 </style>

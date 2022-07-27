@@ -1,10 +1,10 @@
 <script setup>
 import Header from "./Components/Header.vue";
-import Home from "./Components/Home.vue"
+import Home from "./Components/Home.vue";
 import Profile from "./Components/Profile.vue";
 import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
-import Carousel_Slider from './Components/Carousel/Carousel_Slider.vue';
+import Carousel_Slider from "./Components/Carousel/Carousel_Slider.vue";
 import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
 import TripModal from "./Components/TripModal.vue";
@@ -45,8 +45,8 @@ export default {
         precio: 100,
         ubicacionlatitud: 0,
         ubicacionlongitud: -100,
-        idviajes: 1
-      }
+        idviajes: 1,
+      },
     };
   },
   methods: {
@@ -57,43 +57,72 @@ export default {
   computed: {
     userDataHaveData() {
       return Object.keys(this.userData).length != 0;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <template>
+  <!-- <Header
+    @loginCorrect="(userData) => loginCorrect(userData)"
+    @registerCorrect="(userData) => loginCorrect(userData)"
+    :userData="userData"
+  /> -->
   <main>
-    <Header @loginCorrect="(userData) => loginCorrect(userData)" @registerCorrect="(userData) => loginCorrect(userData)"
-      :userData="userData" />
+    <Header
+      @loginCorrect="(userData) => loginCorrect(userData)"
+      @registerCorrect="(userData) => loginCorrect(userData)"
+      :userData="userData"
+    />
     <Home />
     <Profile :userData="userData" v-if="userDataHaveData" />
-    <LoginAndRegisterModal :loginActive="loginActive" :displayLoginRegisterModal="displayLoginRegisterModal"
-      @swapLoginRegister="swapLoginRegister" @closeLoginRegisterModal="closeLoginRegisterModal" />
+    <LoginAndRegisterModal
+      :loginActive="loginActive"
+      :displayLoginRegisterModal="displayLoginRegisterModal"
+      @swapLoginRegister="swapLoginRegister"
+      @closeLoginRegisterModal="closeLoginRegisterModal"
+    />
     <TravelPage :UserInfo="userData" />
 
     <!-- <AxiosPlayground /> -->
-    <TripModal :newEditTrip="newEditTrip" :displayNewEditTripModal="displayNewEditTripModal" :idUsuario="idUsuario"
-      :dataTrip="dataTrip" @closeTripModal="displayNewEditTripModal = false" />
+    <TripModal
+      :newEditTrip="newEditTrip"
+      :displayNewEditTripModal="displayNewEditTripModal"
+      :idUsuario="idUsuario"
+      :dataTrip="dataTrip"
+      @closeTripModal="displayNewEditTripModal = false"
+    />
 
-    <button @click="displayNewEditTripModal = true, newEditTrip = true">
+    <button @click="(displayNewEditTripModal = true), (newEditTrip = true)">
       Display modal new trip
     </button>
-    <button @click="displayNewEditTripModal = true, newEditTrip = false">
+    <button @click="(displayNewEditTripModal = true), (newEditTrip = false)">
       Display modal edit trip
     </button>
 
-    <button @click="displayNewEditItemTripModal = true, newEditItemTrip = true">
+    <button
+      @click="(displayNewEditItemTripModal = true), (newEditItemTrip = true)"
+    >
       Display modal new item trip
     </button>
-    <button @click="displayNewEditItemTripModal = true, newEditItemTrip = false">
+    <button
+      @click="(displayNewEditItemTripModal = true), (newEditItemTrip = false)"
+    >
       Display modal edit item trip
     </button>
-    <ItemTripModal :newEditItemTrip="newEditItemTrip" :displayNewEditItemTripModal="displayNewEditItemTripModal"
-      :idViajes=1 :dataTrip="dataTrip" :dataItemTrip="dataItemTrip"
-      @closeTripModal="displayNewEditItemTripModal = false" />
+    <ItemTripModal
+      :newEditItemTrip="newEditItemTrip"
+      :displayNewEditItemTripModal="displayNewEditItemTripModal"
+      :idViajes="1"
+      :dataTrip="dataTrip"
+      :dataItemTrip="dataItemTrip"
+      @closeTripModal="displayNewEditItemTripModal = false"
+    />
 
+    <TravelPage :UserInfo="userData" />-->
+    <router-view></router-view>
   </main>
+
   <Footer />
 </template>
 

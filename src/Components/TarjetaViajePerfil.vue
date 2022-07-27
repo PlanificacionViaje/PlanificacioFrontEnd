@@ -45,7 +45,10 @@ export default {
 </script>
 
 <template>
-  <div class="tarjeta-viaje" :style="{ backgroundColor: randomBackgroundColor() }">
+  <div
+    class="tarjeta-viaje"
+    :style="{ backgroundColor: randomBackgroundColor() }"
+  >
     <h2 class="viaje-title">{{ viajeData.nombre }}</h2>
     <div class="fechas">
       <div class="fecha fecha-inicio">
