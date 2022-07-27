@@ -40,11 +40,13 @@ export default {
       </button>
     </div>
     <div class="cards">
-      <TarjetaViajePerfil
+      <router-link
         v-for="travel in arrayTravels"
         :key="travel.id"
-        :viajeData="travel"
-      />
+        :to="`/trip/${travel.id}`"
+      >
+        <TarjetaViajePerfil :viajeData="travel" />
+      </router-link>
     </div>
   </div>
 </template>
@@ -102,5 +104,8 @@ h2 {
 p {
   text-transform: uppercase;
   color: white;
+}
+a {
+  text-decoration: none;
 }
 </style>

@@ -13,6 +13,5 @@ app.use(router).mount('#app')
 // To do:
 // 1.Limpiar emits,
 // 2.Limpiar en general
-// 3.Falta componente gran viaje para hacer la ruta dinámica
-// 4.Limitar que solo puedas ir a /viajes con la imagen del "home", si estás loggeado,
+// 3.Falta componente gran viaje para hacer la ruta dinámica.
 // 5.Que los viajes te lleven al "gran viaje"

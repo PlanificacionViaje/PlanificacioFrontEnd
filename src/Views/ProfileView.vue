@@ -7,6 +7,5 @@ export default {};
 </script>
 <template>
   <Header />
-  {{ $userData }}
   <Profile />
 </template>

@@ -8,9 +8,6 @@ export default {};
 </script>
 <template>
   <Header />
-  {{ $userData }}
-  <!-- <button @click="$userData.nombre = 'Jose'">asdf</button>
-  <router-link to="/profile">Pro</router-link> -->
   <Slider />
   <Home />
 </template>

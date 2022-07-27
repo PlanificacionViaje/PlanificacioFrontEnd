@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Profile from './Components/Profile.vue';
-import TravelPage from "./Components/TravelPage.vue";
+import TravelsView from "./Views/TravelsView.vue";
 import HomeView from "./Views/HomeView.vue"
 import ProfileView from "./Views/ProfileView.vue"
-
+import GreatTravelView from "./Views/GreatTravelView.vue"
 
 const routes = [
     {
@@ -22,13 +22,13 @@ const routes = [
     {
         path: '/trips',
         name: 'trips',
-        component: TravelPage,
+        component: TravelsView,
     },
-    // {
-    //     path: '/trip/:id',
-    //     name: 'trip',
-    //     component: GreatTrav
-    // },
+    {
+        path: '/trip/:id',
+        name: 'trip',
+        component: GreatTravelView
+    },
 ]
 
 const router = createRouter({

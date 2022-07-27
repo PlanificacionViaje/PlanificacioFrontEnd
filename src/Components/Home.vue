@@ -8,7 +8,7 @@
       <!--Aqui va el Slider-->
     </div>
     <div class="box-viajes">
-      <router-link to="/trips"
+      <router-link :to="$session.userData ? '/trips' : ''"
         ><img class="shadow-box" src="public/img/example_2.png" alt=""
       /></router-link>
       <p class="text-box">Viajes</p>

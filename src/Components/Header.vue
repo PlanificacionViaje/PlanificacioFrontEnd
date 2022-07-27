@@ -44,11 +44,13 @@ export default {
 <template>
   <div class="header">
     <div class="Title">
-      <img
-        class="logo"
-        src="../../../public/Icons/logotipo-freeway.png"
-        alt="Logotipo Free Way"
-      />
+      <router-link to="/">
+        <img
+          class="logo"
+          src="../../../public/Icons/logotipo-freeway.png"
+          alt="Logotipo Free Way"
+        />
+      </router-link>
       <h1>Free Way</h1>
     </div>
     <router-link to="/profile"

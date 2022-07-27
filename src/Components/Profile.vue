@@ -29,7 +29,6 @@ export default {
         src="../../../public/Icons/edit.svg"
         alt="Go back"
       />
-      <router-link to="/"><button>A casa</button></router-link>
     </div>
     <div class="iconAndUsername">
       <img
@@ -71,6 +70,7 @@ export default {
       </div>
     </div>
   </div>
+  <router-link to="/trips"><button>A viajes</button></router-link>
 </template>
 
 <style scoped>
