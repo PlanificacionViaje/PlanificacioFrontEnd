@@ -401,6 +401,7 @@ ul li {
   padding-bottom: 4px;
   padding-top: 18px;
   border-top: 1px dotted #dce7eb;
+  border-radius: 24px;
   
 }
 
