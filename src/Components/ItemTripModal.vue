@@ -136,16 +136,16 @@ export default {
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input class="form-input" value="0" type="number" name="precio" id="itemprecio" />
+          <input class="form-input" value="0" type="decimal" name="precio" id="itemprecio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input class="form-input" value="0" type="number" name="ubicacionlatitud" id="itemubicacionlatitud" />
+            <input class="form-input" value="0" type="decimal" name="ubicacionlatitud" id="itemubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input class="form-input" value="0" type="number" name="ubicacionlongitud" id="itemubicacionlongitud" />
+            <input class="form-input" value="0" type="decimal" name="ubicacionlongitud" id="itemubicacionlongitud" />
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Añadir</button>
@@ -175,17 +175,17 @@ export default {
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input class="form-input" :value=dataItemTrip.precio type="number" name="precio" id="precio" />
+          <input class="form-input" :value=dataItemTrip.precio type="decimal" name="precio" id="precio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input class="form-input" :value=dataItemTrip.ubicacionlatitud type="number" name="ubicacionlatitud"
+            <input class="form-input" :value=dataItemTrip.ubicacionlatitud type="decimal" name="ubicacionlatitud"
               id="ubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input class="form-input" :value=dataItemTrip.ubicacionlongitud type="number" name="ubicacionlongitud"
+            <input class="form-input" :value=dataItemTrip.ubicacionlongitud type="decimal" name="ubicacionlongitud"
               id="ubicacionlongitud" />
           </label>
         </div>

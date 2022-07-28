@@ -5,6 +5,10 @@ const url = "http://10.1.12.94:8080";
 //
 // USUARIOS
 //
+export function onLogin(formData) {
+  return axios.post(url + "/usuarios/login", formData);
+}
+
 export function getAllUsuarios() {
   return axios.get(url + "/usuarios");
 }
