@@ -5,6 +5,8 @@ import AxiosPlayground from "./Components/AxiosPlayground.vue";
 import LoginAndRegisterModal from "@/Components/LoginAndRegister/LoginAndRegisterModal.vue";
 import TripModal from "./Components/TripModal.vue";
 import ItemTripModal from "./Components/ItemTripModal.vue";
+import TravelComponent from "@/Components/TravelComponent.vue";
+
 </script>
 
 <script>
