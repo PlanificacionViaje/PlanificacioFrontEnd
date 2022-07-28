@@ -6,6 +6,9 @@ import * as crud from "@/axios/axiosFunctions.js";
 export default {
   data() {
     return {
+      //Modal Trip
+      newEditTrip: true,
+      displayNewEditTripModal: false,
       traveldata: null,
       ARRAY_MESES: [
         "ENE",
@@ -35,32 +38,38 @@ export default {
       const fecha = new Date(this.traveldata.fechafin);
       return { dia: fecha.getDate(), mes: this.ARRAY_MESES[fecha.getMonth()] };
     },
-    loadDataTrip() {
-      
-    },
   },
-  created() {
-    crud
+  methods: {
+    loadDataTrip() {
+      crud
         .getViajeById(this.idTrip)
         .then((response) => {
-          console.log(response.data.data)
+          console.log(response.data.data);
           if (response.data.status == 200) {
-            this.traveldata = response.data.data
-            console.log(this.traveldata.nombre)
+            this.traveldata = response.data.data;
+            console.log(this.traveldata.nombre);
           }
         })
         .catch((error) => crud.handleError(error));
+    },
+  },
+  created() {
+    this.loadDataTrip();
   },
 };
 </script>
 
 <template>
-  <div class="grid-container">
+  <div class="grid-container" v-if="traveldata">
     <div class="grid-item">
       <div class="div-nombre">
         <div class="div-arrow-ubi">
           <a href="www.google.com" id="arrow-flashcard">
-            <img src="/Icons/arrow_forward_ios.svg" id="icon-arrow" alt="icon arrow" />
+            <img
+              src="/Icons/arrow_forward_ios.svg"
+              id="icon-arrow"
+              alt="icon arrow"
+            />
           </a>
           <img src="  /Icons/location-deco.svg" id="icon-ubi" alt="icon ubi" />
           <h1 class="text-title" v-html="traveldata.nombre"></h1>
@@ -68,7 +77,12 @@ export default {
         <!-- cierre div ubi -->
 
         <a href="#" @click.prevent="editCard" id="edit-flashcard">
-          <img src="/Icons/edit.svg" id="icon-edit" alt="icon edit" class="icon" />
+          <img
+            src="/Icons/edit.svg"
+            id="icon-edit"
+            alt="icon edit"
+            class="icon"
+          />
         </a>
       </div>
       <!-- cierre div nombre -->
@@ -100,13 +114,34 @@ export default {
 
       <div class="div-delete">
         <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
-          <img src="/Icons/delete.svg" id="icon-delete" alt="icon delete" class="icon" />
+          <img
+            src="/Icons/delete.svg"
+            id="icon-delete"
+            alt="icon delete"
+            class="icon"
+          />
         </a>
       </div>
     </div>
   </div>
-  <button>hola</button>
-  <Travels :travelId="traveldata.id" />
+  <button class="button-add">
+    <p>Añadir un item</p>
+    <img class="img-button" src="plus.png" alt="" />
+  </button>
+  <TripModal
+    :newEditTrip="newEditTrip"
+    :displayNewEditTripModal="displayNewEditTripModal"
+    :idUsuario="1"
+    :dataTrip="dataTrip"
+    @closeTripModal="displayNewEditTripModal = false"
+  />
+  <DeleteTripModal
+    :displayDeleteTripModal="displayDeleteTripModal"
+    :dataTrip="dataTrip"
+    @closeTripModal="displayDeleteTripModal = false"
+  />
+
+  <Travels v-if="traveldata" :travelId="traveldata.id" />
 </template>
 
 
@@ -205,6 +240,26 @@ export default {
   margin: 10px;
   background-color: #fde74c;
   border-radius: 24px;
+}
+
+.button-add {
+  margin: auto;
+  background-color: orange;
+  border: none;
+  width: 30vw;
+  min-width: 350px;
+  min-height: 60px;
+  height: 5vh;
+  box-shadow: rgb(255, 255, 255) 5px 5px, rgba(2255, 255, 255, 0.3) 10px 10px,
+    rgba(255, 255, 255, 0.2) 15px 15px, rgba(255, 255, 255, 0.1) 20px 20px,
+    rgba(255, 255, 255, 0.05) 25px 25px;
+  font-weight: 600;
+  font-size: 17px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 /* tamaño tablet */

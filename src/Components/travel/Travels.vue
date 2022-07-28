@@ -8,7 +8,6 @@ export default {
     },
   data() {
     return {
-      //travelId:1,
       //base cartas
       traveldata:null,
       backgroundColor: "lightgrey",
@@ -63,49 +62,6 @@ export default {
     :item="item"
     :traveldata="traveldata"
   />
-
-  <!-- <div class="travel-block">
-
-
-    <ul>
-
-      <li id="lista" :style="{ backgroundColor: randomBackgroundColor() }" v-for="item in notes" :key="item.id">
-        <input type="checkbox" checked>
-        <h2 class="title-second">{{ item.Nombre }}</h2>
-        <a href="#" @click.prevent="editCard" id="edit-flashcard">
-          <img src="public\Icons\edit.svg" id="icon-edit" alt="icon edit" class="icon">
-        </a>
-        <p>{{ item.Descripcion }}</p>
-        <div class="div-fecha">
-          <h3 class="text-subtitle">Fecha:</h3>
-          <h3 class="text-subtitle">Hora:</h3>
-        </div>
-
-        <div class="div-fechatravel">
-          <div class="fecha fecha-inicio">
-            <p class="mes">{{ fechainicio(item.id).mes }}</p>
-            <p class="dia">{{ fechainicio(item.id).dia }}</p>
-          </div>
-
-          <div class="">
-            <p class="hora">hora</p>
-          </div>
-
-        </div>
-      
-        <p>Presupuesto disponible: {{ item.Presupuesto }}</p>
-        <p>Ubicació latitud: {{ item.Presupuesto }}</p>
-        <p>Ubicación longitud: {{ item.Presupuesto }}</p>
-
-        <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
-          <img src="public\Icons\delete.svg" id="icon-delete" alt="icon delete" class="icon">
-        </a>
-      </li>
-
-
-    </ul>
-  </div>
- -->
 </template>
 
 <style scoped>

@@ -1,5 +1,4 @@
 <script setup>
-
 import Footer from "./Components/Footer.vue";
 import TravelPage from "@/Components/TravelPage.vue";
 import TripModal from "./Components/TripModal.vue";
@@ -31,7 +30,7 @@ export default {
 
       //testing
       idUsuario:1,
-      idTrip:1,
+      idTrip:2,
       
     };
   },
