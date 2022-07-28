@@ -43,7 +43,7 @@ export default {
 <template>
   <div id="register-component">
     <h1 class="title">Registro</h1>
-    <form class="form" action="" @submit.prevent="postUsuario">
+    <form name="form1" class="form" action="" @submit.prevent="postUsuario">
       <label class="form-field-container" for="nombre">
         <p>Nombre</p>
         <input class="form-input" type="text" name="nombre" id="nombre" />
@@ -130,6 +130,6 @@ export default {
   border: 1px solid rgb(255, 68, 68);
   margin: 0;
   color: rgb(121, 0, 0);
-  font-weight: 100;
+  font-weight: 400;
 }
 </style>

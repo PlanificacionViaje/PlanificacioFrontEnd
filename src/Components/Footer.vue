@@ -13,7 +13,9 @@ export default {};
     </div>
     <div class="footer-item">
       <h3>Contáctanos</h3>
-      <a href="https://planificacionviaje.github.io/PlanificacionViaje-LandingPage-FreeWay/">Our Landing page</a>
+      <a id="landing-link" target="_blank"
+        href="https://planificacionviaje.github.io/PlanificacionViaje-LandingPage-FreeWay/">Our
+        Landing page</a>
     </div>
     <div class="footer-item">
       <h3>Redes Sociales</h3>
@@ -86,6 +88,11 @@ a {
 
 p {
   margin: 0;
+}
+
+#landing-link {
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 @media (max-width: 1140px) {

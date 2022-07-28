@@ -1,16 +1,31 @@
 <script setup>
+import TarjetaViajePerfilVue from "./TarjetaViajePerfil.vue";
 </script>
 
 <script>
+import * as crud from "@/utils/axiosFunctions.js";
+
 export default {
   data() {
-    return {};
+    return {
+      upcomingTrips: [],
+    };
   },
   computed: {
     userData() {
       return this.$session.userData;
     }
-  }
+  },
+  created() {
+    this.upcomingTrips = crud.getUpcomgingTripsFromUsuario(this.userData.id)
+      .then(response => {
+        console.log(response);
+        if (response.data.status == 200) {
+          this.upcomingTrips = response.data.data;
+        }
+      }).catch(error => crud.handleError(error))
+
+  },
 };
 </script>
 
@@ -45,21 +60,14 @@ export default {
             {{ userData.correo }}
           </p>
         </div>
-        <router-link to="/trips">Ver todos mis viajes</router-link>
+        <router-link class="showAllTrips" to="/trips">Ver todos mis viajes</router-link>
       </div>
       <div class="recentTrips">
         <h3 class="blackLetter recentTripsLetters">Próximos viajes</h3>
         <div class="recentTripCards">
-          <div class="trip yellowTrip">
-            <p class="tripTittle">Barcelona</p>
-            <p class="tripInfo">Del 16 al 19 de Julio</p>
-            <p class="tripInfo">Presupuesto: 600€</p>
-          </div>
-          <div class="trip purpleTrip">
-            <p class="tripTittle">Barcelona</p>
-            <p class="tripInfo">Del 16 al 19 de Julio</p>
-            <p class="tripInfo">Presupuesto: 600€</p>
-          </div>
+          <router-link v-for="travel in upcomingTrips" :key="travel.id" :to="`/trip/${travel.id}`">
+            <TarjetaViajePerfilVue :viajeData=travel />
+          </router-link>
         </div>
       </div>
     </div>
@@ -180,9 +188,10 @@ export default {
   font-size: 16px;
 }
 
-a:visited {
-  color: inherit;
+.showAllTrips {
+  text-decoration: underline;
 }
+
 
 @media (max-width: 915px) {
   .mainUserInfo {

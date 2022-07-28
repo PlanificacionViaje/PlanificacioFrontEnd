@@ -40,6 +40,10 @@ export function getAllViajesFromUsuario(id) {
   return axios.get(url + `/usuarios/${id}/viajes`);
 }
 
+export function getUpcomgingTripsFromUsuario(id) {
+  return axios.get(url + `/usuarios/${id}/proximosviajes`);
+}
+
 export function getViajeById(id) {
   return axios.get(url + `/viajes/${id}`);
 }

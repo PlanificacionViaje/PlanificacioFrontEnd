@@ -21,6 +21,11 @@ export default {
       this.displayLoginRegisterModal = !this.displayLoginRegisterModal;
       this.loginActive = true;
     },
+    closeSession() {
+      localStorage.clear();
+      this.$session.userData = null;
+      this.$router.push("/")
+    }
   },
   computed: {
     userData() {
@@ -38,8 +43,11 @@ export default {
       </router-link>
       <h1>Free Way</h1>
     </div>
-    <router-link v-if="userData" to="/profile"><img class="perfil" src="/Icons/perfil.svg" alt="" />
-    </router-link>
+    <div v-if="userData" class="singUp">
+      <button @click="closeSession">Cerrar sesión</button>
+      <router-link to="/profile"><img class="perfil" src="/Icons/perfil.svg" alt="" />
+      </router-link>
+    </div>
     <div v-else class="btns">
       <button @click="displayLoginRegisterModal = !displayLoginRegisterModal">
         Iniciar sesión
@@ -83,6 +91,7 @@ button:hover {
   background-color: white;
   color: black;
   border-color: transparent;
+  cursor: pointer;
 }
 
 button:active {
@@ -128,6 +137,15 @@ button:active {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.singUp {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* A partir de aqui va las pantallas Responsive*/

@@ -4,7 +4,7 @@ import Home from "@/Components/Home.vue";
 import Header from "@/Components/Header.vue";
 </script>
 <script>
-export default {};
+export default {}
 </script>
 <template>
   <Header />
@@ -12,8 +12,10 @@ export default {};
     <h1 class="title"> Bienvenid@ a Freeway</h1>
     <h2 class="slogan">Programa tus viajes en tan sólo un click</h2>
   </div>
-  <Slider />
-  <Home />
+  <div id="asdf">
+    <Slider v-if="$session.userData" />
+    <Home />
+  </div>
 </template>
 <style scoped>
 .home-title {
@@ -31,6 +33,16 @@ export default {};
   color: white;
   text-transform: uppercase;
   margin: 0
+}
+
+#asdf {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#asdf>* {
+  width: 50%;
 }
 
 .title {

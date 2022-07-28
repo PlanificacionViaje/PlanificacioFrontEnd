@@ -8,12 +8,10 @@ export default {
   data() {
     return {
       arrayTravels: [],
-      //Modal Trip
       displayNewEditTripModal: false,
     };
   },
   mounted() {
-    console.log(this.$session.userData);
     this.loadTravels();
   },
   methods: {
@@ -34,7 +32,6 @@ export default {
 <template>
   <div>
     <div class="header-travels">
-      <router-link to="/profile"><button>DataViajes</button></router-link>
       <h2>Mis viajes</h2>
       <button class="button-add" @click="displayNewEditTripModal = true">
         <p>Añadir un viaje</p>
@@ -58,7 +55,7 @@ export default {
 }
 
 .button-add {
-  background-color: orange;
+  background-color: #6e61fe9c;
   border: none;
   width: 30vw;
   min-width: 350px;
@@ -95,6 +92,7 @@ export default {
 }
 
 h2 {
+  letter-spacing: 0.3rem;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 45px;

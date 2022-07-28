@@ -5,7 +5,7 @@
   <div class="viajes-imagen">
     <div class="box-viajes">
       <router-link :to="$session.userData ? '/trips' : ''">
-        <img class="shadow-box" src="fotosPruebaSlider/example_2.png" alt="" />
+        <img class="shadow-box" src="fotosPruebaSlider/my_trips_home.png" alt="" />
       </router-link>
       <p class="text-box">Viajes</p>
     </div>
@@ -32,13 +32,12 @@ export default {};
 
 .shadow-box {
   position: relative;
-  box-shadow: 5px 7px 2px #000000;
   width: -webkit-fill-available;
+  transition: filter 0.1s ease-in-out;
 }
 
 .shadow-box:hover {
   filter: brightness(0.38) contrast(1.04);
-  animation-duration: 0.3s;
   cursor: pointer;
 }
 
@@ -55,7 +54,7 @@ export default {};
   position: absolute;
   color: white;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 20%;
+  transform: translateX(-50%);
 }
 </style>

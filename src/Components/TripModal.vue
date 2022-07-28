@@ -29,7 +29,6 @@ export default {
       crud
         .postViaje(formData)
         .then((response) => {
-          //console.log(response);
           this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -44,7 +43,6 @@ export default {
       crud
         .putViaje(formData)
         .then((response) => {
-          //console.log(response)        
           this.closeModal();
         })
         .catch((error) => crud.handleError(error));

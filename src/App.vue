@@ -52,6 +52,7 @@ export default {
     };
   },
   methods: {
+
     loginCorrect(userData) {
       this.userData = userData;
     },
@@ -146,11 +147,8 @@ body {
   /* background: linear-gradient(180deg, rgba(162, 210, 255, 1) 35%, rgba(255, 255, 255, 1) 100%); */
 }
 
-router-link {
+a {
   text-decoration: none;
-}
-
-router-link:visited {
-  color: inherit;
+  color: black;
 }
 </style>
