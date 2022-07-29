@@ -115,7 +115,8 @@ export default {
           <button class="form-button" type="submit">Añadir</button>
         </div>
         <p v-if="errorMessage" class="error-message blink_me">{{ errorMessage }}</p>
-        <a href="#" @click.prevent="closeModal">X</a>
+        <a href="#" @click.prevent="closeModal"><img class="cross-icon rotate-center " src="Icons/cross.png"
+            alt="cruz de cerrar"></a>
       </form>
     </div>
     <div v-else class="modal" @click.stop id="editTrip-component">
@@ -248,8 +249,43 @@ a {
   font-weight: 100;
 }
 
+.cross-icon {
+  width: 35px;
+  filter: invert();
+}
+
+.rotate-center:hover {
+  -webkit-animation: rotate-center 0.7s ease-in-out both;
+  animation: rotate-center 0.7s ease-in-out both;
+}
+
+
 .blink_me {
   animation: blinker 2s linear infinite;
+}
+
+@-webkit-keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-center {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes blinker {
