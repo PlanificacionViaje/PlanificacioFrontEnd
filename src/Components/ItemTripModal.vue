@@ -55,13 +55,22 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idviajes", this.dataTrip.id);
       formData.append("id", this.dataItemTrip.id);
+      console.log(formData.get('id'));
+      console.log(formData.get('nombre'));
+      console.log(formData.get('descripcion'));
+      console.log(formData.get('hora'));
+      console.log(formData.get('fecha'));
+      console.log(formData.get('idviajes'));
+      console.log(formData.get('ubicacionlatitud'));
+      console.log(formData.get('ubicacionlongitud'));
+      console.log(formData.get('precio'));
       if (!this.checkDataForm(formData)) {
         return;
       }
       crud
         .putItemsViaje(formData)
         .then((response) => {
-          //console.log(response)
+          console.log(response)
           this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -83,7 +92,7 @@ export default {
       this.$emit("closeTripModal");
     },
     compareFecha() {
-      var fechaitem = new Date(this.dataItemTrip.fechafin).getTime();
+      var fechaitem = new Date(this.dataItemTrip.fecha).getTime();
       var fechainicio = new Date(this.dataTrip.fechainicio).getTime();
       var fechafin = new Date(this.dataTrip.fechafin).getTime();
       if (fechaitem >= fechainicio && fechaitem <= fechafin) {
@@ -111,23 +120,16 @@ export default {
     },
   },
   mounted() {
-    this.compareFecha();
+    if (this.dataItemTrip != null) {
+      this.compareFecha();
+    }
   },
 };
 </script>
 
 <template>
-  <div
-    class="modal-background"
-    v-show="displayNewEditItemTripModal"
-    @click.prevent="closeModal"
-  >
-    <div
-      v-if="newEditItemTrip"
-      class="modal"
-      @click.stop
-      id="newItem-component"
-    >
+  <div class="modal-background" v-show="displayNewEditItemTripModal" @click.prevent="closeModal">
+    <div v-if="newEditItemTrip" class="modal" @click.stop id="newItem-component">
       <h1 class="title">Nuevo Item</h1>
       <form class="form" action="" @submit.prevent="postItemsViaje">
         <label class="form-field-container" for="nombre">
@@ -136,77 +138,39 @@ export default {
         </label>
         <label class="form-field-container" for="descripcion">
           <p>Descripción</p>
-          <input
-            class="form-input"
-            type="text"
-            name="descripcion"
-            id="itemdescripcion"
-          />
+          <input class="form-input" type="text" name="descripcion" id="itemdescripcion" />
         </label>
         <label class="form-field-container" for="fecha">
           <p>Fecha</p>
-          <input
-            class="form-input"
-            onkeydown="return false"
-            :value="dataTrip.fechainicio"
-            :min="dataTrip.fechainicio"
-            :max="dataTrip.fechafin"
-            type="date"
-            name="fecha"
-            id="itemfecha"
-            placeholder="fecha"
-          />
+          <input class="form-input" onkeydown="return false" :value="dataTrip.fechainicio" :min="dataTrip.fechainicio"
+            :max="dataTrip.fechafin" type="date" name="fecha" id="itemfecha" placeholder="fecha" />
         </label>
         <label class="form-field-container" for="hora">
           <p>Hora</p>
-          <input
-            class="form-input"
-            onkeydown="return false"
-            type="time"
-            name="hora"
-            id="itemhora"
-            placeholder="hora"
-            value="00:00:00"
-            step="1"
-          />
+          <input class="form-input" onkeydown="return false" type="time" name="hora" id="itemhora" placeholder="hora"
+            value="00:00:00" step="1" />
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input
-            class="form-input"
-            value="0"
-            type="decimal"
-            name="precio"
-            id="itemprecio"
-          />
+          <input class="form-input" value="0" type="decimal" name="precio" id="itemprecio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input
-              class="form-input"
-              value="0"
-              type="decimal"
-              name="ubicacionlatitud"
-              id="itemubicacionlatitud"
-            />
+            <input class="form-input" value="0" type="decimal" name="ubicacionlatitud" id="itemubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input
-              class="form-input"
-              value="0"
-              type="decimal"
-              name="ubicacionlongitud"
-              id="itemubicacionlongitud"
-            />
+            <input class="form-input" value="0" type="decimal" name="ubicacionlongitud" id="itemubicacionlongitud" />
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Añadir</button>
         <p v-if="errorMessage" class="error-message blink_me">
           {{ errorMessage }}
         </p>
-        <a href="#" @click.prevent="closeModal"><CrossComponent /></a>
+        <a href="#" @click.prevent="closeModal">
+          <CrossComponent />
+        </a>
       </form>
     </div>
     <div v-else class="modal" @click.stop id="editItem-component">
@@ -214,80 +178,36 @@ export default {
       <form class="form" action="" @submit.prevent="putItemsViaje">
         <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input
-            class="form-input"
-            :value="dataItemTrip.nombre"
-            type="text"
-            name="nombre"
-            id="nombre"
-          />
+          <input class="form-input" :value="dataItemTrip.nombre" type="text" name="nombre" id="nombre" />
         </label>
         <label class="form-field-container" for="descripcion">
           <p>Descripción</p>
-          <input
-            class="form-input"
-            :value="dataItemTrip.descripcion"
-            type="text"
-            name="descripcion"
-            id="descripcion"
-          />
+          <input class="form-input" :value="dataItemTrip.descripcion" type="text" name="descripcion" id="descripcion" />
         </label>
         <label class="form-field-container" for="fecha">
           <p>Fecha</p>
-          <input
-            class="form-input"
-            onkeydown="return false"
-            :min="dataTrip.fechainicio"
-            :max="dataTrip.fechafin"
-            id="EditItemfecha"
-            :value="dataItemTrip.fecha"
-            type="date"
-            name="fecha"
-            placeholder="fecha"
-          />
+          <input class="form-input" onkeydown="return false" :min="dataTrip.fechainicio" :max="dataTrip.fechafin"
+            id="EditItemfecha" :value="dataItemTrip.fecha" type="date" name="fecha" placeholder="fecha" />
         </label>
         <label class="form-field-container" for="hora">
           <p>Hora</p>
-          <input
-            class="form-input"
-            onkeydown="return false"
-            :value="dataItemTrip.hora"
-            type="time"
-            name="hora"
-            placeholder="hora"
-            step="1"
-          />
+          <input class="form-input" onkeydown="return false" :value="dataItemTrip.hora" type="time" name="hora"
+            placeholder="hora" step="1" />
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input
-            class="form-input"
-            :value="dataItemTrip.precio"
-            type="decimal"
-            name="precio"
-            id="precio"
-          />
+          <input class="form-input" :value="dataItemTrip.precio" type="decimal" name="precio" id="precio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input
-              class="form-input"
-              :value="dataItemTrip.ubicacionlatitud"
-              type="decimal"
-              name="ubicacionlatitud"
-              id="ubicacionlatitud"
-            />
+            <input class="form-input" :value="dataItemTrip.ubicacionlatitud" type="decimal" name="ubicacionlatitud"
+              id="ubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input
-              class="form-input"
-              :value="dataItemTrip.ubicacionlongitud"
-              type="decimal"
-              name="ubicacionlongitud"
-              id="ubicacionlongitud"
-            />
+            <input class="form-input" :value="dataItemTrip.ubicacionlongitud" type="decimal" name="ubicacionlongitud"
+              id="ubicacionlongitud" />
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Guardar</button>

@@ -82,18 +82,13 @@ export default {
         <!-- cierre div ubi -->
 
         <a href="#" @click="displayNewEditTripModal = true" id="edit-flashcard">
-          <img
-            src="/Icons/edit.svg"
-            id="icon-edit"
-            alt="icon edit"
-            class="icon"
-          />
+          <img src="/Icons/edit.svg" id="icon-edit" alt="icon edit" class="icon" />
         </a>
       </div>
       <!-- cierre div nombre -->
 
       <div class="div-fecha">
-        <h2 class="text-subtitle">fecha Inicio:</h2>
+        <h2 class="text-subtitle">Fecha Inicio:</h2>
         <h2 class="text-subtitle">Fecha Fin:</h2>
       </div>
 
@@ -118,17 +113,8 @@ export default {
       </div>
 
       <div class="div-delete">
-        <a
-          href="#"
-          @click="displayDeleteTripModal = true"
-          id="delete-flashcard"
-        >
-          <img
-            src="/Icons/delete.svg"
-            id="icon-delete"
-            alt="icon delete"
-            class="icon"
-          />
+        <a href="#" @click="displayDeleteTripModal = true" id="delete-flashcard">
+          <img src="/Icons/delete.svg" id="icon-delete" alt="icon delete" class="icon" />
         </a>
       </div>
     </div>
@@ -137,27 +123,12 @@ export default {
     <p>Añadir un item</p>
     <img class="img-button" src="plus.png" alt="" />
   </button>
-  <TripModal
-    v-if="traveldata"
-    :newEditTrip="false"
-    :displayNewEditTripModal="displayNewEditTripModal"
-    :dataTrip="traveldata"
-    @closeTripModal="displayNewEditTripModal = false"
-  />
-  <DeleteTripModal
-    v-if="traveldata"
-    :displayDeleteTripModal="displayDeleteTripModal"
-    :dataTrip="traveldata"
-    @closeTripModal="displayDeleteTripModal = false"
-  />
-  <ItemTripModal
-    v-if="traveldata"
-    :newEditItemTrip="true"
-    :displayNewEditItemTripModal="displayNewEditItemTripModal"
-    :dataTrip="traveldata"
-    :dataItemTrip="{}"
-    @closeTripModal="displayNewEditItemTripModal = false"
-  />
+  <TripModal v-if="traveldata" :newEditTrip="false" :displayNewEditTripModal="displayNewEditTripModal"
+    :dataTrip="traveldata" @closeTripModal="displayNewEditTripModal = false" />
+  <DeleteTripModal v-if="traveldata" :displayDeleteTripModal="displayDeleteTripModal" :dataTrip="traveldata"
+    @closeTripModal="displayDeleteTripModal = false" />
+  <ItemTripModal v-if="traveldata" :newEditItemTrip="true" :displayNewEditItemTripModal="displayNewEditItemTripModal"
+    :dataTrip="traveldata" :dataItemTrip="{}" @closeTripModal="displayNewEditItemTripModal = false" />
 
   <Travels v-if="traveldata" :travelId="traveldata.id" />
 </template>
@@ -166,6 +137,23 @@ export default {
 h2,
 .text-desc {
   color: black;
+}
+
+
+.fecha p {
+  margin: 0;
+  width: 100%;
+}
+
+.fecha {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 2px;
+  border-radius: 10px;
 }
 
 .fecha p {
@@ -260,16 +248,17 @@ h2,
 }
 
 .grid-container {
-  padding: 10px;
+  padding: 1rem;
   gap: 20px;
-  margin: 10px;
-  background-color: #fde74c;
+  background-color: white;
   border-radius: 24px;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
 }
 
 .button-add {
   margin: auto;
-  background-color: orange;
+  background-color: #6e61fe9c;
   border: none;
   width: 30vw;
   min-width: 350px;
@@ -289,19 +278,9 @@ h2,
 
 /* tamaño tablet */
 @media (max-width: 915px) {
-  .grid-container {
-    padding: 10px;
-    gap: 20px;
-    margin: 10px;
-    min-height: 302px;
-    max-width: 700px;
-    background-color: #fde74c;
-  }
-
-  /* div de la pagina */
   .div-nombre {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     max-width: 700px;
   }
@@ -317,14 +296,14 @@ h2,
 
   .div-fecha {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     max-width: 700px;
   }
 
   .div-fechatravel {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     max-width: 700px;
   }
@@ -333,8 +312,5 @@ h2,
     height: 50px;
   }
 
-  .grid-container {
-    margin: 10px;
-  }
 }
 </style>

@@ -32,7 +32,7 @@ export default {
         }
     },
     computed: {
-        fechainicio() {
+        fecha() {
             const fecha = new Date(this.item.fecha);
             return { dia: fecha.getDate(), mes: this.ARRAY_MESES[fecha.getMonth()] };
         },
@@ -45,8 +45,8 @@ export default {
     <div class="item-trip">
         <div class="visible" @click="isOpen = !isOpen" :class="{ active: isOpen }">
             <div class="fecha fecha-inicio">
-                <p class="mes">{{ fechainicio.mes }}</p>
-                <p class="dia">{{ fechainicio.dia }}</p>
+                <p class="mes">{{ fecha.mes }}</p>
+                <p class="dia">{{ fecha.dia }}</p>
             </div>
             <div class="hora">{{ item.hora }}</div>
             <div class="nombre">{{ item.nombre }}</div>
