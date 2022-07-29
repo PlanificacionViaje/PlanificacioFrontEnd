@@ -13,7 +13,7 @@ export default {}
     <h2 class="slogan">Programa tus viajes en tan sólo un click</h2>
   </div>
   <div id="asdf">
-    <Slider v-if="$session.userData" />
+    <Slider />
     <Home />
   </div>
 </template>
