@@ -1,4 +1,7 @@
 <script setup>
+import TripModal from "@/Components/TripModal.vue";
+import ItemTripModal from "@/Components/ItemTripModal.vue";
+import DeleteTripModal from "@/Components/DeleteTripModal.vue";
 import Travels from "@/Components/travel/Travels.vue";
 </script>
 <script>
@@ -7,8 +10,12 @@ export default {
   data() {
     return {
       //Modal Trip
-      newEditTrip: true,
       displayNewEditTripModal: false,
+      //Modal Trip Delete
+      displayDeleteTripModal: false,
+      //Modal Item Trip
+      displayNewEditItemTripModal: false,
+
       traveldata: null,
       ARRAY_MESES: [
         "ENE",
@@ -28,6 +35,8 @@ export default {
   },
   props: {
     idTrip: Number,
+    //Se necesita pasarle el id usuario para crear nuevo viaje
+    idUsuario: Number,
   },
   computed: {
     fechainicio() {
@@ -76,7 +85,7 @@ export default {
         </div>
         <!-- cierre div ubi -->
 
-        <a href="#" @click.prevent="editCard" id="edit-flashcard">
+        <a href="#" @click="displayNewEditTripModal = true" id="edit-flashcard">
           <img
             src="/Icons/edit.svg"
             id="icon-edit"
@@ -113,7 +122,11 @@ export default {
       </div>
 
       <div class="div-delete">
-        <a href="#" @click.prevent="deleteCard" id="delete-flashcard">
+        <a
+          href="#"
+          @click="displayDeleteTripModal = true"
+          id="delete-flashcard"
+        >
           <img
             src="/Icons/delete.svg"
             id="icon-delete"
@@ -124,29 +137,41 @@ export default {
       </div>
     </div>
   </div>
-  <button class="button-add">
+  <button class="button-add" @click="displayNewEditItemTripModal = true">
     <p>Añadir un item</p>
     <img class="img-button" src="plus.png" alt="" />
   </button>
   <TripModal
-    :newEditTrip="newEditTrip"
+    v-if="traveldata"
+    :newEditTrip="false"
     :displayNewEditTripModal="displayNewEditTripModal"
     :idUsuario="1"
-    :dataTrip="dataTrip"
+    :dataTrip="traveldata"
     @closeTripModal="displayNewEditTripModal = false"
   />
   <DeleteTripModal
+    v-if="traveldata"
     :displayDeleteTripModal="displayDeleteTripModal"
-    :dataTrip="dataTrip"
+    :dataTrip="traveldata"
     @closeTripModal="displayDeleteTripModal = false"
+  />
+  <ItemTripModal
+    v-if="traveldata"
+    :newEditItemTrip="true"
+    :displayNewEditItemTripModal="displayNewEditItemTripModal"
+    :dataTrip="traveldata"
+    :dataItemTrip="{}"
+    @closeTripModal="displayNewEditItemTripModal = false"
   />
 
   <Travels v-if="traveldata" :travelId="traveldata.id" />
 </template>
 
-
-
 <style scoped>
+
+h2, .text-desc{
+  color:black;
+}
 .fecha p {
   margin: 0;
   width: 100%;

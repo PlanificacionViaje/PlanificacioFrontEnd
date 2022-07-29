@@ -90,8 +90,8 @@ export default {
     }
   },
   props: {
-    dataTrip: {},
-    dataItemTrip: {},
+    dataTrip: Object,
+    dataItemTrip: Object,
 
     //Display
     newEditItemTrip:Boolean, 

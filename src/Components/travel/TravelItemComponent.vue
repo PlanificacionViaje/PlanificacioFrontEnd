@@ -67,7 +67,7 @@ export default {
         </div>
     </div>
 
-    <ItemTripModal 
+    <ItemTripModal v-if="item"
     :newEditItemTrip="false" 
     :displayNewEditItemTripModal="displayNewEditItemTripModal"
     :dataTrip="traveldata"
@@ -75,7 +75,7 @@ export default {
     @closeTripModal="displayNewEditItemTripModal=false"
     />
 
-    <DeleteItemModal 
+    <DeleteItemModal v-if="item"
     :displayDeleteItemModal="displayDeleteItemModal"
     :dataItemTrip="item"
     @closeTripModal="displayDeleteItemModal=false"
