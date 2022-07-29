@@ -1,28 +1,28 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 export default {
   data() {
     return {
     };
   },
-  methods: {      
+  methods: {
     deleteViaje() {
       crud
         .deleteViaje(this.dataTrip.id)
         .then((response) => {
-          console.log(response)        
+          console.log(response)
           this.closeModal();
         })
         .catch((error) => crud.handleError(error));
     },
     closeModal() {
       this.$emit('closeTripModal');
-    },    
+    },
   },
   props: {
     dataTrip: {},
     //Displays
-    displayDeleteTripModal:Boolean,  
+    displayDeleteTripModal: Boolean,
   },
 };
 </script>
@@ -30,9 +30,9 @@ export default {
 <template>
   <div class="modal-background" v-show="displayDeleteTripModal" @click.prevent="closeModal">
     <div class="modal" @click.stop id="deleteTrip-component">
-      <h1 class="title">Estas seguro que quieres eliminar el viaje <em>"{{dataTrip.nombre}}"</em> ?</h1>
-      <form class="form" action="" @submit.prevent="deleteViaje">       
-        <div class="flexedElements">          
+      <h1 class="title">Estas seguro que quieres eliminar el viaje <em>"{{ dataTrip.nombre }}"</em> ?</h1>
+      <form class="form" action="" @submit.prevent="deleteViaje">
+        <div class="flexedElements">
           <button class="form-button borrar-btn" type="submit">Borrar</button>
           <button class="form-button" type="submit" v-on:click="closeModal">Cancelar</button>
         </div>
@@ -128,8 +128,8 @@ a {
   top: 1rem;
   right: 1rem;
 }
-.borrar-btn{
+
+.borrar-btn {
   background-color: rgb(243, 60, 60);
 }
-
 </style>

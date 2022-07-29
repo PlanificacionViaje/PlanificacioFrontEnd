@@ -5,7 +5,7 @@ import DeleteItemModal from "@/Components/DeleteItemModal.vue";
 
 <script>
 export default {
-    props: ["item","traveldata"],
+    props: ["item", "traveldata"],
     data() {
         return {
             isOpen: false,
@@ -25,11 +25,11 @@ export default {
             ],
 
             //Modal Item Trip
-            newEditItemTrip:true,
-            displayNewEditItemTripModal:false,      
+            newEditItemTrip: true,
+            displayNewEditItemTripModal: false,
             //Modal Item Delete
-            displayDeleteItemModal:false,
-                }
+            displayDeleteItemModal: false,
+        }
     },
     computed: {
         fechainicio() {
@@ -42,7 +42,7 @@ export default {
 </script>
 
 <template>
-    <div class="item-trip">             
+    <div class="item-trip">
         <div class="visible" @click="isOpen = !isOpen" :class="{ active: isOpen }">
             <div class="fecha fecha-inicio">
                 <p class="mes">{{ fechainicio.mes }}</p>
@@ -61,25 +61,17 @@ export default {
                 </div>
             </div>
             <div class="actions">
-                <img @click="displayNewEditItemTripModal=true" class="icon" src="/Icons/edit.svg">
-                <img  @click="displayDeleteItemModal=true" class="icon" src="/Icons/delete.svg">
+                <img @click="displayNewEditItemTripModal = true" class="icon" src="/Icons/edit.svg">
+                <img @click="displayDeleteItemModal = true" class="icon" src="/Icons/delete.svg">
             </div>
         </div>
     </div>
 
-    <ItemTripModal v-if="item"
-    :newEditItemTrip="false" 
-    :displayNewEditItemTripModal="displayNewEditItemTripModal"
-    :dataTrip="traveldata"
-    :dataItemTrip="item"
-    @closeTripModal="displayNewEditItemTripModal=false"
-    />
+    <ItemTripModal v-if="item" :newEditItemTrip="false" :displayNewEditItemTripModal="displayNewEditItemTripModal"
+        :dataTrip="traveldata" :dataItemTrip="item" @closeTripModal="displayNewEditItemTripModal = false" />
 
-    <DeleteItemModal v-if="item"
-    :displayDeleteItemModal="displayDeleteItemModal"
-    :dataItemTrip="item"
-    @closeTripModal="displayDeleteItemModal=false"
-    />
+    <DeleteItemModal v-if="item" :displayDeleteItemModal="displayDeleteItemModal" :dataItemTrip="item"
+        @closeTripModal="displayDeleteItemModal = false" @deleteCorrect="$emit('deleteCorrect')" />
 </template>
 
 

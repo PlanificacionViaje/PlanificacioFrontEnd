@@ -5,6 +5,7 @@ export default {
     return {
       fechainicio: "",
       errorMessage: "",
+      idUsuario: this.$session.userData.id,
     };
   },
   methods: {
@@ -71,7 +72,6 @@ export default {
     }
   },
   props: {
-    idUsuario: Number,
     dataTrip: {},
     //Displays
     newEditTrip: Boolean,

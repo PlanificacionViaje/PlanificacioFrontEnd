@@ -1,38 +1,42 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 export default {
   data() {
     return {
     };
   },
-  methods: {       
+  methods: {
     deleteItemsViaje(e) {
       crud
         .deleteItemsViaje(this.dataItemTrip.id)
         .then((response) => {
-          console.log(response)        
+          console.log(response)
           this.closeModal();
+          this.deleteCorrect();
         })
         .catch((error) => crud.handleError(error));
     },
     closeModal() {
       this.$emit('closeTripModal');
-    },    
+    },
+    deleteCorrect() {
+      this.$emit('deleteCorrect');
+    },
   },
   props: {
     dataItemTrip: {},
     //Displays
-    displayDeleteItemModal:Boolean,  
+    displayDeleteItemModal: Boolean,
   },
 };
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayDeleteItemModal" @click.prevent="closeModal">    
+  <div class="modal-background" v-show="displayDeleteItemModal" @click.prevent="closeModal">
     <div class="modal" @click.stop id="deleteItem-component">
-      <h1 class="title">Estas seguro que quieres eliminar el item <em>"{{dataItemTrip.nombre}}"</em> ?</h1>
+      <h1 class="title">Estas seguro que quieres eliminar el item <em>"{{ dataItemTrip.nombre }}"</em> ?</h1>
       <form class="form" action="" @submit.prevent="deleteItemsViaje">
-        <div class="flexedElements">          
+        <div class="flexedElements">
           <button class="form-button borrar-btn" type="submit">Borrar</button>
           <button class="form-button" type="submit" v-on:click="closeModal">Cancelar</button>
         </div>
@@ -128,8 +132,8 @@ a {
   top: 1rem;
   right: 1rem;
 }
-.borrar-btn{
+
+.borrar-btn {
   background-color: rgb(243, 60, 60);
 }
-
 </style>

@@ -5,7 +5,7 @@ import DeleteTripModal from "@/Components/DeleteTripModal.vue";
 import Travels from "@/Components/travel/Travels.vue";
 </script>
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 export default {
   data() {
     return {
@@ -74,11 +74,7 @@ export default {
       <div class="div-nombre">
         <div class="div-arrow-ubi">
           <a href="www.google.com" id="arrow-flashcard">
-            <img
-              src="/Icons/arrow_forward_ios.svg"
-              id="icon-arrow"
-              alt="icon arrow"
-            />
+            <img src="/Icons/arrow_forward_ios.svg" id="icon-arrow" alt="icon arrow" />
           </a>
           <img src="  /Icons/location-deco.svg" id="icon-ubi" alt="icon ubi" />
           <h1 class="text-title" v-html="traveldata.nombre"></h1>
@@ -86,12 +82,7 @@ export default {
         <!-- cierre div ubi -->
 
         <a href="#" @click="displayNewEditTripModal = true" id="edit-flashcard">
-          <img
-            src="/Icons/edit.svg"
-            id="icon-edit"
-            alt="icon edit"
-            class="icon"
-          />
+          <img src="/Icons/edit.svg" id="icon-edit" alt="icon edit" class="icon" />
         </a>
       </div>
       <!-- cierre div nombre -->
@@ -122,17 +113,8 @@ export default {
       </div>
 
       <div class="div-delete">
-        <a
-          href="#"
-          @click="displayDeleteTripModal = true"
-          id="delete-flashcard"
-        >
-          <img
-            src="/Icons/delete.svg"
-            id="icon-delete"
-            alt="icon delete"
-            class="icon"
-          />
+        <a href="#" @click="displayDeleteTripModal = true" id="delete-flashcard">
+          <img src="/Icons/delete.svg" id="icon-delete" alt="icon delete" class="icon" />
         </a>
       </div>
     </div>
@@ -141,37 +123,22 @@ export default {
     <p>Añadir un item</p>
     <img class="img-button" src="plus.png" alt="" />
   </button>
-  <TripModal
-    v-if="traveldata"
-    :newEditTrip="false"
-    :displayNewEditTripModal="displayNewEditTripModal"
-    :idUsuario="1"
-    :dataTrip="traveldata"
-    @closeTripModal="displayNewEditTripModal = false"
-  />
-  <DeleteTripModal
-    v-if="traveldata"
-    :displayDeleteTripModal="displayDeleteTripModal"
-    :dataTrip="traveldata"
-    @closeTripModal="displayDeleteTripModal = false"
-  />
-  <ItemTripModal
-    v-if="traveldata"
-    :newEditItemTrip="true"
-    :displayNewEditItemTripModal="displayNewEditItemTripModal"
-    :dataTrip="traveldata"
-    :dataItemTrip="{}"
-    @closeTripModal="displayNewEditItemTripModal = false"
-  />
+  <TripModal v-if="traveldata" :newEditTrip="false" :displayNewEditTripModal="displayNewEditTripModal"
+    :dataTrip="traveldata" @closeTripModal="displayNewEditTripModal = false" />
+  <DeleteTripModal v-if="traveldata" :displayDeleteTripModal="displayDeleteTripModal" :dataTrip="traveldata"
+    @closeTripModal="displayDeleteTripModal = false" />
+  <ItemTripModal v-if="traveldata" :newEditItemTrip="true" :displayNewEditItemTripModal="displayNewEditItemTripModal"
+    :dataTrip="traveldata" :dataItemTrip="{}" @closeTripModal="displayNewEditItemTripModal = false" />
 
   <Travels v-if="traveldata" :travelId="traveldata.id" />
 </template>
 
 <style scoped>
-
-h2, .text-desc{
-  color:black;
+h2,
+.text-desc {
+  color: black;
 }
+
 .fecha p {
   margin: 0;
   width: 100%;

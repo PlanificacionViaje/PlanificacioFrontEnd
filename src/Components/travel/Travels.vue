@@ -1,15 +1,15 @@
 <script>
-import * as crud from "@/axios/axiosFunctions.js";
+import * as crud from "@/utils/axiosFunctions.js";
 import TravelItemComponent from "./TravelItemComponent.vue";
 
 export default {
-    props: {
-      travelId:Number,
-    },
+  props: {
+    travelId: Number,
+  },
   data() {
     return {
       //base cartas
-      traveldata:null,
+      traveldata: null,
       backgroundColor: "lightgrey",
       randomColor: "#ff0000",
       dataItemTrip: [],
@@ -29,25 +29,25 @@ export default {
       crud
         .getViajeById(this.travelId)
         .then((response) => {
-          if(response.data.status==200){
-            this.traveldata=response.data.data;
+          if (response.data.status == 200) {
+            this.traveldata = response.data.data;
             this.loadDataTripItems();
           }
         })
         .catch((error) => crud.handleError(error));
     },
-    loadDataTripItems(){
+    loadDataTripItems() {
       crud
         .getAllItemsViajeFromViaje(this.travelId)
         .then((response) => {
-          if(response.data.status==200){
-            this.dataItemTrip=response.data.data;
+          if (response.data.status == 200) {
+            this.dataItemTrip = response.data.data;
           }
         })
         .catch((error) => crud.handleError(error));
     }
   },
-  created(){
+  created() {
     this.loadDataTrip();
   },
 
@@ -56,12 +56,8 @@ export default {
 </script>
 
 <template>
-  <TravelItemComponent
-    v-for="item in dataItemTrip"
-    :key="item.id"
-    :item="item"
-    :traveldata="traveldata"
-  />
+  <TravelItemComponent v-for="item in dataItemTrip" :key="item.id" :item="item" :traveldata="traveldata"
+    @deleteCorrect="loadDataTripItems" />
 </template>
 
 <style scoped>
@@ -267,18 +263,18 @@ ul li input[type="checkbox"] {
   opacity: 0;
 }
 
-ul li input[type="checkbox"]:checked ~ p {
+ul li input[type="checkbox"]:checked~p {
   margin-top: 0;
   max-height: 0;
   opacity: 0;
   transform: translate(0, 50%);
 }
 
-ul li input[type="checkbox"]:checked ~ i:before {
+ul li input[type="checkbox"]:checked~i:before {
   transform: translate(2px, 0) rotate(45deg);
 }
 
-ul li input[type="checkbox"]:checked ~ i:after {
+ul li input[type="checkbox"]:checked~i:after {
   transform: translate(-2px, 0) rotate(-45deg);
 }
 
@@ -315,6 +311,7 @@ ul li p {
     transform: rotateX(0deg);
   }
 }
+
 .hora {
   overflow: visible;
 }
