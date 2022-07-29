@@ -1,6 +1,7 @@
 <script setup>
 import Profile from "@/Components/Profile.vue";
 import Header from "@/Components/Header.vue";
+import FailComponent from "@/Components/FailComponent.vue";
 </script>
 <script>
 export default {};
@@ -8,10 +9,7 @@ export default {};
 <template>
   <Header />
   <Profile v-if="$session.userData" />
-  <div v-else class="nologged-msg">
-    <img id="sadplane" src="/Icons/sadplane.png" alt="">
-    <h1>Vaya, parece que no estás loggeado... Look up <span id="arrow">&#8599;</span> </h1>
-  </div>
+  <FailComponent v-else />
 </template>
 <style scoped>
 .nologged-msg {
