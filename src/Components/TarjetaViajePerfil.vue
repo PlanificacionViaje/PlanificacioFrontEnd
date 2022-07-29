@@ -61,7 +61,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .tarjeta-viaje {
   overflow-wrap: break-word;
   padding: 2.5rem 1.5rem;
