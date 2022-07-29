@@ -5,7 +5,7 @@ export default {};
   <div>
     <img
       class="cross-icon rotate-center"
-      src="Icons/cross.png"
+      src="/Icons/cross.png"
       alt="cruz de cerrar"
     />
   </div>

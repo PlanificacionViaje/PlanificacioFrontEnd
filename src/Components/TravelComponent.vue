@@ -87,30 +87,31 @@ export default {
       </div>
       <!-- cierre div nombre -->
 
-      <div class="div-fecha">
-        <h2 class="text-subtitle">Fecha Inicio:</h2>
-        <h2 class="text-subtitle">Fecha Fin:</h2>
-      </div>
-
-      <div class="div-fechatravel">
-        <div class="fecha fecha-inicio">
-          <p class="mes">{{ fechainicio.mes }}</p>
-          <p class="dia">{{ fechainicio.dia }}</p>
+      <div class="fechas-desc">
+        <div>
+          <div class="div-fecha">
+            <h2 class="text-subtitle">Fecha Inicio:</h2>
+            <h2 class="text-subtitle">Fecha Fin:</h2>
+          </div>
+          <div class="div-fechatravel">
+            <div class="fecha fecha-inicio">
+              <p class="mes">{{ fechainicio.mes }}</p>
+              <p class="dia">{{ fechainicio.dia }}</p>
+            </div>
+            <div class="fecha fecha-inicio">
+              <p class="mes">{{ fechafin.mes }}</p>
+              <p class="dia">{{ fechafin.dia }}</p>
+            </div>
+          </div>
         </div>
-
-        <div class="fecha fecha-inicio">
-          <p class="mes">{{ fechafin.mes }}</p>
-          <p class="dia">{{ fechafin.dia }}</p>
+        <div class="div-descripcion">
+          <h2 class="text-subtitle">Descripción:</h2>
+          <div class="div-descripciontravel">
+            <p class="text-desc">{{ traveldata.descripcion }}</p>
+          </div>
         </div>
       </div>
 
-      <div class="div-descripcion">
-        <h2 class="text-subtitle">Descripción:</h2>
-      </div>
-
-      <div class="div-descripciontravel">
-        <p class="text-desc">{{ traveldata.descripcion }}</p>
-      </div>
 
       <div class="div-delete">
         <a href="#" @click="displayDeleteTripModal = true" id="delete-flashcard">
@@ -252,7 +253,7 @@ h2,
   gap: 20px;
   background-color: white;
   border-radius: 24px;
-  max-width: 700px;
+  max-width: calc(100% - 4rem);
   margin: 0 auto 2rem auto;
 }
 
@@ -274,6 +275,11 @@ h2,
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.button-add:hover {
+  cursor: pointer;
 }
 
 /* tamaño tablet */
@@ -312,5 +318,17 @@ h2,
     height: 50px;
   }
 
+}
+
+.fechas-desc {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.fechas-desc>* {
+  width: 80%;
+  max-width: 600px;
 }
 </style>

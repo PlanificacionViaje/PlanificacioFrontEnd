@@ -20,13 +20,13 @@ export default {};
     <div class="footer-item">
       <h3>Redes Sociales</h3>
       <div class="wrap-iconos">
-        <img class="icono" src="Icons/twitter.png" alt="twitter" />
-        <img class="icono" src="Icons/linkedin.png" alt="linkedin" />
-        <img class="icono" src="Icons/instagram.png" alt="instagram" />
+        <img class="icono" src="/Icons/twitter.png" alt="twitter" />
+        <img class="icono" src="/Icons/linkedin.png" alt="linkedin" />
+        <img class="icono" src="/Icons/instagram.png" alt="instagram" />
       </div>
     </div>
     <div class="footer-item">
-      <img class="img-footer" src="public\Icons\undraw_Traveling_93jn.png" alt="" />
+      <img class="img-footer" src="\Icons\undraw_Traveling_93jn.png" alt="" />
     </div>
   </div>
 </template>

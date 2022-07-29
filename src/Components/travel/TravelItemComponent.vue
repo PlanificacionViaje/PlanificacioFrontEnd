@@ -50,6 +50,7 @@ export default {
             </div>
             <div class="hora">{{ item.hora }}</div>
             <div class="nombre">{{ item.nombre }}</div>
+            <img id="collapse-arrow" src="/Icons/arrow-down.png" alt="">
         </div>
         <div class="hidden" v-show="isOpen">
             <div class="info">
@@ -81,7 +82,22 @@ export default {
 }
 
 .item-trip {
-    padding: 2rem;
+    margin: 1rem 2rem;
+}
+
+.item-trip:hover {
+    cursor: pointer;
+}
+
+#collapse-arrow {
+    width: 40px;
+    margin-left: auto;
+    margin-right: 1rem;
+    transition: transform .5s ease-in-out;
+}
+
+.visible.active #collapse-arrow {
+    transform: rotate(180deg);
 }
 
 .visible {

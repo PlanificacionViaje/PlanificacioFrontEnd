@@ -29,7 +29,7 @@ export default {
     <div id="modal" @click.stop>
       <LoginComponent v-if="loginActive" @swapLoginRegister="swapLoginRegister" />
       <RegisterComponent v-else @swapLoginRegister="swapLoginRegister" />
-      <a href="#" @click.prevent="closeLoginRegisterModal"><img class="cross-icon rotate-center " src="Icons/cross.png"
+      <a href="#" @click.prevent="closeLoginRegisterModal"><img class="cross-icon rotate-center " src="/Icons/cross.png"
           alt="cruz de cerrar"></a>
     </div>
   </div>
