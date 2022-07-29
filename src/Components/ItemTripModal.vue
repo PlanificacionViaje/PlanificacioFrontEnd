@@ -52,13 +52,22 @@ export default {
       const formData = new FormData(e.target);
       formData.append("idviajes", this.dataTrip.id);
       formData.append("id", this.dataItemTrip.id);
+      console.log(formData.get('id'));
+      console.log(formData.get('nombre'));
+      console.log(formData.get('descripcion'));
+      console.log(formData.get('hora'));
+      console.log(formData.get('fecha'));
+      console.log(formData.get('idviajes'));
+      console.log(formData.get('ubicacionlatitud'));
+      console.log(formData.get('ubicacionlongitud'));
+      console.log(formData.get('precio'));
       if (!this.checkDataForm(formData)) {
         return;
       }
       crud
         .putItemsViaje(formData)
         .then((response) => {
-          //console.log(response)
+          console.log(response)
           this.closeModal();
         })
         .catch((error) => crud.handleError(error));
@@ -73,12 +82,14 @@ export default {
       document.querySelector("#itemubicacionlongitud").value = 0;
     },
     closeModal() {
-      if (this.newEditItemTrip) { this.cleanElements(); }
+      if (this.newEditItemTrip) {
+        this.cleanElements();
+      }
       this.errorMessage = "";
       this.$emit('closeTripModal');
     },
     compareFecha() {
-      var fechaitem = new Date(this.dataItemTrip.fechafin).getTime();
+      var fechaitem = new Date(this.dataItemTrip.fecha).getTime();
       var fechainicio = new Date(this.dataTrip.fechainicio).getTime();
       var fechafin = new Date(this.dataTrip.fechafin).getTime();
       if (fechaitem >= fechainicio && fechaitem <= fechafin) {
@@ -106,7 +117,9 @@ export default {
     }
   },
   mounted() {
-    this.compareFecha();
+    if (this.dataItemTrip != null) {
+      this.compareFecha();
+    }
   },
 };
 </script>
@@ -158,11 +171,11 @@ export default {
       <form class="form" action="" @submit.prevent="putItemsViaje">
         <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input class="form-input" :value=dataItemTrip.nombre type="text" name="nombre" id="nombre" />
+          <input class="form-input" :value="dataItemTrip.nombre" type="text" name="nombre" id="nombre" />
         </label>
         <label class="form-field-container" for="descripcion">
           <p>Descripción</p>
-          <input class="form-input" :value=dataItemTrip.descripcion type="text" name="descripcion" id="descripcion" />
+          <input class="form-input" :value="dataItemTrip.descripcion" type="text" name="descripcion" id="descripcion" />
         </label>
         <label class="form-field-container" for="fecha">
           <p>Fecha</p>

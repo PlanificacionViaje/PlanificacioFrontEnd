@@ -13,7 +13,7 @@ export default {};
     <h1>Vaya, parece que no estás loggeado... Look up <span id="arrow">&#8599;</span> </h1>
   </div>
 </template>
-<style>
+<style scoped>
 .nologged-msg {
   display: flex;
   flex-direction: column;

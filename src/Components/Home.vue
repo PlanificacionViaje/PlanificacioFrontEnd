@@ -15,7 +15,7 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .viajes-imagen {
   max-width: 100vw;
   display: flex;

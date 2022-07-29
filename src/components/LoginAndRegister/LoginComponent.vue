@@ -28,7 +28,7 @@ export default {
         this.loginIncorrectMessage = "";
 
         this.$session.userData = response.data.data;
-        utils.setLocalStorageSession("session", this.$session.userData, 300 * 1000);
+        utils.setLocalStorageSession("session", this.$session.userData, 3600 * 1000);
 
         this.$router.go();
       });

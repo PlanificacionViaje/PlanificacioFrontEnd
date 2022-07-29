@@ -88,7 +88,7 @@ export default {
       <!-- cierre div nombre -->
 
       <div class="div-fecha">
-        <h2 class="text-subtitle">fecha Inicio:</h2>
+        <h2 class="text-subtitle">Fecha Inicio:</h2>
         <h2 class="text-subtitle">Fecha Fin:</h2>
       </div>
 
@@ -139,6 +139,23 @@ h2,
   color: black;
 }
 
+
+.fecha p {
+  margin: 0;
+  width: 100%;
+}
+
+.fecha {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 70px;
+  box-shadow: rgba(0, 0, 0, 0.8) 2px 2px 2px;
+  border-radius: 10px;
+}
+
 .fecha p {
   margin: 0;
   width: 100%;
@@ -170,6 +187,7 @@ h2,
 
 .text-title {
   font-family: "Inter", sans-serif;
+  color: black;
 }
 
 .text-desc {
@@ -227,16 +245,17 @@ h2,
 }
 
 .grid-container {
-  padding: 10px;
+  padding: 1rem;
   gap: 20px;
-  margin: 10px;
-  background-color: #fde74c;
+  background-color: white;
   border-radius: 24px;
+  max-width: 700px;
+  margin: 0 auto 2rem auto;
 }
 
 .button-add {
   margin: auto;
-  background-color: orange;
+  background-color: #6e61fe9c;
   border: none;
   width: 30vw;
   min-width: 350px;
@@ -256,19 +275,9 @@ h2,
 
 /* tamaño tablet */
 @media (max-width: 915px) {
-  .grid-container {
-    padding: 10px;
-    gap: 20px;
-    margin: 10px;
-    min-height: 302px;
-    max-width: 700px;
-    background-color: #fde74c;
-  }
-
-  /* div de la pagina */
   .div-nombre {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     max-width: 700px;
   }
@@ -284,14 +293,14 @@ h2,
 
   .div-fecha {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     max-width: 700px;
   }
 
   .div-fechatravel {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     max-width: 700px;
   }
@@ -300,8 +309,5 @@ h2,
     height: 50px;
   }
 
-  .grid-container {
-    margin: 10px;
-  }
 }
 </style>
