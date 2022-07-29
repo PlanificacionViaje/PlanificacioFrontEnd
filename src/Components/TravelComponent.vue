@@ -73,10 +73,10 @@ export default {
     <div class="grid-item">
       <div class="div-nombre">
         <div class="div-arrow-ubi">
-          <a href="www.google.com" id="arrow-flashcard">
+          <!-- <a href="www.google.com" id="arrow-flashcard">
             <img src="/Icons/arrow_forward_ios.svg" id="icon-arrow" alt="icon arrow" />
-          </a>
-          <img src="  /Icons/location-deco.svg" id="icon-ubi" alt="icon ubi" />
+          </a> -->
+          <img src="  /Icons/map.png" id="icon-ubi" alt="icon ubi" />
           <h1 class="text-title" v-html="traveldata.nombre"></h1>
         </div>
         <!-- cierre div ubi -->
@@ -187,7 +187,9 @@ h2,
 
 .text-title {
   font-family: "Inter", sans-serif;
-  color: black;
+  font-weight: 500;
+  letter-spacing: 0.5rem;
+  align-items: center;
 }
 
 .text-desc {
@@ -229,6 +231,7 @@ h2,
   justify-content: center;
   align-items: center;
   gap: 40px;
+  width: 100%;
 }
 
 .div-fecha {

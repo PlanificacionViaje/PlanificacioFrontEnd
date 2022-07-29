@@ -1,3 +1,6 @@
+<script setup>
+import CrossComponent from "@/Components/CrossComponent.vue";
+</script>
 <script>
 import * as crud from "@/utils/axiosFunctions.js";
 export default {
@@ -44,7 +47,7 @@ export default {
         .postItemsViaje(formData)
         .then((response) => {
           //console.log(response)
-          this.closeModal()
+          this.closeModal();
         })
         .catch((error) => crud.handleError(error));
     },
@@ -86,7 +89,7 @@ export default {
         this.cleanElements();
       }
       this.errorMessage = "";
-      this.$emit('closeTripModal');
+      this.$emit("closeTripModal");
     },
     compareFecha() {
       var fechaitem = new Date(this.dataItemTrip.fecha).getTime();
@@ -95,10 +98,11 @@ export default {
       if (fechaitem >= fechainicio && fechaitem <= fechafin) {
         return true;
       } else {
-        this.errorMessage = "La fecha esta fuera de los días establecidos del viaje.";
+        this.errorMessage =
+          "La fecha esta fuera de los días establecidos del viaje.";
         return false;
       }
-    }
+    },
   },
   props: {
     dataTrip: Object,
@@ -107,14 +111,13 @@ export default {
     //Display
     newEditItemTrip: Boolean,
     displayNewEditItemTripModal: Boolean,
-
   },
   watch: {
     errorMessage: function (value) {
       setTimeout(() => {
         this.errorMessage = "";
       }, 8000);
-    }
+    },
   },
   mounted() {
     if (this.dataItemTrip != null) {
@@ -162,8 +165,12 @@ export default {
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Añadir</button>
-        <p v-if="errorMessage" class="error-message blink_me ">{{ errorMessage }}</p>
-        <a href="#" @click.prevent="closeModal">X</a>
+        <p v-if="errorMessage" class="error-message blink_me">
+          {{ errorMessage }}
+        </p>
+        <a href="#" @click.prevent="closeModal">
+          <CrossComponent />
+        </a>
       </form>
     </div>
     <div v-else class="modal" @click.stop id="editItem-component">
@@ -184,27 +191,29 @@ export default {
         </label>
         <label class="form-field-container" for="hora">
           <p>Hora</p>
-          <input class="form-input" onkeydown="return false" :value=dataItemTrip.hora type="time" name="hora"
+          <input class="form-input" onkeydown="return false" :value="dataItemTrip.hora" type="time" name="hora"
             placeholder="hora" step="1" />
         </label>
         <label class="form-field-container" for="precio">
           <p>Precio</p>
-          <input class="form-input" :value=dataItemTrip.precio type="decimal" name="precio" id="precio" />
+          <input class="form-input" :value="dataItemTrip.precio" type="decimal" name="precio" id="precio" />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="ubicacionlatitud">
             <p>Ubicación latitud</p>
-            <input class="form-input" :value=dataItemTrip.ubicacionlatitud type="decimal" name="ubicacionlatitud"
+            <input class="form-input" :value="dataItemTrip.ubicacionlatitud" type="decimal" name="ubicacionlatitud"
               id="ubicacionlatitud" />
           </label>
           <label class="form-field-container" for="ubicacionlongitud">
             <p>Ubicación longitud</p>
-            <input class="form-input" :value=dataItemTrip.ubicacionlongitud type="decimal" name="ubicacionlongitud"
+            <input class="form-input" :value="dataItemTrip.ubicacionlongitud" type="decimal" name="ubicacionlongitud"
               id="ubicacionlongitud" />
           </label>
         </div>
         <button class="form-button" name="submit" type="submit">Guardar</button>
-        <p v-if="errorMessage" class="error-message blink_me ">{{ errorMessage }}</p>
+        <p v-if="errorMessage" class="error-message blink_me">
+          {{ errorMessage }}
+        </p>
         <a href="#" @click.prevent="closeModal">X</a>
       </form>
     </div>
@@ -232,7 +241,8 @@ export default {
   padding: 3rem;
   border-radius: 10px;
   color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .title {
@@ -290,7 +300,6 @@ input#precio {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-
 }
 
 textarea {

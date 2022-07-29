@@ -1,3 +1,6 @@
+<script setup>
+import CrossComponent from "@/Components/CrossComponent.vue";
+</script>
 <script>
 import * as crud from "@/utils/axiosFunctions.js";
 export default {
@@ -55,10 +58,12 @@ export default {
       document.querySelector("#TripNewfechafin").value = "";
     },
     closeModal() {
-      if (this.newEditTrip) { this.cleanElements(); }
+      if (this.newEditTrip) {
+        this.cleanElements();
+      }
       this.errorMessage = "";
       this.fechainicio = "";
-      this.$emit('closeTripModal');
+      this.$emit("closeTripModal");
     },
     changeOfEditfechainicio(e) {
       var fechainicio = document.querySelector("#EditTripfechainicio");
@@ -68,8 +73,8 @@ export default {
       if (fechainicioDate.getTime() > fechafinDate.getTime()) {
         fechafin.value = fechainicio.value;
       }
-      fechafin.setAttribute('min', fechainicio.value);
-    }
+      fechafin.setAttribute("min", fechainicio.value);
+    },
   },
   props: {
     dataTrip: {},
@@ -82,41 +87,70 @@ export default {
       setTimeout(() => {
         this.errorMessage = "";
       }, 8000);
-    }
+    },
   },
 };
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayNewEditTripModal" @click.prevent="closeModal">
+  <div
+    class="modal-background"
+    v-show="displayNewEditTripModal"
+    @click.prevent="closeModal"
+  >
     <div v-if="newEditTrip" class="modal" @click.stop id="newTrip-component">
       <h1 class="title">Nuevo viaje</h1>
       <form class="form" action="" @submit.prevent="postViaje">
         <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input class="form-input" type="text" name="nombre" id="TripNewnombre" />
+          <input
+            class="form-input"
+            type="text"
+            name="nombre"
+            id="TripNewnombre"
+          />
         </label>
         <label class="form-field-container" for="fechainicio">
           <p>Fecha Inicio</p>
-          <input class="form-input" onkeydown="return false" v-model="fechainicio" type="date" name="fechainicio"
-            id="TripNewfechainicio" />
+          <input
+            class="form-input"
+            onkeydown="return false"
+            v-model="fechainicio"
+            type="date"
+            name="fechainicio"
+            id="TripNewfechainicio"
+          />
         </label>
         <label class="form-field-container" for="fechafin">
           <p>Fecha Fin</p>
-          <input class="form-input" onkeydown="return false" :value=fechainicio :min=fechainicio type="date"
-            name="fechafin" id="TripNewfechafin" />
+          <input
+            class="form-input"
+            onkeydown="return false"
+            :value="fechainicio"
+            :min="fechainicio"
+            type="date"
+            name="fechafin"
+            id="TripNewfechafin"
+          />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="descripcion">
             <p>Descripción</p>
-            <textarea rows="4" class="form-input" type="textarea" name="descripcion" id="TripNewdescripcion" />
+            <textarea
+              rows="4"
+              class="form-input"
+              type="textarea"
+              name="descripcion"
+              id="TripNewdescripcion"
+            />
           </label>
 
           <button class="form-button" type="submit">Añadir</button>
         </div>
-        <p v-if="errorMessage" class="error-message blink_me">{{ errorMessage }}</p>
-        <a href="#" @click.prevent="closeModal"><img class="cross-icon rotate-center " src="Icons/cross.png"
-            alt="cruz de cerrar"></a>
+        <p v-if="errorMessage" class="error-message blink_me">
+          {{ errorMessage }}
+        </p>
+        <a href="#" @click.prevent="closeModal"><CrossComponent /></a>
       </form>
     </div>
     <div v-else class="modal" @click.stop id="editTrip-component">
@@ -124,28 +158,56 @@ export default {
       <form class="form" action="" @submit.prevent="putViaje">
         <label class="form-field-container" for="nombre">
           <p>Nombre</p>
-          <input class="form-input" :value=dataTrip.nombre type="text" name="nombre" id="nombre" />
+          <input
+            class="form-input"
+            :value="dataTrip.nombre"
+            type="text"
+            name="nombre"
+            id="nombre"
+          />
         </label>
         <label class="form-field-container" for="fechainicio">
           <p>Fecha Inicio</p>
-          <input class="form-input" onkeydown="return false" :value=dataTrip.fechainicio type="date" name="fechainicio"
-            id="EditTripfechainicio" @change="changeOfEditfechainicio" />
+          <input
+            class="form-input"
+            onkeydown="return false"
+            :value="dataTrip.fechainicio"
+            type="date"
+            name="fechainicio"
+            id="EditTripfechainicio"
+            @change="changeOfEditfechainicio"
+          />
         </label>
         <label class="form-field-container" for="fechafin">
           <p>Fecha Fin</p>
-          <input class="form-input" onkeydown="return false" :value=dataTrip.fechafin :min=dataTrip.fechainicio
-            type="date" name="fechafin" id="EditTripfechafin" />
+          <input
+            class="form-input"
+            onkeydown="return false"
+            :value="dataTrip.fechafin"
+            :min="dataTrip.fechainicio"
+            type="date"
+            name="fechafin"
+            id="EditTripfechafin"
+          />
         </label>
         <div class="flexedElements">
           <label class="form-field-container" for="descripcion">
             <p>Descripción</p>
-            <textarea rows="4" class="form-input" :value=dataTrip.descripcion type="textarea" name="descripcion"
-              id="descripcion" />
+            <textarea
+              rows="4"
+              class="form-input"
+              :value="dataTrip.descripcion"
+              type="textarea"
+              name="descripcion"
+              id="descripcion"
+            />
           </label>
           <button class="form-button" type="submit">Guardar</button>
         </div>
-        <p v-if="errorMessage" class="error-message blink_me">{{ errorMessage }}</p>
-        <a href="#" @click.prevent="closeModal">X</a>
+        <p v-if="errorMessage" class="error-message blink_me">
+          {{ errorMessage }}
+        </p>
+        <a href="#" @click.prevent="closeModal"><CrossComponent /></a>
       </form>
     </div>
   </div>
@@ -172,7 +234,8 @@ export default {
   padding: 3rem;
   border-radius: 10px;
   color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .title {
@@ -258,7 +321,6 @@ a {
   -webkit-animation: rotate-center 0.7s ease-in-out both;
   animation: rotate-center 0.7s ease-in-out both;
 }
-
 
 .blink_me {
   animation: blinker 2s linear infinite;
