@@ -1,22 +1,24 @@
+<script setup>
+import CrossComponent from "@/Components/CrossComponent.vue";
+</script>
 <script>
 import * as crud from "@/utils/axiosFunctions.js";
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     deleteViaje() {
       crud
         .deleteViaje(this.dataTrip.id)
         .then((response) => {
-          console.log(response)
+          console.log(response);
           this.closeModal();
         })
         .catch((error) => crud.handleError(error));
     },
     closeModal() {
-      this.$emit('closeTripModal');
+      this.$emit("closeTripModal");
     },
   },
   props: {
@@ -28,15 +30,24 @@ export default {
 </script>
 
 <template>
-  <div class="modal-background" v-show="displayDeleteTripModal" @click.prevent="closeModal">
+  <div
+    class="modal-background"
+    v-show="displayDeleteTripModal"
+    @click.prevent="closeModal"
+  >
     <div class="modal" @click.stop id="deleteTrip-component">
-      <h1 class="title">Estas seguro que quieres eliminar el viaje <em>"{{ dataTrip.nombre }}"</em> ?</h1>
+      <h1 class="title">
+        Estas seguro que quieres eliminar el viaje
+        <em>"{{ dataTrip.nombre }}"</em> ?
+      </h1>
       <form class="form" action="" @submit.prevent="deleteViaje">
         <div class="flexedElements">
           <button class="form-button borrar-btn" type="submit">Borrar</button>
-          <button class="form-button" type="submit" v-on:click="closeModal">Cancelar</button>
+          <button class="form-button" type="submit" v-on:click="closeModal">
+            Cancelar
+          </button>
         </div>
-        <a href="#" @click.prevent="closeModal">X</a>
+        <a href="#" @click.prevent="closeModal"><CrossComponent /></a>
       </form>
     </div>
   </div>
@@ -63,7 +74,8 @@ export default {
   padding: 3rem;
   border-radius: 10px;
   color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
 .title {
