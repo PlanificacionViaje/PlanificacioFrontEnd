@@ -2,14 +2,15 @@
 import Slider from "@/Components/Carousel/Carousel_Slider.vue";
 import Home from "@/Components/Home.vue";
 import Header from "@/Components/Header.vue";
+import FailComponent from "@/Components/FailComponent.vue";
 </script>
 <script>
-export default {}
+export default {};
 </script>
 <template>
   <Header />
   <div class="home-title">
-    <h1 class="title"> Bienvenid@ a Freeway</h1>
+    <h1 class="title">Bienvenid@ a Freeway</h1>
     <h2 class="slogan">Programa tus viajes en tan sólo un click</h2>
   </div>
   <div id="asdf">
@@ -32,7 +33,7 @@ export default {}
   text-align: center;
   color: white;
   text-transform: uppercase;
-  margin: 0
+  margin: 0;
 }
 
 #asdf {
@@ -41,7 +42,7 @@ export default {}
   width: 100%;
 }
 
-#asdf>* {
+#asdf > * {
   width: 50%;
 }
 
@@ -49,7 +50,6 @@ export default {}
   font-size: 55px;
   letter-spacing: 1rem;
   font-weight: 300;
-
 }
 
 .slogan {
