@@ -35,7 +35,7 @@ export default {
       <h2>Mis viajes</h2>
       <button class="button-add" @click="displayNewEditTripModal = true">
         <p>Añadir un viaje</p>
-        <img class="img-button" src="plus.png" alt="" />
+        <img class="img-button" src="/plus.png" alt="" />
       </button>
       <TripModal :newEditTrip=true :displayNewEditTripModal="displayNewEditTripModal" :idUsuario="userData.id"
         :dataTrip="dataTrip" @closeTripModal="displayNewEditTripModal = false" />

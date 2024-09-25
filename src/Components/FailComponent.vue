@@ -3,7 +3,7 @@ export default {};
 </script>
 <template>
   <div class="nologged-msg">
-    <img id="sadplane" src="Icons/sadplane.png" alt="" />
+    <img id="sadplane" src="/Icons/sadplane.png" alt="" />
     <h1>
       Vaya, parece que no estás loggeado... Look up
       <span id="arrow">&#8599;</span>

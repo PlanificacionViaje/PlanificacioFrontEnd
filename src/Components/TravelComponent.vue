@@ -122,7 +122,7 @@ export default {
   </div>
   <button class="button-add" @click="displayNewEditItemTripModal = true">
     <p>Añadir un item</p>
-    <img class="img-button" src="plus.png" alt="" />
+    <img class="img-button" src="/plus.png" alt="" />
   </button>
   <TripModal v-if="traveldata" :newEditTrip="false" :displayNewEditTripModal="displayNewEditTripModal"
     :dataTrip="traveldata" @closeTripModal="displayNewEditTripModal = false" />

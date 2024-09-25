@@ -5,7 +5,7 @@
   <div class="viajes-imagen">
     <div class="box-viajes">
       <router-link :to="$session.userData ? '/trips' : ''">
-        <img class="shadow-box" src="fotosPruebaSlider/my_trips_home.png" alt="" />
+        <img class="shadow-box" src="/fotosPruebaSlider/my_trips_home.png" alt="" />
       </router-link>
       <p class="text-box">Viajes</p>
     </div>
